@@ -1,4 +1,4 @@
-export function Footer() {
+export function Footer(props: any) {
 
 
     // Affichage
