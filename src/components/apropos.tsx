@@ -1,11 +1,10 @@
-export function Footer() {
+export function Apropos() {
 
 
     // Affichage
     return (
         <>
-        <div>Test Footer</div>
+        <div>Test A propos</div>
         </>
     );
-
 }
