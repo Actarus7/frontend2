@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
 import { Navbar } from './components/navbar';
+import { Footer } from './components/footer';
 
 function App() {
 
@@ -16,6 +16,16 @@ function App() {
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
 
       </header>
+
+      <main>
+        <div>
+          <p>Test</p>
+        </div>
+      </main>
+
+      <footer>
+        <Footer></Footer>
+      </footer>
     </div>
   );
 }
