@@ -1,6 +1,11 @@
 
 
 
-export default function Navbar() {
+export function Navbar() {
 
-}
+    // Affichage
+    return (
+        <>
+        </>
+    );
+};
