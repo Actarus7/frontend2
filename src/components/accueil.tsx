@@ -9,7 +9,7 @@ export default function Accueil(props: any/* IntrinsicAttributes */) {
     return (
         <>
             <div>Test Accueil</div>
-            <div id="carouselExampleDark" className="carousel carousel-dark slide" data-bs-ride="carousel">
+            <div id="carouselExampleDark" className="carousel slide" data-bs-ride="carousel">
                 <div className="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
                     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -20,44 +20,44 @@ export default function Accueil(props: any/* IntrinsicAttributes */) {
                 </div>
                 <div className="carousel-inner">
                     <div className="carousel-item active" data-bs-interval="10000">
-                        <img src="accueil-images/accueil1.png" className="d-block w-100" alt="..." />
+                        <img src="accueil-images/accueil1.png" className="d-block w-100" alt="woman1" />
                         <div className="carousel-caption d-none d-md-block">
-                            <h5>First slide label</h5>
-                            <p>Some representative placeholder content for the first slide.</p>
+                            <h5>Bienvenue sur Happy Training</h5>
+                            <p>Avec nous, restez concentrés jusqu'au bout !</p>
                         </div>
                     </div>
                     <div className="carousel-item" data-bs-interval="2000">
-                        <img src="accueil-images/accueil2.png" className="d-block w-100" alt="..." />
+                        <img src="accueil-images/accueil2.png" className="d-block w-100" alt="man1" />
                         <div className="carousel-caption d-none d-md-block">
-                            <h5>Second slide label</h5>
+                            <h5>Bienvenue sur Happy Training</h5>
                             <p>Some representative placeholder content for the second slide.</p>
                         </div>
                     </div>
                     <div className="carousel-item">
-                        <img src="accueil-images/accueil3.png" className="d-block w-100" alt="..." />
+                        <img src="accueil-images/accueil3.png" className="d-block w-100" alt="woman2" />
                         <div className="carousel-caption d-none d-md-block">
-                            <h5>Third slide label</h5>
+                            <h5>Bienvenue sur Happy Training</h5>
                             <p>Some representative placeholder content for the third slide.</p>
                         </div>
                     </div>
                     <div className="carousel-item">
-                        <img src="accueil-images/accueil4.png" className="d-block w-100" alt="..." />
+                        <img src="accueil-images/accueil4.png" className="d-block w-100" alt="women" />
                         <div className="carousel-caption d-none d-md-block">
-                            <h5>Fourth slide label</h5>
+                            <h5>Bienvenue sur Happy Training</h5>
                             <p>Some representative placeholder content for the third slide.</p>
                         </div>
                     </div>
                     <div className="carousel-item">
-                        <img src="accueil-images/accueil5.png" className="d-block w-100" alt="..." />
+                        <img src="accueil-images/accueil5.png" className="d-block w-100" alt="oldmen" />
                         <div className="carousel-caption d-none d-md-block">
-                            <h5>Fifth slide label</h5>
-                            <p>Some representative placeholder content for the third slide.</p>
+                            <h5>Bienvenue sur Happy Training</h5>
+                            <p>Chez nous il n'y a pas d'âge pour faire du sport !</p>
                         </div>
                     </div>
                     <div className="carousel-item">
-                        <img src="accueil-images/accueil6.png" className="d-block w-100" alt="..." />
+                        <img src="accueil-images/accueil6.png" className="d-block w-100" alt="man2" />
                         <div className="carousel-caption d-none d-md-block">
-                            <h5>Sixth slide label</h5>
+                            <h5>Bienvenue sur Happy Training</h5>
                             <p>Some representative placeholder content for the third slide.</p>
                         </div>
                     </div>
