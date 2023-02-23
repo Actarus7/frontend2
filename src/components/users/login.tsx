@@ -1,9 +1,9 @@
-import { useRef, useState } from "react";
-import ProfilUser from "./profil-user";
+import { useRef, /* useState  */} from "react";
+// import ProfilUser from "./profil-user";
 
 
 export function Login(props: any) {
-    const [redirectToMonProfil, setRedirectToMonProfil] = useState(false);
+    // const [redirectToMonProfil, setRedirectToMonProfil] = useState(false);
 
     const pseudoRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
@@ -30,7 +30,7 @@ export function Login(props: any) {
                 .then(response => {
                     if (response.statusCode === 200) {
                         props.setIsLogged(true);
-                        props.setPage('profil');
+                        props.setPage('mon profil');
                     }
                     else {
                         console.log(response.error);
@@ -41,10 +41,6 @@ export function Login(props: any) {
     };
 
 
-
-    if (redirectToMonProfil) {
-        return <ProfilUser />
-    };
 
     // Affichage
     return (
