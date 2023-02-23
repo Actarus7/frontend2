@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import { Navbar } from './components/navbars/navbar';
-import { Footer } from './components/footer';
+import { Footer } from './components/footer/footer';
 import { Login } from './components/users/login';
-import { Contact } from './components/contact';
+import { Contact } from './components/contact/contact';
 import { Register } from './components/users/register';
 import { NavbarLogged } from './components/navbars/navbarLogged';
-import Accueil from './components/accueil';
+import Accueil from './components/accueil/accueil';
 import Trainings from './components/trainings/trainings';
 import Articles from './components/articles/articles';
 import ProfilUser from './components/users/profil-user';

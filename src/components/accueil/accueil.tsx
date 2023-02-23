@@ -1,4 +1,4 @@
-import { Apropos } from "./apropos";
+import { Apropos } from "../apropos/apropos";
 
 
 
@@ -26,8 +26,8 @@ export default function Accueil(props: any/* IntrinsicAttributes */) {
                             <p>Avec nous, restez concentrés jusqu'au bout !</p>
                         </div>
                     </div>
-                    <div className="carousel-item" data-bs-interval="2000">
-                        <img src="accueil-images/accueil2.png" className="d-block w-100" alt="man1" />
+                    <div className="carousel-item">
+                        <img src="accueil-images/accueil2.png" max-width= "100%" className="d-block w-100" alt="man1" />
                         <div className="carousel-caption d-none d-md-block">
                             <h5>Bienvenue sur Happy Training</h5>
                             <p>Some representative placeholder content for the second slide.</p>
