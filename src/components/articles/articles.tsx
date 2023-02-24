@@ -1,19 +1,46 @@
 import { useEffect, useState } from "react";
+import { TArticle } from "../../types/TArticle.type";
 
 
 export default function Articles(props: any) {
     const [articles, setArticles] = useState([]);
 
-    let allPartages = articles.map((partage: any | null, i) => {
+    let allPartages = articles.map((partage: TArticle | null, i) => {
+        if (partage?.type === "partage")
 
-        return (
-            <div className="container-fluid" key={i}>
-                <p>{partage.title}</p>
-                <p>{partage.comments.length}</p>
+            return (
+                <div className="container-fluid" key={i}>
+                    <p>{partage.title}</p>
+                    <p>{partage.comments.length}</p>
 
-            </div>
-        )
-    })
+                </div>
+            )
+    });
+    let allRecettes = articles.map((recette: TArticle | null, i) => {
+        if (recette?.type === "recette")
+
+            return (
+                <div className="container-fluid" key={i}>
+                    <p>{recette.title}</p>
+                    <p>{recette.comments.length}</p>
+
+                </div>
+            )
+    });
+
+    let allDefis = articles.map((defi: TArticle | null, i) => {
+        if (defi?.type === "recette")
+
+            return (
+                <div className="container-fluid" key={i}>
+                    <p>{defi.title}</p>
+                    <p>{defi.comments.length}</p>
+
+                </div>
+            )
+    });
+
+
     /* function getPartages() {
         return "http://localhost:3000/api/articles/partages"
     };
@@ -105,7 +132,7 @@ export default function Articles(props: any) {
                         </h2>
                         <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                             <div className="accordion-body">
-                                <p>{ }</p>
+                                <p>{allRecettes}</p>
                             </div>
                         </div>
                     </div>
@@ -119,7 +146,7 @@ export default function Articles(props: any) {
                         </h2>
                         <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                             <div className="accordion-body">
-                                <p>tous les défis ici</p>
+                                <p>{allDefis}</p>
                             </div>
                         </div>
                     </div>
