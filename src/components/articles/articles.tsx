@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 
 
 export default function Articles(props: any) {
-    const [partages, setPartages] = useState([]);
+    const [articles, setArticles] = useState([]);
 
-    let allPartages = partages.map((partage: any | null, i) => {
+    let allPartages = articles.map((partage: any | null, i) => {
 
         return (
             <div className="container-fluid" key={i}>
@@ -14,7 +14,7 @@ export default function Articles(props: any) {
             </div>
         )
     })
-    function getPartages() {
+    /* function getPartages() {
         return "http://localhost:3000/api/articles/partages"
     };
 
@@ -24,11 +24,11 @@ export default function Articles(props: any) {
 
     function getDefis() {
         return "http://localhost:3000/api/articles/defis"
-    };
+    }; */
 
 
 
-    useEffect(() => {
+    /* useEffect(() => {
         const urls = [];
         urls.push(getPartages());
         // urls.push(getRecettes());
@@ -49,9 +49,9 @@ export default function Articles(props: any) {
 
             })
         );
-    }, []);
+    }, []); */
 
-    /* useEffect(async () => {
+    useEffect(() => {
         const url = "http://localhost:3000/api/articles";
 
         const options = {
@@ -62,11 +62,16 @@ export default function Articles(props: any) {
             }
         };
 
-        const response = await fetch(url, options);
-        const responseJson = await response.json();
-        setPartages(responseJson);
+        const getArticles = async () => {
 
-    }, []) */
+            const response = await fetch(url, options);
+            const responseJson = await response.json();
+            setArticles(responseJson);
+        };
+
+        getArticles();
+
+    }, [])
 
 
     // Affichage
