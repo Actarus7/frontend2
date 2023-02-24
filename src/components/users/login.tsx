@@ -1,4 +1,4 @@
-import { useRef, /* useState  */} from "react";
+import { useRef, /* useState  */ } from "react";
 // import ProfilUser from "./profil-user";
 
 
@@ -30,6 +30,7 @@ export function Login(props: any) {
                 .then(response => {
                     if (response.statusCode === 200) {
                         props.setIsLogged(true);
+                        props.setToken(response.data.access_token)
                         props.setPage('mon profil');
                     }
                     else {
