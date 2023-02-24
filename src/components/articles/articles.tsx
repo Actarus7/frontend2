@@ -4,6 +4,8 @@ import { TArticle } from "../../types/TArticle.type";
 
 export default function Articles(props: any) {
     const [articles, setArticles] = useState([]);
+    const [redirectToPartages, setRedirectToPartages] = useState(false);
+
 
     let allPartages = articles.map((partage: TArticle | null, i) => {
         if (partage?.type === "partage")
@@ -16,6 +18,7 @@ export default function Articles(props: any) {
                 </div>
             )
     });
+
     let allRecettes = articles.map((recette: TArticle | null, i) => {
         if (recette?.type === "recette")
 
@@ -29,54 +32,18 @@ export default function Articles(props: any) {
     });
 
     let allDefis = articles.map((defi: TArticle | null, i) => {
-        if (defi?.type === "recette")
+        if (defi?.type === "defi")
 
             return (
                 <div className="container-fluid" key={i}>
-                    <p>{defi.title}</p>
+                    <p>
+                        <a href="#">{defi.title}</a></p>
                     <p>{defi.comments.length}</p>
 
                 </div>
             )
     });
 
-
-    /* function getPartages() {
-        return "http://localhost:3000/api/articles/partages"
-    };
-
-    function getRecettes() {
-        return "http://localhost:3000/api/articles/recettes"
-    };
-
-    function getDefis() {
-        return "http://localhost:3000/api/articles/defis"
-    }; */
-
-
-
-    /* useEffect(() => {
-        const urls = [];
-        urls.push(getPartages());
-        // urls.push(getRecettes());
-        // urls.push(getDefis());
-        Promise.all(
-            urls.map(async (url) => {
-                const options = {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Authorization: `Bearer ${props.token}`
-                    }
-                };
-
-                const response = await fetch(url, options);
-                const responseJson = await response.json();
-                setPartages(responseJson);
-
-            })
-        );
-    }, []); */
 
     useEffect(() => {
         const url = "http://localhost:3000/api/articles";
@@ -95,7 +62,6 @@ export default function Articles(props: any) {
             const responseJson = await response.json();
             setArticles(responseJson);
         };
-
         getArticles();
 
     }, [])
