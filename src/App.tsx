@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import { Navbar } from './components/navbars/navbarboots';
-import { Footer } from './components/footer';
+import { Footer } from './components/footer/footer';
 import { Login } from './components/users/login';
-import { Contact } from './components/contact';
+import { Contact } from './components/contact/contact';
 import { Register } from './components/users/register';
 import { NavbarLogged } from './components/navbars/navbarLogged';
-import Accueil from './components/accueil';
+import Accueil from './components/accueil/accueil';
 import Trainings from './components/trainings/trainings';
 import Articles from './components/articles/articles';
 import ProfilUser from './components/users/profil-user';
@@ -14,6 +14,7 @@ import ProfilUser from './components/users/profil-user';
 function App() {
   const [page, setPage] = useState('accueil');
   const [isLogged, setIsLogged] = useState(false);
+  const [token, setToken] = useState('');
 
 
   if (isLogged) {
@@ -28,9 +29,9 @@ function App() {
         <main>
           {page === 'accueil' && <Accueil setPage={setPage}></Accueil>}
 
-          {page === 'mon profil' && <ProfilUser setPage={setPage}></ProfilUser>}
-          {page === 'trainings' && <Trainings setPage={setPage}></Trainings>}
-          {page === 'articles' && <Articles setPage={setPage}></Articles>}
+          {page === 'mon profil' && <ProfilUser setPage={setPage} token={token}></ProfilUser>}
+          {page === 'trainings' && <Trainings setPage={setPage} token={token}></Trainings>}
+          {page === 'articles' && <Articles setPage={setPage} token={token}></Articles>}
 
           {page === 'contact' && <Contact setPage={setPage}></Contact>}
 
@@ -57,7 +58,7 @@ function App() {
 
       <main>
         {page === 'accueil' && <Accueil setPage={setPage}></Accueil>}
-        {page === 'login' && <Login setPage={setPage} setIsLogged={setIsLogged}></Login>}
+        {page === 'login' && <Login setPage={setPage} setIsLogged={setIsLogged} setToken={setToken}></Login>}
         {page === 'register' && <Register setPage={setPage}></Register>}
         {page === 'trainings' && <Trainings setPage={setPage}></Trainings>}
         {page === 'contact' && <Contact setPage={setPage}></Contact>}

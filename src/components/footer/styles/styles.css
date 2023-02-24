@@ -1,0 +1,34 @@
+.footer_mentions_legales {
+    font-size: x-small !important;
+}
+
+.numero {
+    font-size: small;
+}
+
+.suivez_nous {
+    font-size: small !important;
+    font-weight: bold !important;
+}
+
+.réseaux {
+    padding: 11% !important;
+}
+
+.footer-third-column {
+    padding-left: 8% !important;
+}
+
+.footer-third-column-row {
+    margin-right: 2px !important;
+    justify-content: space-between !important;
+}
+
+.footer-right {
+    margin-left: 0%;
+    margin-right: 0%;
+}
+
+.footer-right-titles {
+    font-weight: bold !important;
+}
