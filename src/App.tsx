@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import logo from './logo.svg';
-import { Navbar } from './components/navbars/navbar';
+import { Navbar } from './components/navbars/navbarboots';
 import { Footer } from './components/footer';
 import { Login } from './components/users/login';
 import { Contact } from './components/contact';
