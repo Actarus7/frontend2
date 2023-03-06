@@ -1,0 +1,18 @@
+.bg-image{
+    background-image: url("/public/login-images/loginbg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    position: relative;
+}
+
+input {
+    background-color: #2D3450 !important;
+    color: white !important;
+}
+
+button {
+    background-color: #40DBC1 !important;
+    color: white !important;
+}

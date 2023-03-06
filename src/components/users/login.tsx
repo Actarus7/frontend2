@@ -1,5 +1,7 @@
 import { useRef, /* useState  */ } from "react";
 // import ProfilUser from "./profil-user";
+import "./style/styleLogin.css";
+
 
 
 export function Login(props: any) {
@@ -31,6 +33,7 @@ export function Login(props: any) {
                     if (response.statusCode === 200) {
                         props.setIsLogged(true);
                         props.setToken(response.data.access_token)
+                        props.setUsername(response.data.username);
                         props.setPage('mon profil');
                     }
                     else {
@@ -46,8 +49,12 @@ export function Login(props: any) {
     // Affichage
     return (
         <>
+
+            <div className="bg-image">
+            </div>
+
             <div>Se Connecter</div>
-            <form className="row g-3" onSubmit={handleSubmitLogin}>
+            <form className="row g-3" onSubmit={handleSubmitLogin} style={{position: "absolute", top: "70%", left: "50%", transform: "translate(-50%, -50%"}}>
 
                 <input
                     type="username"
@@ -77,7 +84,11 @@ export function Login(props: any) {
                 </button>
 
             </form>
+
+        
         </>
     );
 
+
+    
 }

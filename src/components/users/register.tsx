@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { Login } from "./login";
+import "./style/styleRegister.css"
 
 
 export function Register(props: any) {
@@ -52,8 +53,11 @@ export function Register(props: any) {
     // Affichage
     return (
         <>
-            <div>Test Register</div>
-            <form className="row g-3" onSubmit={handleSubmitRegister}>
+
+            <div className="bg-image">
+            </div>
+            
+            <form className="row g-3" onSubmit={handleSubmitRegister} style={{position: "absolute", top: "70%", left: "50%", transform: "translate(-50%, -50%"}}>
 
                 <input
                     type="username"

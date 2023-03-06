@@ -15,13 +15,21 @@ function App() {
   const [page, setPage] = useState('accueil');
   const [isLogged, setIsLogged] = useState(false);
   const [token, setToken] = useState('');
+  const [username, setUsername] = useState('');
+
+  const handleLogout = () => {
+    setIsLogged(false);
+    setToken("");
+    setUsername("");
+    setPage("login");
+};
 
 
   if (isLogged) {
     return (
       <div className="App">
         <header className="App-header">
-          <NavbarLogged setPage={setPage}></NavbarLogged>
+          <NavbarLogged setPage={setPage} logout={handleLogout}></NavbarLogged>
           {/* <img src={logo} className="App-logo" alt="logo" /> */}
         </header>
 
@@ -29,7 +37,7 @@ function App() {
         <main>
           {page === 'accueil' && <Accueil setPage={setPage}></Accueil>}
 
-          {page === 'mon profil' && <ProfilUser setPage={setPage} token={token}></ProfilUser>}
+          {page === 'mon profil' && <ProfilUser setPage={setPage} token={token} pseudo={username} ></ProfilUser>}
           {page === 'trainings' && <Trainings setPage={setPage} token={token}></Trainings>}
           {page === 'articles' && <Articles setPage={setPage} token={token}></Articles>}
 
@@ -58,7 +66,7 @@ function App() {
 
       <main>
         {page === 'accueil' && <Accueil setPage={setPage}></Accueil>}
-        {page === 'login' && <Login setPage={setPage} setIsLogged={setIsLogged} setToken={setToken}></Login>}
+        {page === 'login' && <Login setPage={setPage} setIsLogged={setIsLogged} setToken={setToken} setUsername={setUsername}></Login>}
         {page === 'register' && <Register setPage={setPage}></Register>}
         {page === 'trainings' && <Trainings setPage={setPage}></Trainings>}
         {page === 'contact' && <Contact setPage={setPage}></Contact>}
