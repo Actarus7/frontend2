@@ -32,6 +32,20 @@ export function Login(props: any) {
                         props.setIsLogged(true);
                         props.setToken(response.data.access_token)
                         props.setPage('mon profil');
+
+                        const body = JSON.stringify({
+                            search: response.data.username
+                        });
+                        const options = {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: body
+                        };
+
+                        fetch(`http://localhost:3000/api/users/search/`, options)
+                            .then(response => response.json())
+                            .then(response => props.setUserLogged(response.data))
+                            .catch(err => console.error(err));
                     }
                     else {
                         console.log(response.error);
@@ -40,6 +54,8 @@ export function Login(props: any) {
                 .catch(err => console.error(err));
         };
     };
+
+
 
 
 
@@ -71,8 +87,7 @@ export function Login(props: any) {
 
                 <button
                     type="submit"
-                    className="btn btn-primary mb-3"
-                /* onClick={handleSubmitLogin} */>
+                    className="btn btn-primary mb-3">
                     Se Connecter
                 </button>
 

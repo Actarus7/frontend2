@@ -1,11 +1,20 @@
 import { useEffect, useState } from "react";
 import { TArticle } from "../../types/TArticle.type";
+import { Defis } from "./defis";
+import { Partages } from "./partages";
 
 
-export default function Articles(props: any) {
+export default function Articles(props: any): JSX.Element {
     const [articles, setArticles] = useState([]);
-    const [redirectToPartages, setRedirectToPartages] = useState(false);
+    // const [redirectToPartages, setRedirectToPartages] = useState(false);
+    const [redirectToDefis, setRedirectToDefis] = useState(false);
+    const [defiId, setDefiId] = useState(0);
 
+    // if (redirectToPartages) return <Partages></Partages>
+
+
+    // CONFLIT AVEC LE USEEFFECT (en gros le UseEffect ne peut pas s'effectuer si condition préalable)
+    // Voir pour remonter le redirect sur le App
 
     let allPartages = articles.map((partage: TArticle | null, i) => {
         if (partage?.type === "partage")
@@ -37,7 +46,8 @@ export default function Articles(props: any) {
             return (
                 <div className="container-fluid" key={i}>
                     <p>
-                        <a href="#">{defi.title}</a></p>
+                        <a href="#" onClick={() => { setRedirectToDefis(true); setDefiId(defi.id)  }} >{defi.title}</a>
+                    </p>
                     <p>{defi.comments.length}</p>
 
                 </div>
@@ -65,6 +75,8 @@ export default function Articles(props: any) {
         getArticles();
 
     }, [])
+
+    if (redirectToDefis) return <Defis defiId={defiId} token={props.token} user={props.user}/>;
 
 
     // Affichage
