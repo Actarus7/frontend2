@@ -1,11 +1,15 @@
-import { useEffect, useState } from "react";
+import { /* useContext, */ useEffect, useState } from "react";
+// import { CommentsContext } from "../../contexts/CommentsContext";
 import { TArticle } from "../../types/TArticle.type";
 import { TComment } from "../../types/TComment.type";
-import CommentsArticles from "./comments-articles";
+import CommentsArticle from "./comments-articles";
 
-export function Defis(props: any) {
+export function Defi(props: any) {
     const [defi, setDefi] = useState<TArticle>();
+    // const {comments, setComments} = useContext(CommentsContext);
     const [comments, setComments] = useState<TComment[]>([]);
+    console.log(comments);
+    
 
     useEffect(() => {
         const url = `http://localhost:3000/api/articles/${props.defiId}`;
@@ -23,6 +27,7 @@ export function Defis(props: any) {
             .then(response => {
                 setDefi(response)
                 setComments(response.comments)
+                
             })
             .catch(err => console.error(err));
     }, []);
@@ -38,7 +43,7 @@ export function Defis(props: any) {
                             {defi.createdAt}
                             <p>{defi.body}</p>
                             {
-                                comments ? <CommentsArticles comments={comments} user={props.user} token={props.token}></CommentsArticles> : ''
+                                comments ? <CommentsArticle setComments={setComments} defiId={defi.id} comments={comments} user={props.user} token={props.token}></CommentsArticle> : ''
                             }
 
                         </>

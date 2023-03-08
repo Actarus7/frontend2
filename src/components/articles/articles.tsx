@@ -1,20 +1,19 @@
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { CommentsContext } from "../../contexts/CommentsContext";
 import { TArticle } from "../../types/TArticle.type";
-import { Defis } from "./defis";
-import { Partages } from "./partages";
+import { TComment } from "../../types/TComment.type";
+import { Defi } from "./defi";
+import { Partage } from "./partage";
 
-
+// const CommentsContext = createContext<TComment[]>([]);
 export default function Articles(props: any): JSX.Element {
     const [articles, setArticles] = useState([]);
     // const [redirectToPartages, setRedirectToPartages] = useState(false);
     const [redirectToDefis, setRedirectToDefis] = useState(false);
     const [defiId, setDefiId] = useState(0);
+    // const [comments, setComments] = useState<TComment[]>([]);
 
-    // if (redirectToPartages) return <Partages></Partages>
 
-
-    // CONFLIT AVEC LE USEEFFECT (en gros le UseEffect ne peut pas s'effectuer si condition préalable)
-    // Voir pour remonter le redirect sur le App
 
     let allPartages = articles.map((partage: TArticle | null, i) => {
         if (partage?.type === "partage")
@@ -46,7 +45,7 @@ export default function Articles(props: any): JSX.Element {
             return (
                 <div className="container-fluid" key={i}>
                     <p>
-                        <a href="#" onClick={() => { setRedirectToDefis(true); setDefiId(defi.id)  }} >{defi.title}</a>
+                        <a href="#" onClick={() => { setRedirectToDefis(true); setDefiId(defi.id) }} >{defi.title}</a>
                     </p>
                     <p>{defi.comments.length}</p>
 
@@ -76,64 +75,65 @@ export default function Articles(props: any): JSX.Element {
 
     }, [])
 
-    if (redirectToDefis) return <Defis defiId={defiId} token={props.token} user={props.user}/>;
+    if (redirectToDefis) return <Defi defiId={defiId} token={props.token} user={props.user} />;
 
 
     // Affichage
     return (
         <>
-            <div className="container-fluid bg-success bg-gradient">
-                Communauté
+            {/* <CommentsContext.Provider value={{ comments, setComments }}> */}
+                <div className="container-fluid bg-success bg-gradient">
+                    Communauté
 
 
-                <div className="accordion" id="accordionExample">
+                    <div className="accordion" id="accordionExample">
 
-                    <div className="accordion-item">
-                        <h2 className="accordion-header" id="headingOne">
-                            <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                Partages
-                            </button>
-                        </h2>
-                        <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                            <div className="accordion-body">
-                                {allPartages}
+                        <div className="accordion-item">
+                            <h2 className="accordion-header" id="headingOne">
+                                <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Partages
+                                </button>
+                            </h2>
+                            <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div className="accordion-body">
+                                    {allPartages}
+                                </div>
                             </div>
                         </div>
-                    </div>
 
 
-                    <div className="accordion-item">
-                        <h2 className="accordion-header" id="headingTwo">
-                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Recettes
-                            </button>
-                        </h2>
-                        <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                            <div className="accordion-body">
-                                <p>{allRecettes}</p>
+                        <div className="accordion-item">
+                            <h2 className="accordion-header" id="headingTwo">
+                                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Recettes
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                <div className="accordion-body">
+                                    <p>{allRecettes}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
 
-                    <div className="accordion-item">
-                        <h2 className="accordion-header" id="headingThree">
-                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                Défis
-                            </button>
-                        </h2>
-                        <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                            <div className="accordion-body">
-                                <p>{allDefis}</p>
+                        <div className="accordion-item">
+                            <h2 className="accordion-header" id="headingThree">
+                                <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Défis
+                                </button>
+                            </h2>
+                            <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                <div className="accordion-body">
+                                    <p>{allDefis}</p>
+                                </div>
                             </div>
                         </div>
+
                     </div>
 
                 </div>
 
-            </div>
-
-
+            {/* </CommentsContext.Provider> */}
 
         </>
     );

@@ -1,4 +1,4 @@
-export function Partages(props: any) {
+export function Partage(props: any) {
 
 
     // Affichage
