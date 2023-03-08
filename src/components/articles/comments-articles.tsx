@@ -1,13 +1,12 @@
-import { /* useContext, */ useRef, useState } from "react";
-// import { CommentsContext } from "../../contexts/CommentsContext";
+import { useRef, useState } from "react";
 import { TComment } from "../../types/TComment.type";
-import ModalUpdateComment from "./modal-update-comment";
 
 
 
 export default function CommentsArticle(props: any) {
-    // const {comments, setComments} = useContext(CommentsContext);
-    const [commentId, setCommentId] = useState(0)
+    const [editingCommentId, setEditingCommentId] = useState<number | null>(null);
+    const [newCommentText, setNewCommentText] = useState<string>("");
+
 
     const messageRef = useRef<HTMLTextAreaElement>(null);
 
@@ -42,6 +41,51 @@ export default function CommentsArticle(props: any) {
     };
 
 
+
+    const handleEditComment = (commentId: number, text: string) => {
+        handleUpdateComment(commentId, text);
+        setEditingCommentId(null);
+        setNewCommentText("");
+    };
+
+
+
+    const handleUpdateComment = (commentId: number, text: string) => {
+
+        const body = JSON.stringify({
+            articleId: props.defiId,
+            message: text,
+        });
+
+        const options = {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${props.token}`
+            },
+            body: body,
+        };
+
+        fetch(`http://localhost:3000/api/comments/${commentId}`, options)
+            .then(response => response.json())
+            .then(response => {
+                // console.log(response);
+
+                const updatedComment = response;
+                const updatedComments = props.comments.map((comment: TComment) => {
+                    if (comment.id === commentId) {
+                        return updatedComment;
+                    };
+                    return comment;
+                });
+                props.setComments(updatedComments)
+
+            })
+            .catch(err => console.error(err));
+    };
+
+
+
     const handleDeleteComment = (commentId: number) => {
         const options = {
             method: 'DELETE',
@@ -58,10 +102,8 @@ export default function CommentsArticle(props: any) {
             .catch(err => console.error(err));
     };
 
-    if (commentId !== 0) {
-        return <ModalUpdateComment commentId={commentId} token={props.token} comments={props.comments} setComments={props.setComments} />
-    }
-    
+
+
     // Affichage
     return (
         <>
@@ -70,12 +112,12 @@ export default function CommentsArticle(props: any) {
                 <form className="row g-3" onSubmit={handleAddComment}>
 
                     <div className="col-auto">
-                        {/* <label htmlFor="inputMessage">Message</label> */}
                         <textarea
                             className="form-control"
                             id="exampleFormControlTextarea1"
                             ref={messageRef}
-                            required></textarea>
+                            required>
+                        </textarea>
                     </div>
 
                     <div className="col-auto">
@@ -83,49 +125,63 @@ export default function CommentsArticle(props: any) {
                             type="submit"
                             className="btn btn-secondary mb-3">
                             Ajouter
-                        </button>{/* Afficher le bouton ajouter un Comment */}
+                        </button>
                     </div>
 
                 </form>
 
-                {
-                    (props.comments.map((comment: TComment) =>
-                        <p key={comment.id}>
-                            <div>{comment.message}</div>
-                            <div>{comment.user.pseudo}</div>
-                            <div><>{comment.createdAt}</></div>
 
 
+                {(props.comments.map((comment: TComment) =>
 
-                            <div><>
-                                {
-                                    props.user.id === comment.user.id ?
-                                        <button type="button" className="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => setCommentId(comment.id)}>
-                                            Modifier
-                                        </button>
+                    <div key={comment.id}>
+
+                        <div>
+                            {comment.user.pseudo}: {editingCommentId === comment.id ? (
+                                <textarea
+                                    defaultValue={comment.message}
+                                    onChange={(e) => setNewCommentText(e.target.value)}
+                                    required>
+                                </textarea>)
+
+                                : (comment.message)
+                            }
+                        </div>
+
+                        {editingCommentId === comment.id ?
+                            (<button onClick={() => handleEditComment(comment.id, newCommentText)}>
+                                Valider
+                            </button>)
+
+                            : (props.user.id === comment.user.id && (
+                                <button onClick={() => {
+                                    setEditingCommentId(comment.id);
+                                    setNewCommentText(comment.message);
+                                }}>
+                                    Modifier
+                                </button>))
+                        }
 
 
-                                        //  /* Afficher le bouton modifier si auteur du Comment */
-                                        : ''
-                                }
-                            </></div>
+                        <div><>
+                            {props.user.admin || props.user.id === comment.user.id ?
+                                <div>
+                                    <button
+                                        type="button"
+                                        className="btn btn-danger"
+                                        onClick={() => { handleDeleteComment(comment.id) }}>
+                                        Supprimer
+                                    </button>
+                                </div>
+                                : ''
+                            }
+                        </></div>
 
-                            <div><>
-                                {
-                                    props.user.admin || props.user.id === comment.user.id ?
-                                        <div>
-                                            <button type="button" className="btn btn-danger" onClick={() => { handleDeleteComment(comment.id) }}>Supprimer</button>// Afficher le bouton supprimer si Admin ou auteur du Comment
-                                            {}
-                                        </div>
-                                        : ''
-                                }
-                            </></div>
-
-                        </p>
-                    ))}
+                    </div>
+                ))}
 
             </div>
         </>
     );
 
-}
+};

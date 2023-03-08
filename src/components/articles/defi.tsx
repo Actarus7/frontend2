@@ -1,14 +1,12 @@
-import { /* useContext, */ useEffect, useState } from "react";
-// import { CommentsContext } from "../../contexts/CommentsContext";
+import { useEffect, useState } from "react";
 import { TArticle } from "../../types/TArticle.type";
 import { TComment } from "../../types/TComment.type";
 import CommentsArticle from "./comments-articles";
 
 export function Defi(props: any) {
     const [defi, setDefi] = useState<TArticle>();
-    // const {comments, setComments} = useContext(CommentsContext);
     const [comments, setComments] = useState<TComment[]>([]);
-    console.log(comments);
+    // console.log(comments);
     
 
     useEffect(() => {
@@ -30,7 +28,7 @@ export function Defi(props: any) {
                 
             })
             .catch(err => console.error(err));
-    }, []);
+    });
 
 
     return (
@@ -41,7 +39,7 @@ export function Defi(props: any) {
                         <>
                             <h1>{defi.title}</h1>
                             {defi.createdAt}
-                            <p>{defi.body}</p>
+                            <div>{defi.body}</div>
                             {
                                 comments ? <CommentsArticle setComments={setComments} defiId={defi.id} comments={comments} user={props.user} token={props.token}></CommentsArticle> : ''
                             }
