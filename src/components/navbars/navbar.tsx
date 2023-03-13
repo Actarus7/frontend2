@@ -1,3 +1,4 @@
+import { NavDropdown } from "react-bootstrap";
 
 
 
@@ -34,7 +35,7 @@ export function Navbar(props: any) {
                                 <a className="nav-link txt-yl" href="#" onClick={() => props.setPage('register')}>S'enregistrer</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link txt-yl" href="#" onClick={() => props.setPage('trainings')}>Entraînements</a>
+                            <a className="nav-link txt-yl" href="#" onClick={() => props.setPage('trainings')}>Entraînements</a>
                             </li>
                             {/* <li className="nav-item">
                                 <a className="nav-link txt-yl" href="#" onClick={() => props.setPage('articles')}>Communauté</a>

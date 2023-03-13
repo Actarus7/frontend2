@@ -38,6 +38,7 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+ 
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -52,5 +53,16 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <!-- We will put our React component inside this div. -->
+    <div id="like-button-root"></div>
+
+    <!-- Load React. -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- Load your React component. -->
+    <script src="like-button.js"></script>
+
   </body>
 </html>
