@@ -19,6 +19,8 @@ function App() {
   const [userLogged, setUserLogged] = useState<TUser | null>(null);
 
 
+
+  // Affichage de la Navbar "spéciale user connecté" si Login Ok
   if (isLogged) {
     return (
       <div className="App">
@@ -44,9 +46,11 @@ function App() {
           <Footer></Footer>
         </footer>
       </div>
-    )
+    );
   };
 
+
+  // Affichage de la Navbar "classique"
   return (
     <div className="App">
       <header className="App-header">
@@ -70,6 +74,6 @@ function App() {
       </footer>
     </div>
   );
-}
+};
 
 export default App;

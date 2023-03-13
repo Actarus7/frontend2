@@ -1,20 +1,28 @@
 import { useEffect, useState } from "react";
 import { TArticle } from "../../types/TArticle.type";
 import { Defi } from "./defi";
+import { Partage } from "./partage";
+import { Recette } from "./recette";
 
 export default function Articles(props: any): JSX.Element {
     const [articles, setArticles] = useState([]);
     const [redirectToDefis, setRedirectToDefis] = useState(false);
+    const [redirectToRecettes, setRedirectToRecettes] = useState(false);
+    const [redirectToPartages, setRedirectToPartages] = useState(false);
     const [defiId, setDefiId] = useState(0);
+    const [recetteId, setRecetteId] = useState(0);
+    const [partageId, setPartageId] = useState(0);
 
-
+;
 
     let allPartages = articles.map((partage: TArticle | null, i) => {
         if (partage?.type === "partage")
 
             return (
                 <div className="container-fluid" key={i}>
-                    <p>{partage.title}</p>
+                    <div>
+                        <a href="#" onClick={() => { setRedirectToPartages(true); setPartageId(partage.id) }} >{partage.title}</a>
+                    </div>
                     <p>{partage.comments.length}</p>
 
                 </div>
@@ -29,8 +37,10 @@ export default function Articles(props: any): JSX.Element {
 
             return (
                 <div className="container-fluid" key={i}>
-                    <p>{recette.title}</p>
-                    <p>{recette.comments.length}</p>
+                    <div>
+                        <a href="#" onClick={() => { setRedirectToRecettes(true); setRecetteId(recette.id) }} >{recette.title}</a>
+                    </div>
+                    <div>{recette.comments.length}</div>
 
                 </div>
             )
@@ -78,7 +88,9 @@ export default function Articles(props: any): JSX.Element {
 
     })
 
-    if (redirectToDefis) return <Defi defiId={defiId} token={props.token} user={props.user} />;
+    if (redirectToDefis) return <Defi setPage={props.setPage} defiId={defiId} token={props.token} user={props.user} />;
+    if (redirectToRecettes) return <Recette recetteId={recetteId} setPage={props.setPage} token={props.token} user={props.user} />;
+    if (redirectToPartages) return <Partage partageId={partageId} setPage={props.setPage} token={props.token} user={props.user} />;
 
 
     // Affichage

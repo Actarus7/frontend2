@@ -1,14 +1,17 @@
 import { useRef, useState } from "react";
 import { TComment } from "../../types/TComment.type";
+import Articles from "./articles";
 
 
 
 export default function CommentsArticle(props: any) {
     const [editingCommentId, setEditingCommentId] = useState<number | null>(null);
     const [newCommentText, setNewCommentText] = useState<string>("");
+    const [redirectToArticles, setRedirectToArticles] = useState(false)
 
 
     const messageRef = useRef<HTMLTextAreaElement>(null);
+
 
     const handleAddComment = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -16,7 +19,7 @@ export default function CommentsArticle(props: any) {
         if (messageRef.current?.value) {
 
             const body = JSON.stringify({
-                articleId: props.defiId,
+                articleId: props.defiId | props.recetteId | props.partageId,
                 message: messageRef.current.value,
             });
 
@@ -103,6 +106,8 @@ export default function CommentsArticle(props: any) {
     };
 
 
+    // Redirection vers le Component Articles (Communauté) si clique sur le bouton "Retour"
+    if (redirectToArticles) return <Articles token={props.token} user={props.userLogged}></Articles>
 
     // Affichage
     return (
@@ -123,14 +128,22 @@ export default function CommentsArticle(props: any) {
                     <div className="col-auto">
                         <button
                             type="submit"
-                            className="btn btn-secondary mb-3">
+                            className="btn btn-primary mb-3">
                             Ajouter
                         </button>
                     </div>
 
+                    <div className="col-auto">
+                        <button
+                            type="button"
+                            className="btn btn-secondary mb-3" onClick={() => { setRedirectToArticles(true) }}>
+                            Retour
+                        </button>
+                    </div>
+
+
+
                 </form>
-
-
 
                 {(props.comments.map((comment: TComment) =>
 
@@ -154,7 +167,7 @@ export default function CommentsArticle(props: any) {
                             </button>)
 
                             : (props.user.id === comment.user.id && (
-                                <button onClick={() => {
+                                <button className="btn btn-success" onClick={() => {
                                     setEditingCommentId(comment.id);
                                     setNewCommentText(comment.message);
                                 }}>

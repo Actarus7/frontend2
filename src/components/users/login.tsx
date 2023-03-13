@@ -1,9 +1,7 @@
-import { useRef, /* useState  */ } from "react";
-// import ProfilUser from "./profil-user";
+import { useRef } from "react";
 
 
 export function Login(props: any) {
-    // const [redirectToMonProfil, setRedirectToMonProfil] = useState(false);
 
     const pseudoRef = useRef<HTMLInputElement>(null);
     const passwordRef = useRef<HTMLInputElement>(null);
