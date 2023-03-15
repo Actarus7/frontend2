@@ -1,3 +1,4 @@
+import "./styles/articles.css"
 import { useEffect, useState } from "react";
 import { TArticle } from "../../types/TArticle.type";
 import { Defi } from "./defi";
@@ -13,57 +14,85 @@ export default function Articles(props: any): JSX.Element {
     const [recetteId, setRecetteId] = useState(0);
     const [partageId, setPartageId] = useState(0);
 
-;
 
-    let allPartages = articles.map((partage: TArticle | null, i) => {
+    const allPartages = articles.map((partage: TArticle | null, i) => {
         if (partage?.type === "partage")
 
             return (
-                <div className="container-fluid" key={i}>
+
+                <div className="container-fluid mt-3" key={i}>
                     <div>
-                        <a href="#" onClick={() => { setRedirectToPartages(true); setPartageId(partage.id) }} >{partage.title}</a>
+                        <a href="#" className="fw-semibold fs-5 text-decoration-none" onClick={() => { setRedirectToPartages(true); setPartageId(partage.id) }} >
+                            {partage.title}
+                        </a>
+                    </div >
+
+                    <div className="mt-2 fs-6">
+                        <i className="bi bi-chat-fill pe-2" />
+                        <i className="fw-normal">{partage.comments.length}</i>
                     </div>
-                    <p>{partage.comments.length}</p>
+
+                    <div className="border border-bottom mt-4"></div>
 
                 </div>
-            )
+            );
         else {
             return null;
-        }
+        };
     });
 
-    let allRecettes = articles.map((recette: TArticle | null, i) => {
+    const allRecettes = articles.map((recette: TArticle | null, i) => {
         if (recette?.type === "recette")
 
             return (
-                <div className="container-fluid" key={i}>
+
+                <div className="container-fluid mt-3" key={i}>
                     <div>
-                        <a href="#" onClick={() => { setRedirectToRecettes(true); setRecetteId(recette.id) }} >{recette.title}</a>
+                        <a href="#" className="fw-semibold fs-5 text-decoration-none" onClick={() => { setRedirectToRecettes(true); setRecetteId(recette.id) }} >
+                            {recette.title}
+                        </a>
                     </div>
-                    <div>{recette.comments.length}</div>
+
+                    <div className="mt-2 fs-6">
+                        <i className="bi bi-chat-fill pe-2" />
+                        <i className="fw-normal">{recette.comments.length}</i>
+                    </div>
+
+                    <div className="border border-bottom mt-4"></div>
 
                 </div>
-            )
+            );
         else {
             return null;
-        }
+        };
     });
 
-    let allDefis = articles.map((defi: TArticle | null, i) => {
+    const allDefis = articles.map((defi: TArticle | null, i) => {
         if (defi?.type === "defi")
 
             return (
-                <div className="container-fluid" key={i}>
+
+                <div className="container-fluid mt-3" key={i}>
                     <div>
-                        <a href="#" onClick={() => { setRedirectToDefis(true); setDefiId(defi.id) }} >{defi.title}</a>
+                        <a href="#" className="fw-semibold fs-5 text-decoration-none" onClick={() => { setRedirectToDefis(true); setDefiId(defi.id) }} >
+                            {defi.title}
+                        </a>
+
+                        <div className="mt-2 fs-6">
+                            <i className="bi bi-chat-fill pe-2" />
+                            <i className="fw-normal">{defi.comments.length}</i>
+                        </div>
+
+                        <div className="border border-bottom mt-4"></div>
                     </div>
-                    <div>{defi.comments.length}</div>
+
+
 
                 </div>
-            )
+            );
         else {
             return null;
-        }
+        };
     });
 
 
@@ -97,57 +126,61 @@ export default function Articles(props: any): JSX.Element {
     return (
         <>
             <div className="container-fluid bg-success bg-gradient">
-                Communauté
-
+                {/* ESPACE COMMUNAUTE */}
+                <div id="communaute" className="text-center text-white fs-1 fw-bold pt-4 pb-4">
+                    Espace Communauté
+                </div>
 
                 <div className="accordion" id="accordionExample">
-
+                    {/* PARTAGES */}
                     <div className="accordion-item">
                         <h2 className="accordion-header" id="headingOne">
-                            <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <button className="accordion-button fs-3 fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                 Partages
                             </button>
                         </h2>
                         <div id="collapseOne" className="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                             <div className="accordion-body">
-                                {allPartages}
+                                <div className="d-flex flex-column mb-3">
+                                    {allPartages}
+                                </div>
                             </div>
                         </div>
                     </div>
 
-
+                    {/* RECETTES */}
                     <div className="accordion-item">
                         <h2 className="accordion-header" id="headingTwo">
-                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <button className="accordion-button collapsed fs-3 fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                 Recettes
                             </button>
                         </h2>
-                        <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                        <div id="collapseTwo" className="accordion-collapse collapse fs-3 fw-bold text-dark" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                             <div className="accordion-body">
-                                {allRecettes}
+                                <div className="d-flex flex-column mb-3">
+                                    {allRecettes}
+                                </div>
                             </div>
                         </div>
                     </div>
 
-
+                    {/* DEFIS */}
                     <div className="accordion-item">
                         <h2 className="accordion-header" id="headingThree">
-                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <button className="accordion-button collapsed fs-3 fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                 Défis
                             </button>
                         </h2>
-                        <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                        <div id="collapseThree" className="accordion-collapse collapse fs-3 fw-bold text-dark" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
                             <div className="accordion-body">
-                                {allDefis}
+                                <div className="d-flex flex-column mb-3">
+                                    {allDefis}
+                                </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </div>
-
         </>
     );
-
-}
+};

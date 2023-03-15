@@ -27,6 +27,7 @@ export function Login(props: any) {
                 .then(response => response.json())
                 .then(response => {
                     if (response.statusCode === 200) {
+
                         props.setIsLogged(true);
                         props.setToken(response.data.access_token)
                         props.setPage('mon profil');
