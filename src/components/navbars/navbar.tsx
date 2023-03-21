@@ -7,7 +7,6 @@ export function Navbar(props: any) {
     // Affichage
     return (
         <>
-            <div>Test Navbar</div>
             <nav className="navbar navbar-expand-lg bg-red">
 
                 <div className="container-fluid  ">
@@ -37,9 +36,6 @@ export function Navbar(props: any) {
                             <li className="nav-item">
                             <a className="nav-link txt-yl" href="#" onClick={() => props.setPage('trainings')}>Entraînements</a>
                             </li>
-                            {/* <li className="nav-item">
-                                <a className="nav-link txt-yl" href="#" onClick={() => props.setPage('articles')}>Communauté</a>
-                            </li> */}
                             <li className="nav-item">
                                 <a className="nav-link txt-yl" href="#" onClick={() => props.setPage('contact')}>Contact</a>
                             </li>

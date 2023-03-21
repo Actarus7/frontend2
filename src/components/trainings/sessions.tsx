@@ -15,10 +15,8 @@ export default function Sessions() {
             const options = { method: 'GET', headers: { 'Content-Type': 'application/json' } };
             const result = await fetch('http://localhost:3000/api/sessions/', options);
             const response = await result.json();
-            // console.log(response);
 
             setSessions(response);
-            // console.log("updated", response.data);
         };
         fetchSessions();
 
@@ -33,7 +31,6 @@ export default function Sessions() {
         console.log(exo);
         setExercises(exo);
         setSessionId(id);
-        // console.log("updated", response.data);
     };
 
     const affichageExercises = exercises.map(exo => <div>{exo.title}</div>)
@@ -42,12 +39,26 @@ export default function Sessions() {
     // Affichage
     return (
         <>
+        {}
+            <div>
+
+            </div>
 
 
-            {/* <div>sessions</div>*/}
 
 
-            {<div className="card border-primary grid gap-0 row-gap-3  d-inline-block text-wrap text-truncate ">
+
+
+
+
+
+
+
+
+
+
+
+            {/* {<div className="card border-primary grid gap-0 row-gap-3  d-inline-block text-wrap text-truncate ">
 
                 {sessions.map((session, i) => (
                     <div key={session.id}>
@@ -63,10 +74,10 @@ export default function Sessions() {
                         ))}
                     </div>
                 ))}
+
+
                 {
                     <>
-
-                        (
                         {exercises.map(exo => {
                             <div>{exercises[0].title}</div>
                             {
@@ -85,12 +96,11 @@ export default function Sessions() {
                             }
                         })
                         }
-                        )
                     </>
                 }
-            </div> 
-            }
-       </>
+            </div>
+            } */}
+        </>
     )
 
 }

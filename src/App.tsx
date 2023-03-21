@@ -6,10 +6,11 @@ import { Contact } from './components/contact/contact';
 import { Register } from './components/users/register';
 import { NavbarLogged } from './components/navbars/navbarLogged';
 import Accueil from './components/accueil/accueil';
-import Trainings from './components/trainings/trainings';
+import AllTrainings from './components/trainings/allTrainings';
 import Articles from './components/articles/articles';
 import ProfilUser from './components/users/profil-user';
 import { TUser } from './types/TUser.type';
+import VisitorTraining from './components/trainings/visitorTraining';
 
 function App() {
   const [page, setPage] = useState('accueil');
@@ -38,7 +39,7 @@ function App() {
         <main>
           {page === 'accueil' && <Accueil setPage={setPage}></Accueil>}
           {page === 'mon profil' && <ProfilUser setPage={setPage} token={token} pseudo={username} ></ProfilUser>}
-          {page === 'trainings' && <Trainings setPage={setPage} token={token}></Trainings>}
+          {page === 'trainings' && <AllTrainings setPage={setPage} token={token}/>}
           {page === 'articles' && <Articles setPage={setPage} token={token} user={userLogged}></Articles>}
 
           {page === 'contact' && <Contact setPage={setPage}></Contact>}
@@ -67,7 +68,7 @@ function App() {
         {page === 'accueil' && <Accueil setPage={setPage}></Accueil>}
         {page === 'login' && <Login setPage={setPage} setIsLogged={setIsLogged} setToken={setToken} setUserLogged={setUserLogged} setUsername={setUsername}></Login>}
         {page === 'register' && <Register setPage={setPage}></Register>}
-        {page === 'trainings' && <Trainings setPage={setPage}></Trainings>}
+        {page === 'trainings' && <VisitorTraining setPage={setPage}/>}
         {page === 'contact' && <Contact setPage={setPage}></Contact>}
 
 

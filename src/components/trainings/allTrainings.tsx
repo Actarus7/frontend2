@@ -3,8 +3,7 @@ import { TTraining } from '../../types/TTraining.type';
 import OneTraining from './oneTraining';
 
 
-export default function Trainings(props: any) {
-
+export default function AllTrainings(props: any) {
     /**
      * like peut prendre 3 états: -1= dislike
      * 1 = like et 0 = undefined (pas de choix de la part de user)
@@ -16,26 +15,6 @@ export default function Trainings(props: any) {
     const [redirectToAfficheOneTraining, setRedirectToAfficheOneTraining] = useState(false);
 
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const options = { method: 'GET', headers: { 'Content-Type': 'application/json' } };
-            const result = await fetch(`http://localhost:3000/api/trainings/`, options);
-            const response = await result.json();
-            console.log(response);
-
-            setTrainings(response);
-            // console.log("updated", response.data);
-        };
-        fetchData();
-        // console.log("mounted");
-    }, []);
-
-    // console.log(trainings);
-    if (redirectToAfficheOneTraining) return <OneTraining trainingId={trainingId} />
-
-
-    const [data, setData] = useState([]);
-
 
     useEffect(() => {
         const fetchData = async () => {
@@ -43,14 +22,11 @@ export default function Trainings(props: any) {
             const result = await fetch('http://localhost:3000/api/trainings/', options);
             const response = await result.json()
 
-            setData(response.data);
-            console.log("updated", response.data);
+            setTrainings(response);
         };
         fetchData();
-        console.log("mounted");
 
     }, [])
-    console.log(data);
 
     return (
 
@@ -60,14 +36,13 @@ export default function Trainings(props: any) {
                 placeholder='Search...'
                 onChange={(event) => {
                     setSearchTerm(event.target.value);
-                    {
-                        trainings.map((training, key) => {
-                            <div className='trainings' key={key}>
-                                <p>{training.title}</p>
-                            </div>
-                        }
-                        )
+                    trainings.map((training, key) => {
+                        <div className='trainings' key={key}>
+                            <p>{training.title}</p>
+                        </div>
                     }
+                    )
+
                 }}
             />
 
