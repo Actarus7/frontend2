@@ -14,7 +14,7 @@ export default function Articles(props: any): JSX.Element {
     const [recetteId, setRecetteId] = useState(0);
     const [partageId, setPartageId] = useState(0);
 
-
+    // Map des articles pour récupérer tous les Partages
     const allPartages = articles.map((partage: TArticle | null, i) => {
         if (partage?.type === "partage")
 
@@ -33,6 +33,7 @@ export default function Articles(props: any): JSX.Element {
                     </div>
 
                     <div className="border border-bottom mt-4"></div>
+                    {/* ou bien <hr></hr> */}
 
                 </div>
             );
@@ -41,6 +42,7 @@ export default function Articles(props: any): JSX.Element {
         };
     });
 
+    // Map des articles pour récupérer tous les Recettes
     const allRecettes = articles.map((recette: TArticle | null, i) => {
         if (recette?.type === "recette")
 
@@ -59,6 +61,7 @@ export default function Articles(props: any): JSX.Element {
                     </div>
 
                     <div className="border border-bottom mt-4"></div>
+                    {/* ou bien <hr></hr> */}
 
                 </div>
             );
@@ -67,6 +70,7 @@ export default function Articles(props: any): JSX.Element {
         };
     });
 
+    // Map des articles pour récupérer tous les Défis
     const allDefis = articles.map((defi: TArticle | null, i) => {
         if (defi?.type === "defi")
 
@@ -84,6 +88,7 @@ export default function Articles(props: any): JSX.Element {
                         </div>
 
                         <div className="border border-bottom mt-4"></div>
+                        {/* ou bien <hr></hr> */}
                     </div>
 
 
@@ -95,7 +100,7 @@ export default function Articles(props: any): JSX.Element {
         };
     });
 
-
+    // Récupération de tous les Articles
     useEffect(() => {
         const url = "http://localhost:3000/api/articles";
 
@@ -115,9 +120,10 @@ export default function Articles(props: any): JSX.Element {
         };
         getArticles();
 
-    })
+    }, [])
 
-    if (redirectToDefis) return <Defi setPage={props.setPage} defiId={defiId} token={props.token} user={props.user} />;
+    // Redirection vers un Article précis en fonction du click
+    if (redirectToDefis) return <Defi defiId={defiId} setPage={props.setPage} token={props.token} user={props.user} />;
     if (redirectToRecettes) return <Recette recetteId={recetteId} setPage={props.setPage} token={props.token} user={props.user} />;
     if (redirectToPartages) return <Partage partageId={partageId} setPage={props.setPage} token={props.token} user={props.user} />;
 

@@ -9,6 +9,7 @@ export function Partage(props: any) {
     // console.log(comments);
 
 
+    // Récupération de tous les Commentaires liés à l'Article sélectionné
     useEffect(() => {
         const url = `http://localhost:3000/api/articles/${props.partageId}`;
 
@@ -28,9 +29,10 @@ export function Partage(props: any) {
 
             })
             .catch(err => console.error(err));
-    });
+    }, []);
 
 
+    // Affichage
     return (
         <>
             {
@@ -39,13 +41,14 @@ export function Partage(props: any) {
                         <>
                             <h1>{partage.title}</h1>
                             {partage.createdAt}
-                            <div>{partage.body}</div>
+                            <pre className="pt-4 article_body">{partage.body}</pre>
                             {
                                 comments ? <CommentsArticle setComments={setComments} recetteId={partage.id} comments={comments} user={props.user} token={props.token}></CommentsArticle> : ''
                             }
 
                         </>
                     </div>
-                ) : ''}</>
+                ) : ''}
+        </>
     );
 };
