@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import logo from './logo.svg';
 import { Navbar } from './components/navbars/navbar';
 import { Footer } from './components/footer/footer';
 import { Login } from './components/users/login';
@@ -22,31 +21,23 @@ function App() {
     setToken("");
     setUsername("");
     setPage("login");
-};
-
+  };
 
   if (isLogged) {
     return (
       <div className="App">
         <header className="App-header">
-          <NavbarLogged setPage={setPage} logout={handleLogout}></NavbarLogged>
-          {/* <img src={logo} className="App-logo" alt="logo" /> */}
+          <NavbarLogged setPage={setPage} logout={handleLogout} /*handleAddFriend={handleAddFriend}*/></NavbarLogged>
+          {/* { <img src={logo} className="App-logo" alt="logo" /> } */}
         </header>
-
 
         <main>
           {page === 'accueil' && <Accueil setPage={setPage}></Accueil>}
-
           {page === 'mon profil' && <ProfilUser setPage={setPage} token={token} pseudo={username} ></ProfilUser>}
           {page === 'trainings' && <Trainings setPage={setPage} token={token}></Trainings>}
           {page === 'articles' && <Articles setPage={setPage} token={token}></Articles>}
-
           {page === 'contact' && <Contact setPage={setPage}></Contact>}
-
-
-
         </main>
-
 
         <footer>
           <Footer></Footer>
@@ -55,7 +46,6 @@ function App() {
     )
   }
 
-
   return (
     <div className="App">
       <header className="App-header">
@@ -63,18 +53,13 @@ function App() {
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
       </header>
 
-
       <main>
         {page === 'accueil' && <Accueil setPage={setPage}></Accueil>}
         {page === 'login' && <Login setPage={setPage} setIsLogged={setIsLogged} setToken={setToken} setUsername={setUsername}></Login>}
         {page === 'register' && <Register setPage={setPage}></Register>}
         {page === 'trainings' && <Trainings setPage={setPage}></Trainings>}
         {page === 'contact' && <Contact setPage={setPage}></Contact>}
-
-
-
       </main>
-
 
       <footer>
         <Footer></Footer>
@@ -82,5 +67,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;

@@ -3,6 +3,21 @@
     background-color: #40DBC1 !important;
 }
 
+.btn {
+    background-color: #40DBC1;
+    color: white;
+    border: 1px solid white;
+    margin-right: 10px;
+  }
+  
+  .btn-primary {
+    border: 1px solid red;
+    font-size: smaller;
+  }
+  
+  .form-control {
+    width: 150px;
+  }
 .accueil-img {
     position: absolute;
     top: 0;
@@ -11,4 +26,11 @@
     height: 300px !important;
   }
 
+  .input {
+    width: 150px;
+  }
 
+  .navbar a {
+    color: black;
+    font-size: 1rem;
+  }

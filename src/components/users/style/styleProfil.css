@@ -1,5 +1,37 @@
-.background
-{
-    background-color: #222332 !important;
-}
+.container {
+    background-color: black;
+  }
+  
 
+h1 {
+    margin-bottom: -5px;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    text-align: center;
+  }  
+
+.card-body {
+    background: linear-gradient(to right, #40DBC1, #5AC8FA)!important;
+  }
+
+  .card-text {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+
+  @media (max-width: 576px) {
+    .card {
+      width: 80%;
+    }
+  }
+  
+  @media (min-width: 576px) {
+    .card {
+      width: 18rem;
+    }
+  }
+  
