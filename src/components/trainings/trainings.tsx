@@ -56,12 +56,14 @@ export default function Trainings(props: any) {
 
 
 
-            <div className='d-flex align-content-center flex-wrap justify-content-center align-items-center '>
+            <div className="d-flex align-content-center flex-wrap justify-content-center align-items-center text-truncate ">
+
                 {/* {trainings.map(training => <OneTraining training={training} />)} */}
 
                 {trainings.map(training =>
-                    <div className="card border-primary grid gap-0 row-gap-3 m-3" style={{ width: "18rem" }}>
-                        <h4 className="card-header">
+                    <div className="card border-primary grid gap-0 row-gap-3 m-3 text-truncate "
+                        style={{ width: "18rem" }}>
+                        <h4 className="card-header  text-truncate ">
                             PROGRAMME {training.id}
                             {/* <i
                             className={`bi bi-star${favorite ? "-fill" : ""}`}
@@ -71,22 +73,22 @@ export default function Trainings(props: any) {
                         </h4>
 
 
-                        <div className="card-body text-primary p-2 g-col-6">
-                            <h5 className="card-title">
+                        <div className="card-body text-primary p-2 g-col-6 text-truncate ">
+                            <h5 className="card-title text-truncate">
                                 {training.title}
+                            </h5>
+                            <div>
+                                {training.description}
+                            </div>
 
-                                <div>
-                                    {training.description}
-                                </div>
+                            <button
+                                type="button"
+                                onClick={() => { setRedirectToAfficheOneTraining(true); setTrainingId(training.id) }}
+                                className="btn btn-info ">
+                                Voir Programme
+                            </button>
 
-                                <button
-                                    type="button"
-                                    onClick={() => {setRedirectToAfficheOneTraining(true); setTrainingId(training.id)}}
-                                    className="btn btn-primary">
-                                    Voir Programme
-                                </button>
-
-                                {/* <i
+                            {/* <i
                                 className={`bi bi-hand-thumbs-up${like === 1 ? "-fill" : ""}`}
                                 onClick={handleLikes}
                                 style={{ cursor: "pointer" }}
@@ -97,7 +99,7 @@ export default function Trainings(props: any) {
                                 onClick={handledislikes}
                                 style={{ cursor: "pointer", color: "red" }}
                             ></i> */}
-                            </h5>
+
 
 
 

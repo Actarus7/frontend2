@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { TTraining } from "../../types/TTraining.type";
 import Sessions from "./sessions";
+import "./style.css";
 
 // interface propsTraining { training: TTraining }
 
@@ -49,22 +50,27 @@ export default function OneTraining(/* props: propsTraining */ props: any) {
 
     // Affichage
     return (
+
+
         <>
+
             {oneTraining ?
-                <>
-                    <div>
-                        {oneTraining.title}
-                    </div>
+                <div className="card border-primary grid gap-0 row-gap-3 m-3 text-wrap row text-truncate">
 
-                    <div>
+                    {oneTraining.title}
+                    <div className="card-body text-primary p-2 g-col-6 text-wrap row text-truncate "
+                        >
+
                         {oneTraining.description}
-                    </div>
 
-                    <Sessions />
-                </>
+                        <Sessions />
+
+                    </div>
+                </div>
                 : ""}
 
         </>
+
     );
 }
 
