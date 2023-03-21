@@ -18,6 +18,14 @@ function App() {
   const [token, setToken] = useState('');
   const [userLogged, setUserLogged] = useState<TUser | null>(null);
 
+  const [username, setUsername] = useState('');
+
+  const handleLogout = () => {
+    setIsLogged(false);
+    setToken("");
+    setUsername("");
+    setPage("login");
+};
 
 
   // Affichage de la Navbar "spéciale user connecté" si Login Ok
@@ -25,7 +33,7 @@ function App() {
     return (
       <div className="App">
         <header className="App-header">
-          <NavbarLogged setPage={setPage}></NavbarLogged>
+          <NavbarLogged setPage={setPage} logout={handleLogout}></NavbarLogged>
           {/* <img src={logo} className="App-logo" alt="logo" /> */}
         </header>
 
@@ -33,7 +41,7 @@ function App() {
         <main>
           {page === 'accueil' && <Accueil setPage={setPage}></Accueil>}
 
-          {page === 'mon profil' && <ProfilUser setPage={setPage} token={token}></ProfilUser>}
+          {page === 'mon profil' && <ProfilUser setPage={setPage} token={token} pseudo={username} ></ProfilUser>}
           {page === 'trainings' && <Trainings setPage={setPage} token={token}></Trainings>}
           {page === 'articles' && <Articles setPage={setPage} token={token} user={userLogged}></Articles>}
 
@@ -61,7 +69,7 @@ function App() {
 
       <main>
         {page === 'accueil' && <Accueil setPage={setPage}></Accueil>}
-        {page === 'login' && <Login setPage={setPage} setIsLogged={setIsLogged} setToken={setToken} setUserLogged={setUserLogged}></Login>}
+        {page === 'login' && <Login setPage={setPage} setIsLogged={setIsLogged} setToken={setToken} setUserLogged={setUserLogged} setUsername={setUsername}></Login>}
         {page === 'register' && <Register setPage={setPage}></Register>}
         {page === 'trainings' && <Trainings setPage={setPage}></Trainings>}
         {page === 'contact' && <Contact setPage={setPage}></Contact>}

@@ -1,0 +1,11 @@
+.h-custom {
+    height: 500px !important; /* Modifier la hauteur pour rentrer la photo sans scroller */
+    width: 750px  !important;
+    margin:auto
+} 
+
+.bg-color {
+    background-color: #222332;
+    height: 500px;
+  }
+  
