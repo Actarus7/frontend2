@@ -3,9 +3,10 @@ import "./style/styleLogin.css";
 
 export function Login(props: any) {
 
-    const pseudoRef = useRef<HTMLInputElement>(null);
-    const passwordRef = useRef<HTMLInputElement>(null);
+  const pseudoRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
+  // Procédure de Login
   const handleSubmitLogin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -22,38 +23,41 @@ export function Login(props: any) {
       };
       console.log(body);
 
-            fetch('http://localhost:3000/api/auth/login', options)
-                .then(response => response.json())
-                .then(response => {
-                    if (response.statusCode === 200) {
+      fetch('http://localhost:3000/api/auth/login', options)
+        .then(response => response.json())
+        .then(response => {
+          if (response.statusCode === 200) {
 
-                        props.setIsLogged(true);
-                        props.setToken(response.data.access_token)
-                        props.setUsername(response.data.username);
-                        props.setPage('mon profil');
+            props.setIsLogged(true);
+            props.setToken(response.data.access_token)
+            props.setUsername(response.data.username);
+            props.setPage('mon profil');
 
-                        const body = JSON.stringify({
-                            search: response.data.username
-                        });
-                        const options = {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: body
-                        };
 
-                        fetch(`http://localhost:3000/api/users/search/`, options)
-                            .then(response => response.json())
-                            .then(response => props.setUserLogged(response.data))
-                            .catch(err => console.error(err));
-                    }
-                    else {
-                        console.log(response.error);
-                        alert("Identifiants incorrects. Veuillez réessayer.");
-                    };
-                })
-                .catch(err => console.error(err));
-        };
+            // Récupération du userLogged
+            const body = JSON.stringify({
+              search: response.data.username
+            });
+            const options = {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: body
+            };
+
+            fetch(`http://localhost:3000/api/users/search/`, options)
+              .then(response => response.json())
+              .then(response => props.setUserLogged(response.data))
+              .catch(err => console.error(err));
+          }
+
+          else {
+            console.log(response.error);
+            alert("Identifiants incorrects. Veuillez réessayer.");
+          };
+        })
+        .catch(err => console.error(err));
     };
+  };
 
 
 
@@ -94,18 +98,18 @@ export function Login(props: any) {
         />
 
 
-                <button
-                    type="submit"
-                    className="btn btn-primary mb-3">
-                    Se Connecter
-                </button>
+        <button
+          type="submit"
+          className="btn btn-primary mb-3">
+          Se Connecter
+        </button>
 
-            </form>
-
-        
-        </>
-    );
+      </form>
 
 
-    
+    </>
+  );
+
+
+
 }

@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import { TUser } from "../../types/TUser.type";
 import FriendCarousel from "./FriendCarousel";
-import Friendships from "./friendships";
 import "./style/styleProfil.css";
+import UserFriends from "./user-friends";
+import UserWaitingFriendsList from "./user-waiting-friendslist";
 
 
 export default function ProfilUser(
@@ -165,7 +166,13 @@ export default function ProfilUser(
       </div>
 
 
-      <Friendships />
+      {/* LISTE D'AMIS */}
+      <UserFriends token={props.token} />
+
+
+      {/* LISTE DES DEMANDES D'AMIS RECUES */}
+      <UserWaitingFriendsList token={props.token} />
+
 
 
       <div><>{test}</></div>
