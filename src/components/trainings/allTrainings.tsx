@@ -15,7 +15,7 @@ export default function AllTrainings(props: any) {
     const [redirectToAfficheOneTraining, setRedirectToAfficheOneTraining] = useState(false);
 
 
-
+    // Récupération de tous les Trainings
     useEffect(() => {
         const fetchData = async () => {
             const options = { method: 'GET', headers: { 'Content-Type': 'application/json' } };
@@ -29,12 +29,14 @@ export default function AllTrainings(props: any) {
 
     }, [])
 
+
+    // Redirection vers le Training sélectionné
     if (redirectToAfficheOneTraining) {
         return <OneTraining trainingId={trainingId} />
     };
 
-    console.log(trainings);
 
+    // Affichage
     return (
 
         <div className="d-flex align-content-center flex-wrap justify-content-center align-items-center">

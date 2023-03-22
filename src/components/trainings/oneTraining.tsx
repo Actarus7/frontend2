@@ -14,17 +14,8 @@ export default function OneTraining(props: { trainingId: number }) {
     const [redirectToSession, setRedirectToSession] = useState<boolean>(false);
 
 
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         const options = { method: 'GET', headers: { 'Content-Type': 'application/json' } };
-    //         const result = await fetch(`http://localhost:3000/api/sessions/${props.training?.id}`, options);
-    //         const response = await result.json();
-    //         setSession(response);
-    //     };
-    //     fetchData();
-    // }, []);
-console.log(props.trainingId);
 
+    // Récupération du Training sélectionné
     useEffect(() => {
         const options = { method: 'GET', headers: { 'Content-Type': 'application/json' } };
         fetch(`http://localhost:3000/api/trainings/${props.trainingId}`, options)
