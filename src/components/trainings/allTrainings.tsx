@@ -22,16 +22,18 @@ export default function AllTrainings(props: any) {
             const result = await fetch('http://localhost:3000/api/trainings/', options);
             const response = await result.json()
 
+
             setTrainings(response);
         };
         fetchData();
 
     }, [])
-    
+
     if (redirectToAfficheOneTraining) {
-        return <OneTraining trainingId={trainingId}/>
+        return <OneTraining trainingId={trainingId} />
     };
 
+    console.log(trainings);
 
     return (
 
@@ -39,30 +41,20 @@ export default function AllTrainings(props: any) {
 
             <div className="d-flex align-content-center flex-wrap justify-content-center align-items-center text-truncate ">
 
-                {/* {trainings.map(training => <OneTraining training={training} />)} */}
-
-                {trainings.map(training =>
+                {trainings.map((training: TTraining) =>
                     <div className="card border-primary grid gap-0 row-gap-3 m-3 text-truncate "
                         style={{ width: "18rem" }}>
+
                         <h4 className="card-header  text-truncate ">
                             PROGRAMME {training.id}
-                            {/* <i
-                            className={`bi bi-star${favorite ? "-fill" : ""}`}
-                            style={{ color: favorite ? " #ccaa00" : "#888888" }}
-                            onClick={() => setFavorite(!favorite)}
-                        /> */}
                         </h4>
-
 
                         <div className="card-body text-primary p-2 g-col-6 text-truncate ">
                             <h5 className="card-title text-truncate">
                                 {training.title}
                             </h5>
-                            <div>
-                                {training.description}
-                            </div>
-                                
-                            <div><>{training.sessions}</></div>
+
+                            <div>{training.description}</div>
 
                             <button
                                 type="button"
@@ -70,23 +62,8 @@ export default function AllTrainings(props: any) {
                                 className="btn btn-info">
                                 Voir Programme
                             </button>
-
-                            {/* <i
-                                className={`bi bi-hand-thumbs-up${like === 1 ? "-fill" : ""}`}
-                                onClick={handleLikes}
-                                style={{ cursor: "pointer" }}
-                            ></i>
-        
-                            <i
-                                className={`bi bi-hand-thumbs-down${like === -1 ? "-fill" : ""}`}
-                                onClick={handledislikes}
-                                style={{ cursor: "pointer", color: "red" }}
-                            ></i> */}
-
                         </div>
                     </div>)}
-
-                {/* </div> */}
             </div>
         </div>
     );
@@ -114,3 +91,22 @@ export default function AllTrainings(props: any) {
                             )
                         }}
                     /> */}
+
+
+{/* <i
+                                className={`bi bi-hand-thumbs-up${like === 1 ? "-fill" : ""}`}
+                                onClick={handleLikes}
+                                style={{ cursor: "pointer" }}
+                            ></i>
+        
+                            <i
+                                className={`bi bi-hand-thumbs-down${like === -1 ? "-fill" : ""}`}
+                                onClick={handledislikes}
+                                style={{ cursor: "pointer", color: "red" }}
+                            ></i> */}
+
+{/* <i
+                            className={`bi bi-star${favorite ? "-fill" : ""}`}
+                            style={{ color: favorite ? " #ccaa00" : "#888888" }}
+                            onClick={() => setFavorite(!favorite)}
+                        /> */}
