@@ -11,7 +11,7 @@ export default function AllTrainings(props: any) {
     const [searchTerm, setSearchTerm] = useState('');//searbar
     // const [favorite, setFavorite] = useState(false);
     const [trainings, setTrainings] = useState<TTraining[]>([]);
-    const [trainingId, setTrainingId] = useState<number>();
+    const [trainingId, setTrainingId] = useState<number>(0);
     const [redirectToAfficheOneTraining, setRedirectToAfficheOneTraining] = useState(false);
 
 
@@ -27,26 +27,15 @@ export default function AllTrainings(props: any) {
         fetchData();
 
     }, [])
+    
+    if (redirectToAfficheOneTraining) {
+        return <OneTraining trainingId={trainingId}/>
+    };
+
 
     return (
 
-        <div className={`d-flex align-content-center flex-wrap justify-content-center align-items-center `}>
-            <input
-                type="text"
-                placeholder='Search...'
-                onChange={(event) => {
-                    setSearchTerm(event.target.value);
-                    trainings.map((training, key) => {
-                        <div className='trainings' key={key}>
-                            <p>{training.title}</p>
-                        </div>
-                    }
-                    )
-
-                }}
-            />
-
-
+        <div className="d-flex align-content-center flex-wrap justify-content-center align-items-center">
 
             <div className="d-flex align-content-center flex-wrap justify-content-center align-items-center text-truncate ">
 
@@ -72,11 +61,13 @@ export default function AllTrainings(props: any) {
                             <div>
                                 {training.description}
                             </div>
+                                
+                            <div><>{training.sessions}</></div>
 
                             <button
                                 type="button"
                                 onClick={() => { setRedirectToAfficheOneTraining(true); setTrainingId(training.id) }}
-                                className="btn btn-info ">
+                                className="btn btn-info">
                                 Voir Programme
                             </button>
 
@@ -92,15 +83,10 @@ export default function AllTrainings(props: any) {
                                 style={{ cursor: "pointer", color: "red" }}
                             ></i> */}
 
-
-
-
-
-
-
                         </div>
                     </div>)}
 
+                {/* </div> */}
             </div>
         </div>
     );
@@ -110,3 +96,21 @@ export default function AllTrainings(props: any) {
 
 
 
+
+
+
+
+
+{/* <input
+                        type="text"
+                        placeholder='Search...'
+                        onChange={(event) => {
+                            setSearchTerm(event.target.value);
+                            trainings.map((training, key) => {
+                                <div className='trainings' key={key}>
+                                    <p>{training.title}</p>
+                                </div>
+                            }
+                            )
+                        }}
+                    /> */}

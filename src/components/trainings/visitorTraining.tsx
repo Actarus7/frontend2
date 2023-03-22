@@ -33,7 +33,7 @@ export default function VisitorTrainings(props: any) {
                     <div>
                         {training.description}
                     </div>
-                    <Sessions />
+                    <Sessions trainingId={training.id}/>
                 </>
 
                 : ""}

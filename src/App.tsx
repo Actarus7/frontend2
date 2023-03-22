@@ -68,7 +68,7 @@ function App() {
         {page === 'accueil' && <Accueil setPage={setPage}></Accueil>}
         {page === 'login' && <Login setPage={setPage} setIsLogged={setIsLogged} setToken={setToken} setUserLogged={setUserLogged} setUsername={setUsername}></Login>}
         {page === 'register' && <Register setPage={setPage}></Register>}
-        {page === 'trainings' && <VisitorTraining setPage={setPage}/>}
+        {page === 'visitor training' && <VisitorTraining setPage={setPage}/>}
         {page === 'contact' && <Contact setPage={setPage}></Contact>}
 
 
