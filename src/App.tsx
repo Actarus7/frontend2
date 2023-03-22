@@ -38,8 +38,8 @@ function App() {
 
         <main>
           {page === 'accueil' && <Accueil setPage={setPage}></Accueil>}
-          {page === 'mon profil' && <ProfilUser setPage={setPage} token={token} pseudo={username} ></ProfilUser>}
-          {page === 'trainings' && <AllTrainings setPage={setPage} token={token}/>}
+          {page === 'mon profil' && <ProfilUser setPage={setPage} token={token} userLogged={userLogged}></ProfilUser>}
+          {page === 'trainings' && <AllTrainings setPage={setPage} token={token} />}
           {page === 'articles' && <Articles setPage={setPage} token={token} user={userLogged}></Articles>}
 
           {page === 'contact' && <Contact setPage={setPage}></Contact>}
@@ -68,7 +68,7 @@ function App() {
         {page === 'accueil' && <Accueil setPage={setPage}></Accueil>}
         {page === 'login' && <Login setPage={setPage} setIsLogged={setIsLogged} setToken={setToken} setUserLogged={setUserLogged} setUsername={setUsername}></Login>}
         {page === 'register' && <Register setPage={setPage}></Register>}
-        {page === 'visitor training' && <VisitorTraining setPage={setPage}/>}
+        {page === 'visitor training' && <VisitorTraining setPage={setPage} />}
         {page === 'contact' && <Contact setPage={setPage}></Contact>}
 
 
