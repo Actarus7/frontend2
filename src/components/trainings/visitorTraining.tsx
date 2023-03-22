@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { TTraining } from "../../types/TTraining.type";
 import OneTraining from "./oneTraining";
-import Sessions from "./sessions";
 
 export default function VisitorTrainings(props: any) {
 
     const [training, setTraining] = useState<TTraining | null>();
     const [redirectToAfficheOneTraining, setRedirectToAfficheOneTraining] = useState(false);
 
+
+    // Récupération du Training 1
     useEffect(() => {
         const fetchData = async () => {
             const options = { method: 'GET', headers: { 'Content-Type': 'application/json' } };
