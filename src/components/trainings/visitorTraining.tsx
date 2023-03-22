@@ -51,17 +51,6 @@ export default function VisitorTrainings(props: any) {
 
                         <div className="card-footer text-muted" />
                     </div>
-
-
-
-
-                    {/* <div>
-                        {training.title}
-                    </div>
-                    <div>
-                        {training.description}
-                    </div>
-                    <Sessions trainingId={training.id} /> */}
                 </>
 
                 : ""}
