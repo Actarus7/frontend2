@@ -3,7 +3,7 @@ import { TSession } from "../../types/TSesssion.type";
 import Exercises from "./exercises";
 
 
-export default function OneSession(props: { sessionId: number }) {
+export default function OneSession(props: { sessionId: number, trainingId: number }) {
     const [oneSession, setOneSession] = useState<TSession>();
 
 
@@ -19,7 +19,7 @@ export default function OneSession(props: { sessionId: number }) {
     // Affichage
     return (
         <>
-            <Exercises sessionId={props.sessionId} />
+            <Exercises sessionId={props.sessionId} trainingId={props.trainingId} />
         </>
 
     )

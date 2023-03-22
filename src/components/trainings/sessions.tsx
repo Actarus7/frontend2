@@ -21,7 +21,7 @@ export default function Sessions(props: { trainingId: number }) {
             })
             .catch(err => console.error(err));
 
-    });
+    }, []);
 
 
     const affichageSessions = sessions.map((session: TSession) => {
@@ -59,7 +59,7 @@ export default function Sessions(props: { trainingId: number }) {
     });
 
 
-    if (redirectToAfficheOneSession) return <OneSession sessionId={sessionId} />
+    if (redirectToAfficheOneSession) return <OneSession sessionId={sessionId} trainingId={props.trainingId} />
 
 
     const fetchExercises = async (id: number) => {

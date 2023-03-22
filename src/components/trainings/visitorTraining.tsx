@@ -12,12 +12,9 @@ export default function VisitorTrainings(props: any) {
             const options = { method: 'GET', headers: { 'Content-Type': 'application/json' } };
             const result = await fetch(`http://localhost:3000/api/trainings/one`, options);
             const response = await result.json();
-            // console.log(response);
             setTraining(response);
-            // console.log("updated", response.data);
         };
         fetchData();
-        // console.log("mounted");
     }, []);
 
 
