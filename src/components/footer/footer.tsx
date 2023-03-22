@@ -6,22 +6,22 @@ export function Footer() {
     <footer className="bg-dark text-center text-white">
       <div className="container p-4">
         <section className="mb-4">
-          <a className="btn btn-primary btn-floating m-1" style={{ backgroundColor: '#000000' }} href="#!" role="button">
+          <a className="btn-icone btn-floating m-1" style={{ backgroundColor: '#000000' }} href="#!" role="button">
             <img className="footer-icon" src="/footer-images/Facebook.png" alt="Facebook" />
           </a>
-          <a className="btn btn-primary btn-floating m-1" style={{ backgroundColor: '#000000' }} href="#!" role="button">
+          <a className="btn-icone btn-floating m-1" style={{ backgroundColor: '#000000' }} href="#!" role="button">
             <img className="footer-icon" src="/footer-images/Twitter.png" alt="Twitter" />
           </a>
-          <a className="btn btn-primary btn-floating m-1" style={{ backgroundColor: '#000000' }} href="#!" role="button">
+          <a className="btn-icone btn-floating m-1" style={{ backgroundColor: '#000000' }} href="#!" role="button">
             <img className="footer-icon" src="/footer-images/Telegram.png" alt="Telegram" />
           </a>
-          <a className="btn btn-primary btn-floating m-1" style={{ backgroundColor: '#000000' }} href="#!" role="button">
+          <a className="btn-icone btn-floating m-1" style={{ backgroundColor: '#000000' }} href="#!" role="button">
             <img className="footer-icon" src="/footer-images/Instagram.png" alt="Instagram" />
           </a>
-          <a className="btn btn-primary btn-floating m-1" style={{ backgroundColor: '#000000' }} href="#!" role="button">
+          <a className="btn-icone btn-floating m-1" style={{ backgroundColor: '#000000' }} href="#!" role="button">
             <img className="footer-icon" src="/footer-images/Linkedin.png" alt="LinkedIn" />
           </a>
-          <a className="btn btn-primary btn-floating m-1" style={{ backgroundColor: '#000000' }} href="#!" role="button">
+          <a className="btn-icone btn-floating m-1" style={{ backgroundColor: '#000000' }} href="#!" role="button">
             <img className="footer-icon" src="/footer-images/Whatsapp.png" alt="Whatsapp" />
           </a>
         </section>
