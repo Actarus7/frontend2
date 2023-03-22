@@ -19,7 +19,7 @@ export function NavbarLogged(props: NavbarLoggedProps) {
   const userSearch = useRef<HTMLInputElement>(null);
   const [searchResults, setSearchResults] = useState<User[]>([]);
 
-  
+
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -41,48 +41,22 @@ export function NavbarLogged(props: NavbarLoggedProps) {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
+              <a className="nav-link active" aria-current="page" href="#" onClick={() => props.setPage('mon profil')}>
                 Mon profil
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="#" onClick={() => props.setPage('trainings')}>
                 Entrainements
               </a>
             </li>
             <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
+              <a className="nav-link" href="#" onClick={() => props.setPage('articles')}>
                 Communauté
               </a>
-              <ul className="dropdown-menu">
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Défi
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Recette
-                  </a>
-                </li>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
-                    Partage
-                  </a>
-                </li>
-              </ul>
             </li>
             <li className="nav-item">
-              <a className="nav-link disabled">Contact</a>
+              <a className="nav-link" href="#" onClick={() => props.setPage('contact')}>Contact</a>
             </li>
           </ul>
           <ul className="navbar-nav mb-2 mb-lg-0">
