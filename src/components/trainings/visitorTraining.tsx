@@ -10,7 +10,7 @@ export default function VisitorTrainings(props: any) {
     useEffect(() => {
         const fetchData = async () => {
             const options = { method: 'GET', headers: { 'Content-Type': 'application/json' } };
-            const result = await fetch(`http://localhost:3000/api/trainings/one`, options);
+            const result = await fetch(`http://localhost:3000/api/trainings/first`, options);
             const response = await result.json();
             setTraining(response);
         };

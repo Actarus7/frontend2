@@ -18,12 +18,12 @@ function App() {
   const [token, setToken] = useState('');
   const [userLogged, setUserLogged] = useState<TUser | null>(null);
 
-  const [username, setUsername] = useState('');
+  // const [username, setUsername] = useState('');
 
   const handleLogout = () => {
     setIsLogged(false);
     setToken("");
-    setUsername("");
+    // setUsername("");
     setPage("login");
   };
 
@@ -66,7 +66,7 @@ function App() {
 
       <main>
         {page === 'accueil' && <Accueil setPage={setPage}></Accueil>}
-        {page === 'login' && <Login setPage={setPage} setIsLogged={setIsLogged} setToken={setToken} setUserLogged={setUserLogged} setUsername={setUsername}></Login>}
+        {page === 'login' && <Login setPage={setPage} setIsLogged={setIsLogged} setToken={setToken} setUserLogged={setUserLogged} /* setUsername={setUsername} */></Login>}
         {page === 'register' && <Register setPage={setPage}></Register>}
         {page === 'visitor training' && <VisitorTraining setPage={setPage} />}
         {page === 'contact' && <Contact setPage={setPage}></Contact>}

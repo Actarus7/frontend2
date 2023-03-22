@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { TUser } from "../../types/TUser.type";
 
 
 export default function UserFriends(props: { token: string }) {
@@ -26,7 +25,7 @@ export default function UserFriends(props: { token: string }) {
             })
             .catch((error) => console.log(error)
             );
-    }, []);
+    }, [props.token]);
 
 
     // Affichage de la liste des amis

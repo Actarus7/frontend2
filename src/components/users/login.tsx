@@ -30,7 +30,7 @@ export function Login(props: any) {
 
             props.setIsLogged(true);
             props.setToken(response.data.access_token)
-            props.setUsername(response.data.username);
+            // props.setUsername(response.data.username);
             props.setPage('mon profil');
 
 
