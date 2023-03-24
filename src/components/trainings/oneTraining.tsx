@@ -4,26 +4,14 @@ import { TTraining } from "../../types/TTraining.type";
 import Sessions from "./sessions";
 import "./style.css";
 
-// interface propsTraining { training: TTraining }
-
-export default function OneTraining(props: { trainingId: number }) {
+export default function OneTraining(props: { trainingId: number, onBackToList: () => void }) {
     const [like, setLike] = useState(0);
     const [favorite, setFavorite] = useState(false);
     const [oneTraining, setOneTraining] = useState<TTraining>();
     const [session, setSession] = useState<TSession>();
     const [redirectToSession, setRedirectToSession] = useState<boolean>(false);
 
-
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         const options = { method: 'GET', headers: { 'Content-Type': 'application/json' } };
-    //         const result = await fetch(`http://localhost:3000/api/sessions/${props.training?.id}`, options);
-    //         const response = await result.json();
-    //         setSession(response);
-    //     };
-    //     fetchData();
-    // }, []);
-console.log(props.trainingId);
+    console.log(props.trainingId);
 
     useEffect(() => {
         const options = { method: 'GET', headers: { 'Content-Type': 'application/json' } };
@@ -55,15 +43,6 @@ console.log(props.trainingId);
         };
     };
 
-    // if (redirectToSession) return <Sessions sessionId={sessionId}/>;
-    // console.log(props.training);
-
-    // const affichageSessions = props.training?.sessions.map((session: TSession) => {
-    //     return (
-    //         <div></div>
-    //     );
-    // });
-
     // Affichage
     return (
         <>
@@ -77,6 +56,12 @@ console.log(props.trainingId);
 
                         </div>
                         <Sessions trainingId={props.trainingId} />
+                        <button
+                            type="button"
+                            onClick={props.onBackToList}
+                            className="btn btn-info mt-2">
+                            Retour aux programmes
+                        </button>
                     </div>
                     : ""}
 
@@ -88,6 +73,3 @@ console.log(props.trainingId);
         </>
     );
 }
-
-
-

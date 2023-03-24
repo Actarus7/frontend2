@@ -1,0 +1,5 @@
+.background-image {
+    background-image: url("~/public/alltraining-images/bg_pilou.svg"); 
+    background-position: center;
+    background-repeat: repeat;
+}

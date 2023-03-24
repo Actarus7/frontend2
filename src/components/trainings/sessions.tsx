@@ -146,4 +146,3 @@ export default function Sessions(props: { trainingId: number }) {
     )
 
 }
-
