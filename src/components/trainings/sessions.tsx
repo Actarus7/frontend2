@@ -1,17 +1,26 @@
 import { useEffect, useState } from "react";
 import { TSession } from "../../types/TSesssion.type";
-import { TExercise } from "../../types/TExercise.type";
-import Exercises from "./exercises";
+// import { TExercise } from "../../types/TExercise.type";
+// import Exercises from "./exercises";
 import "./style.css";
 import OneSession from "./oneSession";
 
 
-export default function Sessions(props: { trainingId: number }) {
+export default function Sessions(
+    props: {
+        trainingId: number,
+        page: string,
+        setPage: React.Dispatch<React.SetStateAction<string>>
+    }) {
+
     const [sessions, setSessions] = useState<TSession[]>([]);
     const [sessionId, setSessionId] = useState<number>(0);
     const [redirectToAfficheOneSession, setRedirectToAfficheOneSession] = useState(false);
-    const [exercises, setExercises] = useState<TExercise[]>([]);
+    // const [exercises, setExercises] = useState<TExercise[]>([]);
 
+
+
+    // Récupération des Sessions d'un Training
     useEffect(() => {
         const options = { method: 'GET', headers: { 'Content-Type': 'application/json' } };
         fetch(`http://localhost:3000/api/sessions/training/${props.trainingId}`, options)
@@ -21,9 +30,11 @@ export default function Sessions(props: { trainingId: number }) {
             })
             .catch(err => console.error(err));
 
-    }, []);
+    }, [props.trainingId]);
 
 
+
+    // Affichage des Sessions
     const affichageSessions = sessions.map((session: TSession) => {
         return (
             <>
@@ -46,7 +57,7 @@ export default function Sessions(props: { trainingId: number }) {
 
                         <button
                             type="button"
-                            onClick={() => { setRedirectToAfficheOneSession(true); setSessionId(session.id) }}
+                            onClick={() => { /* props.setPage('session'); */ setRedirectToAfficheOneSession(true); setSessionId(session.id) }}
                             className="btn btn-info">
                             Voir Session
                         </button>
@@ -59,20 +70,12 @@ export default function Sessions(props: { trainingId: number }) {
     });
 
 
-    if (redirectToAfficheOneSession) return <OneSession sessionId={sessionId} trainingId={props.trainingId} />
+
+    // Redirection vers la Session sélectionnée
+    if (redirectToAfficheOneSession) return /* props.page === 'session' &&  */<OneSession sessionId={sessionId} trainingId={props.trainingId} />
 
 
-    const fetchExercises = async (id: number) => {
-        const options = { method: 'GET', headers: { 'Content-Type': 'application/json' } };
-        const result = await fetch(`http://localhost:3000/api/exercises/session/${id}`, options);
-        const exo = await result.json();
-        console.log(exo);
-        setExercises(exo);
-        setSessionId(id);
-    };
 
-    const affichageExercises = exercises.map(exo => <div>{exo.title}</div>)
-    const exerciseDetails = exercises.map(exercise => <div> {exercise.content} {exercise.time} {exercise.material}</div>)
 
     // Affichage
     return (
@@ -83,6 +86,7 @@ export default function Sessions(props: { trainingId: number }) {
                 <div className="d-flex align-content-center flex-wrap justify-content-center align-items-center text-truncate ">
                     {affichageSessions}
                 </div>
+                {/* {props.page === 'session' && <OneSession sessionId={sessionId} trainingId={props.trainingId} />} */}
 
             </div>
 
@@ -145,5 +149,5 @@ export default function Sessions(props: { trainingId: number }) {
         </>
     )
 
-}
+};
 

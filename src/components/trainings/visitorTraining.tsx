@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import { TTraining } from "../../types/TTraining.type";
 import OneTraining from "./oneTraining";
 
-export default function VisitorTrainings(props: any) {
+export default function VisitorTrainings(
+    props: {
+        page: string,
+        setPage: React.Dispatch<React.SetStateAction<string>>
+    }) {
 
     const [training, setTraining] = useState<TTraining | null>();
     const [redirectToAfficheOneTraining, setRedirectToAfficheOneTraining] = useState(false);
@@ -22,7 +26,7 @@ export default function VisitorTrainings(props: any) {
 
     // Redirection vers le Training sélectionné
     if (redirectToAfficheOneTraining) {
-        return <OneTraining trainingId={1} />
+        return <OneTraining trainingId={1} page={props.page} setPage={props.setPage} />
     };
 
 

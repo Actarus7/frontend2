@@ -13,7 +13,7 @@ import { TUser } from './types/TUser.type';
 import VisitorTraining from './components/trainings/visitorTraining';
 
 function App() {
-  const [page, setPage] = useState('accueil');
+  const [page, setPage] = useState<string>('accueil');
   const [isLogged, setIsLogged] = useState(false);
   const [token, setToken] = useState('');
   const [userLogged, setUserLogged] = useState<TUser | null>(null);
@@ -68,7 +68,7 @@ function App() {
         {page === 'accueil' && <Accueil setPage={setPage}></Accueil>}
         {page === 'login' && <Login setPage={setPage} setIsLogged={setIsLogged} setToken={setToken} setUserLogged={setUserLogged} /* setUsername={setUsername} */></Login>}
         {page === 'register' && <Register setPage={setPage}></Register>}
-        {page === 'visitor training' && <VisitorTraining setPage={setPage} />}
+        {page === 'visitor training' && <VisitorTraining page={page} setPage={setPage} />}
         {page === 'contact' && <Contact setPage={setPage}></Contact>}
 
 

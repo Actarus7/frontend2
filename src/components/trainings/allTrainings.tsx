@@ -8,7 +8,7 @@ export default function AllTrainings(props: any) {
      * like peut prendre 3 états: -1= dislike
      * 1 = like et 0 = undefined (pas de choix de la part de user)
      */
-    const [searchTerm, setSearchTerm] = useState('');//searbar
+    // const [searchTerm, setSearchTerm] = useState('');//searbar
     // const [favorite, setFavorite] = useState(false);
     const [trainings, setTrainings] = useState<TTraining[]>([]);
     const [trainingId, setTrainingId] = useState<number>(0);
@@ -32,7 +32,7 @@ export default function AllTrainings(props: any) {
 
     // Redirection vers le Training sélectionné
     if (redirectToAfficheOneTraining) {
-        return <OneTraining trainingId={trainingId} />
+        return <OneTraining trainingId={trainingId} page={props.page} setPage={props.setPage} />
     };
 
 
