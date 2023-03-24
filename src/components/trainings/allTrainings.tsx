@@ -21,6 +21,8 @@ export default function AllTrainings(props: any) {
             const options = { method: 'GET', headers: { 'Content-Type': 'application/json' } };
             const result = await fetch('http://localhost:3000/api/trainings/', options);
             const response = await result.json()
+            console.log(response);
+
 
 
             setTrainings(response);
@@ -32,43 +34,51 @@ export default function AllTrainings(props: any) {
     const handleBackToList = () => {
         setRedirectToAfficheOneTraining(false);
     };
-    
+
+    const affichageTrainings = trainings.map((training: TTraining) => {
+        return (
+            <>
+                <div className="card border-primary grid gap-0 row-gap-3 m-3 text-truncate "
+                    style={{ width: "18rem" }}>
+
+                    <h4 className="card-header  text-truncate ">
+                        PROGRAMME {training.id}
+                    </h4>
+
+                    <div className="card-body text-primary p-2 g-col-6 text-truncate ">
+                        <h5 className="card-title text-truncate">
+                            {training.title}
+                        </h5>
+                        <div>
+                            {training.description}
+                        </div>
+
+                        <button
+                            type="button"
+                            onClick={() => { setRedirectToAfficheOneTraining(true); setTrainingId(training.id) }}
+                            className="btn btn-info">
+                            Voir Programme
+                        </button>
+                    </div>
+                </div></>)
+    });
+
+
     if (redirectToAfficheOneTraining) {
         return <OneTraining trainingId={trainingId} onBackToList={handleBackToList} />
     };
-    
+    console.log(redirectToAfficheOneTraining);
+    console.log('trainings', trainings);
+
 
     // Affichage
     return (
         <div className="d-flex align-content-center flex-wrap justify-content-center align-items-center background-image">
             <div className="d-flex align-content-center flex-wrap justify-content-center align-items-center text-truncate ">
 
-                {trainings.map((training: TTraining) =>
-                    <div className="card border-primary grid gap-0 row-gap-3 m-3 text-truncate "
-                        style={{ width: "18rem" }}>
-
-                        <h4 className="card-header  text-truncate ">
-                            PROGRAMME {training.id}
-                        </h4>
-
-                        <div className="card-body text-primary p-2 g-col-6 text-truncate ">
-                            <h5 className="card-title text-truncate">
-                                {training.title}
-                            </h5>
-                            <div>
-                                {training.description}
-                            </div>
-
-                            <div><>{training.sessions}</></div>
-
-                            <button
-                                type="button"
-                                onClick={() => { setRedirectToAfficheOneTraining(true); setTrainingId(training.id) }}
-                                className="btn btn-info">
-                                Voir Programme
-                            </button>
-                        </div>
-                    </div>)}
+                {trainings.length > 0 ?
+                    affichageTrainings
+                    : ""}
             </div>
         </div>
     );
