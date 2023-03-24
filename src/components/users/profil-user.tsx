@@ -1,30 +1,25 @@
+import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
+import { TUser } from "../../types/TUser.type";
 import FriendCarousel from "./FriendCarousel";
 import "./style/styleProfil.css";
-import React, { useEffect, useState } from "react";
+import UserFriends from "./user-friends";
+import UserWaitingFriendsList from "./user-waiting-friendslist";
 
-interface Props {
-  token: string;
-  pseudo: string;
-  setPage: (page: string) => void;
-}
 
-interface User {
-  id: number;
-  pseudo: string;
-  email: string;
-  photo: string;
-}
+export default function ProfilUser(
+  props: {
+    setPage: React.Dispatch<React.SetStateAction<string>>,
+    token: string,
+    userLogged: TUser | null,
+  }) {
 
-export default function ProfilUser(props: Props) {
   const [userSearch, setUserSearch] = useState<string>("");
   const [searchText, setSearchText] = useState<string>("");
-  const [searchResult, setSearchResult] = useState<User>();
-  console.log("test 1");
+  const [searchResult, setSearchResult] = useState<TUser>();
 
 
   const performFriendSearch = (search: string) => {
-    console.log("test 4", search);
 
     if (search !== "") {
       const body = JSON.stringify({ search });
@@ -38,12 +33,12 @@ export default function ProfilUser(props: Props) {
       fetch(`http://localhost:3000/api/users/search/`, options)
         .then((response) => response.json())
         .then((response) => {
-          console.log(response.data);
           if (response.statusCode === 200) {
             setSearchResult(response.data);
-          }
-        });
-    } 
+          };
+        })
+        .catch((error) => console.log(error));
+    };
   };
 
 
@@ -51,18 +46,15 @@ export default function ProfilUser(props: Props) {
     e.preventDefault();
 
     setSearchText(userSearch);
-    console.log("test 5", userSearch);
   };
 
 
   useEffect(() => {
-    console.log("test 3", searchText);
-
     performFriendSearch(searchText);
   }, [searchText]);
 
 
-  const handleAddFriend = (user: User) => {
+  const handleAddFriend = (user: TUser) => {
     const options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -84,17 +76,14 @@ export default function ProfilUser(props: Props) {
 
 
   const handleSearchFriends = (search: string) => {
-    console.log("test 2", search);
 
     setUserSearch(search);
   };
 
 
   const test = searchResult?.pseudo
-  console.log('résultat', searchResult);
-  
-  console.log(test);
-  
+
+
   /* const affichageResult = searchResults.map((user: User) => {
     return (
     <>
@@ -106,7 +95,7 @@ export default function ProfilUser(props: Props) {
 
   return (
     <div className="profil-user-container">
-      <h1>Salut, {props.pseudo}</h1>
+      <h1>Salut, {props.userLogged?.pseudo}</h1>
 
       {/* <div className="profil-user-content">
         <div className="profil-user-left">
@@ -135,6 +124,9 @@ export default function ProfilUser(props: Props) {
         </div>
       </div> */}
 
+
+
+      {/* RECHERCHE D'AMIS */}
       <div className="search-friends">
         <h3>Rechercher des amis</h3>
         <form onSubmit={handleSearch}>
@@ -149,29 +141,39 @@ export default function ProfilUser(props: Props) {
           <div className="found-friends">
             <h3>Résultats de la recherche</h3>
             <ul>
-              
-                <li key={searchResult.pseudo}>
-                  <Card className="friend-card">
-                    <Card.Img
-                      variant="top"
-                      src={searchResult.photo}
-                      className="friend-image"
-                    />
-                    <Card.Body>
-                      <Card.Title className="friend-username">
-                        {searchResult.pseudo}
-                      </Card.Title>
-                      <button onClick={() => handleAddFriend(searchResult)}>
-                        Ajouter en ami
-                      </button>
-                    </Card.Body>
-                  </Card>
-                </li>
-              
+
+              <li key={searchResult.pseudo}>
+                <Card className="friend-card">
+                  <Card.Img
+                    variant="top"
+                    src={searchResult.photo}
+                    className="friend-image"
+                  />
+                  <Card.Body>
+                    <Card.Title className="friend-username">
+                      {searchResult.pseudo}
+                    </Card.Title>
+                    <button onClick={() => handleAddFriend(searchResult)}>
+                      Ajouter en ami
+                    </button>
+                  </Card.Body>
+                </Card>
+              </li>
+
             </ul>
           </div>
         )}
       </div>
+
+
+      {/* LISTE D'AMIS */}
+      <UserFriends token={props.token} />
+
+
+      {/* LISTE DES DEMANDES D'AMIS RECUES */}
+      <UserWaitingFriendsList token={props.token} />
+
+
 
       <div><>{test}</></div>
       {/* <div>{affichageResult}</div> */}

@@ -13,17 +13,17 @@ import { TUser } from './types/TUser.type';
 import VisitorTraining from './components/trainings/visitorTraining';
 
 function App() {
-  const [page, setPage] = useState('accueil');
+  const [page, setPage] = useState<string>('accueil');
   const [isLogged, setIsLogged] = useState(false);
   const [token, setToken] = useState('');
   const [userLogged, setUserLogged] = useState<TUser | null>(null);
 
-  const [username, setUsername] = useState('');
+  // const [username, setUsername] = useState('');
 
   const handleLogout = () => {
     setIsLogged(false);
     setToken("");
-    setUsername("");
+    // setUsername("");
     setPage("login");
   };
 
@@ -38,8 +38,8 @@ function App() {
 
         <main>
           {page === 'accueil' && <Accueil setPage={setPage}></Accueil>}
-          {page === 'mon profil' && <ProfilUser setPage={setPage} token={token} pseudo={username} ></ProfilUser>}
-          {page === 'trainings' && <AllTrainings setPage={setPage} token={token}/>}
+          {page === 'mon profil' && <ProfilUser setPage={setPage} token={token} userLogged={userLogged}></ProfilUser>}
+          {page === 'trainings' && <AllTrainings setPage={setPage} token={token} />}
           {page === 'articles' && <Articles setPage={setPage} token={token} user={userLogged}></Articles>}
 
           {page === 'contact' && <Contact setPage={setPage}></Contact>}
@@ -66,9 +66,9 @@ function App() {
 
       <main>
         {page === 'accueil' && <Accueil setPage={setPage}></Accueil>}
-        {page === 'login' && <Login setPage={setPage} setIsLogged={setIsLogged} setToken={setToken} setUserLogged={setUserLogged} setUsername={setUsername}></Login>}
+        {page === 'login' && <Login setPage={setPage} setIsLogged={setIsLogged} setToken={setToken} setUserLogged={setUserLogged} /* setUsername={setUsername} */></Login>}
         {page === 'register' && <Register setPage={setPage}></Register>}
-        {page === 'visitor training' && <VisitorTraining setPage={setPage}/>}
+        {page === 'visitor training' && <VisitorTraining page={page} setPage={setPage} />}
         {page === 'contact' && <Contact setPage={setPage}></Contact>}
 
 

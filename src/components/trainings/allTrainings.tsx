@@ -8,19 +8,20 @@ export default function AllTrainings(props: any) {
      * like peut prendre 3 états: -1= dislike
      * 1 = like et 0 = undefined (pas de choix de la part de user)
      */
-    const [searchTerm, setSearchTerm] = useState('');//searbar
+    // const [searchTerm, setSearchTerm] = useState('');//searbar
     // const [favorite, setFavorite] = useState(false);
     const [trainings, setTrainings] = useState<TTraining[]>([]);
     const [trainingId, setTrainingId] = useState<number>(0);
     const [redirectToAfficheOneTraining, setRedirectToAfficheOneTraining] = useState(false);
 
 
-
+    // Récupération de tous les Trainings
     useEffect(() => {
         const fetchData = async () => {
             const options = { method: 'GET', headers: { 'Content-Type': 'application/json' } };
             const result = await fetch('http://localhost:3000/api/trainings/', options);
             const response = await result.json()
+
 
             setTrainings(response);
         };
@@ -37,12 +38,15 @@ export default function AllTrainings(props: any) {
     };
     
 
+    // Affichage
     return (
         <div className="d-flex align-content-center flex-wrap justify-content-center align-items-center background-image">
             <div className="d-flex align-content-center flex-wrap justify-content-center align-items-center text-truncate ">
-                {trainings.map(training =>
+
+                {trainings.map((training: TTraining) =>
                     <div className="card border-primary grid gap-0 row-gap-3 m-3 text-truncate "
                         style={{ width: "18rem" }}>
+
                         <h4 className="card-header  text-truncate ">
                             PROGRAMME {training.id}
                         </h4>

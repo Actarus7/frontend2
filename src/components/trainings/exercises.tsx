@@ -6,7 +6,6 @@ export default function Exercises(props: { sessionId: number, trainingId: number
     const [exercises, setExercises] = useState<TExercise[]>([]);
     const [activeItem, setActiveItem] = useState<number>(0); // State d'état des accordéons (id de l'exercice à afficher)
     console.log("session id", props.sessionId);
-    // Faire la requête d'exercices en fonction d'une session
 
 
 
@@ -19,13 +18,11 @@ export default function Exercises(props: { sessionId: number, trainingId: number
             const options = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body };
             const result = await fetch(`http://localhost:3000/api/exercises/training/session`, options);
             const response = await result.json();
-            console.log(response);
+            // console.log(response);
 
             setExercises(response);
-            // console.log("updated", response.data);
         };
         fetchData();
-        // console.log("mounted");
     }, []);
 
     // const affichageExercises = 
