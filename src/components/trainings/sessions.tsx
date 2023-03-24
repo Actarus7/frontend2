@@ -55,7 +55,7 @@ export default function Sessions(
 
                         <button
                             type="button"
-                            onClick={() => { /* props.setPage('session'); */ setRedirectToAfficheOneSession(true); setSessionId(session.id) }}
+                            onClick={() => { setRedirectToAfficheOneSession(true); setSessionId(session.id) }}
                             className="btn btn-info">
                             Voir Session
                         </button>
@@ -70,7 +70,7 @@ export default function Sessions(
 
 
     // Redirection vers la Session sélectionnée
-    if (redirectToAfficheOneSession) return /* props.page === 'session' &&  */<OneSession sessionId={sessionId} trainingId={props.trainingId} />
+    if (redirectToAfficheOneSession) return <OneSession sessionId={sessionId} trainingId={props.trainingId} />
 
 
 
@@ -84,7 +84,6 @@ export default function Sessions(
                 <div className="d-flex align-content-center flex-wrap justify-content-center align-items-center text-truncate ">
                     {affichageSessions}
                 </div>
-                {/* {props.page === 'session' && <OneSession sessionId={sessionId} trainingId={props.trainingId} />} */}
 
             </div>
 

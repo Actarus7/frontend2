@@ -18,14 +18,12 @@ export default function Exercises(props: { sessionId: number, trainingId: number
             const options = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body };
             const result = await fetch(`http://localhost:3000/api/exercises/training/session`, options);
             const response = await result.json();
-            // console.log(response);
 
             setExercises(response);
         };
         fetchData();
     }, []);
 
-    // const affichageExercises = 
 
     // Affichage
     return (
@@ -72,23 +70,7 @@ export default function Exercises(props: { sessionId: number, trainingId: number
                     )
                 })}
             </div>
-            {/* {exercises.map(exercise => {
-                <>
-                    <div>
-                        {exercise.title}
-                    </div>
-                    <div>
-                        {exercise.content}
-                    </div>
-                    <div>
-                        {exercise.time}
-                    </div>
-                    <div>
-                        {exercise.material}
-                    </div>
-                </>
-            })
-            } */}
+            
         </>
     );
 };
