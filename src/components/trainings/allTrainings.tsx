@@ -21,9 +21,6 @@ export default function AllTrainings(props: any) {
             const options = { method: 'GET', headers: { 'Content-Type': 'application/json' } };
             const result = await fetch('http://localhost:3000/api/trainings/', options);
             const response = await result.json()
-            console.log(response);
-
-
 
             setTrainings(response);
         };
@@ -67,8 +64,6 @@ export default function AllTrainings(props: any) {
     if (redirectToAfficheOneTraining) {
         return <OneTraining trainingId={trainingId} onBackToList={handleBackToList} />
     };
-    console.log(redirectToAfficheOneTraining);
-    console.log('trainings', trainings);
 
 
     // Affichage

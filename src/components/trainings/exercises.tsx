@@ -5,9 +5,6 @@ import "./style.css";
 export default function Exercises(props: { sessionId: number, trainingId: number }) {
     const [exercises, setExercises] = useState<TExercise[]>([]);
     const [activeItem, setActiveItem] = useState<number>(0); // State d'état des accordéons (id de l'exercice à afficher)
-    console.log("session id", props.sessionId);
-
-
 
     useEffect(() => {
         const fetchData = async () => {
