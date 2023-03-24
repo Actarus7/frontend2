@@ -9,8 +9,6 @@ import OneSession from "./oneSession";
 export default function Sessions(
     props: {
         trainingId: number,
-        page: string,
-        setPage: React.Dispatch<React.SetStateAction<string>>
     }) {
 
     const [sessions, setSessions] = useState<TSession[]>([]);

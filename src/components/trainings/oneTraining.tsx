@@ -39,10 +39,9 @@ export default function OneTraining(props: { trainingId: number, onBackToList: (
     //         setLike(-1);
     //     }
 
-        else if (like === 1) {
-            setLike(-1);
-        };
-    };
+       // else if (like === 1) {
+          //  setLike(-1);
+        //};
 
     // Affichage
     return (
@@ -73,4 +72,5 @@ export default function OneTraining(props: { trainingId: number, onBackToList: (
             </div>
         </>
     );
-}
+};
+
