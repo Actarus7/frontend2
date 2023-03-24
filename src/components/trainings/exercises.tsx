@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { TExercise } from "../../types/TExercise.type";
 import "./style.css";
 
-export default function Exercises(props: { sessionId: number, trainingId: number }) {
+export default function Exercises(props: { sessionId: number, trainingId: number, onBackToSessions: () => void }) {
     const [exercises, setExercises] = useState<TExercise[]>([]);
     const [activeItem, setActiveItem] = useState<number>(0); // State d'état des accordéons (id de l'exercice à afficher)
 
@@ -19,8 +19,7 @@ export default function Exercises(props: { sessionId: number, trainingId: number
             setExercises(response);
         };
         fetchData();
-    }, []);
-
+    }, [props.sessionId, props.trainingId]);
 
     // Affichage
     return (
@@ -67,7 +66,12 @@ export default function Exercises(props: { sessionId: number, trainingId: number
                     )
                 })}
             </div>
-            
+            <button
+                type="button"
+                onClick={props.onBackToSessions}
+                className="btn btn-info mt-2">
+                Retour aux sessions
+            </button>
         </>
     );
 };
