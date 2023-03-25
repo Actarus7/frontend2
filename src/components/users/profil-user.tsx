@@ -84,18 +84,26 @@ export default function ProfilUser(
   const test = searchResult?.pseudo
 
 
-  /* const affichageResult = searchResults.map((user: User) => {
-    return (
-    <>
-    <div>{user.pseudo}</div>
-    <div>Test</div>
-    </>);
-  }); */
+  const dummyFriends = [
+    { username: "Ami 1", photo: "https://via.placeholder.com/150" },
+    { username: "Ami 2", photo: "https://via.placeholder.com/150" },
+    { username: "Ami 3", photo: "https://via.placeholder.com/150" },
+    { username: "Ami 4", photo: "https://via.placeholder.com/150" },
+    { username: "Ami 5", photo: "https://via.placeholder.com/150" },
+  ];
 
 
   return (
     <div className="profil-user-container">
       <h1>Salut, {props.userLogged?.pseudo}</h1>
+
+      <FriendCarousel
+        friends={dummyFriends}
+        selectedIndex={0}
+        handleFriendClick={(index) => {
+          console.log("Ami cliqué :", dummyFriends[index]);
+        }}
+      />
 
       {/* <div className="profil-user-content">
         <div className="profil-user-left">
