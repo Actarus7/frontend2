@@ -1,11 +1,25 @@
-.h-custom {
-    height: 500px !important; /* Modifier la hauteur pour rentrer la photo sans scroller */
-    width: 750px  !important;
-    margin:auto
-} 
+
 
 .bg-color {
     background-color: #222332;
     height: 500px;
   }
+  
+/*enlever les colonnes vertes à gauche et à droite du carousel*/
+  .carousel-control-prev,
+.carousel-control-next {
+  display: none;
+}
+
+
+/*Masque les boutons de contrôle des diapositives précédentes et suivantes du carousel*/
+.carousel-indicators {
+    display: none;
+  }
+  
+
+  .carousel-item img {
+    max-height: 88vh;
+  }
+  
   
