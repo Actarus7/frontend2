@@ -48,7 +48,6 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
-    
   }
   
   .rectangle {
@@ -75,14 +74,42 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-weight: bold;
   }
+
+  @media (max-width: 767px) {
+    .rectangles-container {
+      flex-direction: column;
+    }
+
+    
+  #workout-title {
+    margin-bottom: 3rem;
+  }
+
+  .centered {
+    margin-bottom: 2rem;
+  }
+
+  .rectangle {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .rectangle-number {
+    font-size: 30px; /* Ajustement de la taille du chiffre pour les petits écrans */
+    width: 30px;
+    height: 30px;
+  }
+}
   
   .rectangle-text {
     color: white;
     font-family: "Candice", sans-serif;
   }
   
-  html, body {
+  html,
+  body {
     height: 100%;
   }
   
@@ -107,38 +134,87 @@
     }
   
     #workout-title {
-        margin-bottom: 3rem; /* Ajout de la marge inférieure */
-      }
-
-      @media (max-width: 767px) {
-        #workout-title {
-          margin-bottom: 3rem; /* Ajustez la valeur en fonction de l'espacement souhaité */
-        }
+      margin-bottom: 3rem;
     }
-
+  
     .centered {
-        margin-bottom: 2rem;
+      margin-bottom: 2rem;
     }
-    
-      
+  
     .rectangle {
       width: 100%;
       margin-bottom: 20px;
     }
   }
-
-
-
-  .h3-gymer {
-   margin-left:23% ;
-}
-
-
-.h1-gymer {
+  
+  .h1-gymer {
     margin-bottom: 2rem;
-    /* vos autres propriétés CSS */
-}
-
-.workout-title {
+  }
+  
+  .workout-title {
     margin-bottom: 2rem;
-}
+  }
+  
+  .image-lorem-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+
+  }
+  
+
+  
+  .image-container img {
+    object-fit: cover;
+    height: 100%;
+  }
+  
+  .coach-title {
+    text-align: center;
+    color: #40dbc1;
+    width: 100%;
+  }
+  
+ 
+  
+  .text-container {
+    width: 50%;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .text-container h2 {
+    margin-top: 0;
+    position: absolute;
+    top: -50px;
+    left: 0;
+    transform: translateX(50%);
+    text-align: center;
+  }
+  
+  @media (max-width: 991px) {
+    .text-container {
+      width: 100%;
+    }
+  
+    .text-container {
+      padding: 2rem 0;
+    }
+  
+    .text-container h2 {
+      position: static;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      transform: none;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .image-lorem-container {
+      flex-direction: column;
+    }
+  }
+  
