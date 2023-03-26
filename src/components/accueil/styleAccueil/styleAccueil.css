@@ -1,25 +1,144 @@
-
-
 .bg-color {
     background-color: #222332;
     height: 500px;
   }
   
-/*enlever les colonnes vertes à gauche et à droite du carousel*/
   .carousel-control-prev,
-.carousel-control-next {
-  display: none;
-}
-
-
-/*Masque les boutons de contrôle des diapositives précédentes et suivantes du carousel*/
-.carousel-indicators {
+  .carousel-control-next {
     display: none;
   }
   
-
-  .carousel-item img {
-    max-height: 88vh;
+  .carousel-indicators {
+    display: none;
   }
   
+  @font-face {
+    font-family: "Gymer";
+    src: url("./fonts/GYMER.otf") format("opentype"),
+      url("./fonts/GYMER.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+  }
   
+  .carousel-caption {
+    font-family: "Gymer", sans-serif;
+    text-align: center;
+    top: 60%;
+    left: 28%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    position: absolute;
+    width: 100%;
+  }
+  
+  .carousel-item {
+    position: relative;
+  }
+  
+  @font-face {
+    font-family: "Candice-BoldExpanded";
+    src: url("./fonts/Candice-BoldExpanded.otf") format("opentype"),
+      url("./fonts/Candice-BoldExpanded.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  .rectangles-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    
+  }
+  
+  .rectangle {
+    background-color: #181d31;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100px;
+    position: relative;
+    margin: 0 10px;
+    flex: 1;
+  }
+  
+  .rectangle-number {
+    font-size: 40px;
+    position: absolute;
+    left: 15px;
+    top: -10px;
+    background-color: #40dbc1;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .rectangle-text {
+    color: white;
+    font-family: "Candice", sans-serif;
+  }
+  
+  html, body {
+    height: 100%;
+  }
+  
+  #root {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .bg-color {
+    flex: 1 0 auto;
+  }
+  
+  .bg-color {
+    background-color: #000;
+    height: 100%;
+  }
+  
+  @media (max-width: 767px) {
+    .rectangles-container {
+      flex-direction: column;
+    }
+  
+    #workout-title {
+        margin-bottom: 3rem; /* Ajout de la marge inférieure */
+      }
+
+      @media (max-width: 767px) {
+        #workout-title {
+          margin-bottom: 3rem; /* Ajustez la valeur en fonction de l'espacement souhaité */
+        }
+    }
+
+    .centered {
+        margin-bottom: 2rem;
+    }
+    
+      
+    .rectangle {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  }
+
+
+
+  .h3-gymer {
+   margin-left:23% ;
+}
+
+
+.h1-gymer {
+    margin-bottom: 2rem;
+    /* vos autres propriétés CSS */
+}
+
+.workout-title {
+    margin-bottom: 2rem;
+}

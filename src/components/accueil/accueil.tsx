@@ -31,8 +31,8 @@ export default function Accueil(props: any/* IntrinsicAttributes */) {
 // Affichage
 return (
 
-            <div className="bg-color">
-            
+            <div className="bg-color position-relative">
+             
             <div id="carouselExampleDark" className="carousel slide" data-bs-ride="carousel">
                 <div className="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
@@ -81,8 +81,40 @@ return (
                 </button>
             </div>
 
+            <div className="container text-center mb-5">
+      <div className="centered">
+        <h3 className="small-title candice text-white" style={{ color: "#40dbc1" }}>Notre méthode</h3>
+        <h1 className="workout-title">Workout of the Day</h1>
 
-            <Apropos></Apropos>
-        </div>
-    );
-}
+      </div>
+
+      <div className="row centered gx-4 gy-3">
+        {["analyse goal", "work hard on it", "your improve", "achieve destiny"].map((text, index) => (
+          <div key={index} className="col-12 col-md-6 col-lg-3 rectangle">
+            <div className="rectangle-number">{String(index + 1).padStart(2, "0")}</div>
+            <span className="candice text-white">
+              {text}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div className="mt-5" style={{ display: "flex" }}>
+      <img src="accueil-images/accueil5.png"style={{ width: "50%", maxWidth: "100%" }} alt="Description" />
+      <div style={{ width: "50%", paddingLeft: "20px" }}>
+        <h3 className="h3-gymer gymer" style={{ color: "#40dbc1" }}>votre meilleur coach sportif</h3>
+        <h1 className="h1-gymer gymer">Happy training</h1>
+        <p className="lorem-text text-white">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+        </p>
+      </div>
+    </div>
+
+    <footer />
+  </div>
+);
+        }
+
