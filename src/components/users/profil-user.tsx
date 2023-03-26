@@ -57,19 +57,24 @@ export default function ProfilUser(
   const handleAddFriend = (user: TUser) => {
     const options = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${props.token}`
+      },
       body: JSON.stringify({
-        friendId: user.id,
+        userReceiver: user.pseudo,
       }),
     };
 
-    fetch(`http://localhost:3000/api/friendship/create`, options)
+    fetch(`http://localhost:3000/api/friendships/`, options)
       .then((response) => response.json())
       .then((response) => {
-        if (response.success) {
+        if (response.statusCode === 201) {
           alert(`Demande d'ami envoyée à ${user.pseudo}`);
+          setSearchText("");
         } else {
           alert(`Impossible d'envoyer une demande d'ami à ${user.pseudo}`);
+          setSearchText("");
         }
       });
   };
@@ -79,9 +84,6 @@ export default function ProfilUser(
 
     setUserSearch(search);
   };
-
-
-  const test = searchResult?.pseudo
 
 
   const dummyFriends = [
@@ -182,8 +184,6 @@ export default function ProfilUser(
       <UserWaitingFriendsList token={props.token} />
 
 
-
-      <div><>{test}</></div>
       {/* <div>{affichageResult}</div> */}
     </div>
   );

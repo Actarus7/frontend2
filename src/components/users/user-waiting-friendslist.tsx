@@ -105,6 +105,7 @@ export default function UserWaitingFriendsList(props: { token: string }) {
 
                 <tbody>
                     {affichageUserFriendsList}
+                    TEST 2
                 </tbody>
             </table>
 
