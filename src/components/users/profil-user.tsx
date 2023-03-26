@@ -5,6 +5,7 @@ import FriendCarousel from "./FriendCarousel";
 import "./style/styleProfil.css";
 import UserFriends from "./user-friends";
 import UserWaitingFriendsList from "./user-waiting-friendslist";
+import RandomSession from "../trainings/RandomSession";
 
 
 export default function ProfilUser(
@@ -96,43 +97,14 @@ export default function ProfilUser(
   return (
     <div className="profil-user-container">
       <h1>Salut, {props.userLogged?.pseudo}</h1>
-
+      
+      <div className="carousel-container">
       <FriendCarousel
-        friends={dummyFriends}
-        selectedIndex={0}
-        handleFriendClick={(index) => {
-          console.log("Ami cliqué :", dummyFriends[index]);
-        }}
+          friends={dummyFriends} selectedIndex={0} handleFriendClick={function (index: number): void {
+            throw new Error("Function not implemented.");
+          } }       
       />
-
-      {/* <div className="profil-user-content">
-        <div className="profil-user-left">
-          <FriendCarousel
-            friends={[]}
-            selectedIndex={0}
-            handleFriendClick={function (index: number): void {
-              throw new Error("Function not implemented.");
-            }}
-          />
-          {searchResults?.length > 0 && (
-            <div className="friend-requests">
-              <h2>Demandes d'amis en attente</h2>
-              <ul>
-                {searchResults.map((user: User) => (
-                  <li key={user.pseudo}>
-                    {user.pseudo}
-                    <button onClick={() => handleAddFriend(user)}>
-                      Accepter
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
-      </div> */}
-
-
+    </div>
 
       {/* RECHERCHE D'AMIS */}
       <div className="search-friends">

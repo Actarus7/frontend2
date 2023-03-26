@@ -88,61 +88,6 @@ export default function Sessions(
             </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-            {/* {<div className="card border-primary grid gap-0 row-gap-3  d-inline-block text-wrap text-truncate ">
-
-                {sessions.map((session, i) => (
-                    <div key={session.id}>
-                        <button type="button" onClick={() => fetchExercises(session.id)}>Session {i + 1}</button>
-
-                        {session.description}
-                        {session.id === sessionId && affichageExercises && exercises.map((exercise, j) => (
-                            <div key={j}>
-                                <button type="button" onClick={() => fetchExercises(exercise.id)}>
-                                    {exerciseDetails}
-                                </button>
-                            </div>
-                        ))}
-                    </div>
-                ))}
-
-
-                {
-                    <>
-                        {exercises.map(exo => {
-                            <div>{exercises[0].title}</div>
-                            {
-                                <>
-
-                                    <div>
-                                        {exo.content}
-                                    </div>
-                                    <div>
-                                        {exo.time}
-                                    </div>
-                                    <div>
-                                        {exo.material}
-                                    </div>
-                                </>
-                            }
-                        })
-                        }
-                    </>
-                }
-            </div>
-            } */}
         </>
     )
 
