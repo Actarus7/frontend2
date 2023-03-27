@@ -2,12 +2,9 @@ import { useEffect, useState } from "react";
 import { TExercise } from "../../types/TExercise.type";
 import "./style.css";
 
-export default function Exercises(props: { sessionId: number, trainingId: number }) {
+export default function Exercises(props: { sessionId: number, trainingId: number, onBackToSessions: () => void }) {
     const [exercises, setExercises] = useState<TExercise[]>([]);
     const [activeItem, setActiveItem] = useState<number>(0); // State d'état des accordéons (id de l'exercice à afficher)
-    console.log("session id", props.sessionId);
-
-
 
     useEffect(() => {
         const fetchData = async () => {
@@ -18,14 +15,11 @@ export default function Exercises(props: { sessionId: number, trainingId: number
             const options = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body };
             const result = await fetch(`http://localhost:3000/api/exercises/training/session`, options);
             const response = await result.json();
-            // console.log(response);
 
             setExercises(response);
         };
         fetchData();
-    }, []);
-
-    // const affichageExercises = 
+    }, [props.sessionId, props.trainingId]);
 
     // Affichage
     return (
@@ -72,23 +66,12 @@ export default function Exercises(props: { sessionId: number, trainingId: number
                     )
                 })}
             </div>
-            {/* {exercises.map(exercise => {
-                <>
-                    <div>
-                        {exercise.title}
-                    </div>
-                    <div>
-                        {exercise.content}
-                    </div>
-                    <div>
-                        {exercise.time}
-                    </div>
-                    <div>
-                        {exercise.material}
-                    </div>
-                </>
-            })
-            } */}
+            <button
+                type="button"
+                onClick={props.onBackToSessions}
+                className="btn btn-info mt-2">
+                Retour aux sessions
+            </button>
         </>
     );
 };

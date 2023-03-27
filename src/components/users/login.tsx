@@ -21,7 +21,7 @@ export function Login(props: any) {
         headers: { "Content-Type": "application/json" },
         body: body,
       };
-      console.log(body);
+      // console.log('body login : ',body);
 
       fetch('http://localhost:3000/api/auth/login', options)
         .then(response => response.json())
@@ -30,7 +30,6 @@ export function Login(props: any) {
 
             props.setIsLogged(true);
             props.setToken(response.data.access_token)
-            // props.setUsername(response.data.username);
             props.setPage('mon profil');
 
 

@@ -19,12 +19,10 @@ function App() {
   const [token, setToken] = useState('');
   const [userLogged, setUserLogged] = useState<TUser | null>(null);
 
-  // const [username, setUsername] = useState('');
 
   const handleLogout = () => {
     setIsLogged(false);
     setToken("");
-    // setUsername("");
     setPage("login");
   };
 
@@ -33,8 +31,7 @@ function App() {
     return (
       <div className="App">
         <header className="App-header">
-          <NavbarLogged setPage={setPage} logout={handleLogout} /*handleAddFriend={handleAddFriend}*/></NavbarLogged>
-          {/* { <img src={logo} className="App-logo" alt="logo" /> } */}
+          <NavbarLogged setPage={setPage} logout={handleLogout} ></NavbarLogged>
         </header>
 
         <main>
@@ -67,8 +64,8 @@ function App() {
 
       <main>
         {page === 'accueil' && <Accueil setPage={setPage}></Accueil>}
-        {page === 'login' && <Login setPage={setPage} setIsLogged={setIsLogged} setToken={setToken} setUserLogged={setUserLogged} /* setUsername={setUsername} */></Login>}
-        {page === 'register' && <Register setPage={setPage}></Register>}
+        {page === 'login' && <Login setPage={setPage} setIsLogged={setIsLogged} setToken={setToken} setUserLogged={setUserLogged} ></Login>}
+        {page === 'register' && <Register page={page} setPage={setPage} setIsLogged={setIsLogged} setToken={setToken} setUserLogged={setUserLogged}></Register>}
         {page === 'visitor training' && <VisitorTraining page={page} setPage={setPage} />}
         {page === 'contact' && <Contact setPage={setPage}></Contact>}
 

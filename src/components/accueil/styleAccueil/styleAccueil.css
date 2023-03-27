@@ -1,11 +1,220 @@
-.h-custom {
-    height: 500px !important; /* Modifier la hauteur pour rentrer la photo sans scroller */
-    width: 750px  !important;
-    margin:auto
-} 
-
 .bg-color {
     background-color: #222332;
     height: 500px;
+  }
+  
+  .carousel-control-prev,
+  .carousel-control-next {
+    display: none;
+  }
+  
+  .carousel-indicators {
+    display: none;
+  }
+  
+  @font-face {
+    font-family: "Gymer";
+    src: url("./fonts/GYMER.otf") format("opentype"),
+      url("./fonts/GYMER.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  .carousel-caption {
+    font-family: "Gymer", sans-serif;
+    text-align: center;
+    top: 60%;
+    left: 28%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    position: absolute;
+    width: 100%;
+  }
+  
+  .carousel-item {
+    position: relative;
+  }
+  
+  @font-face {
+    font-family: "Candice-BoldExpanded";
+    src: url("./fonts/Candice-BoldExpanded.otf") format("opentype"),
+      url("./fonts/Candice-BoldExpanded.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  .rectangles-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .rectangle {
+    background-color: #181d31;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100px;
+    position: relative;
+    margin: 0 10px;
+    flex: 1;
+  }
+  
+  .rectangle-number {
+    font-size: 40px;
+    position: absolute;
+    left: 15px;
+    top: -10px;
+    background-color: #40dbc1;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+  }
+
+  @media (max-width: 767px) {
+    .rectangles-container {
+      flex-direction: column;
+    }
+
+    
+  #workout-title {
+    margin-bottom: 3rem;
+  }
+
+  .centered {
+    margin-bottom: 2rem;
+  }
+
+  .rectangle {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .rectangle-number {
+    font-size: 30px; /* Ajustement de la taille du chiffre pour les petits écrans */
+    width: 30px;
+    height: 30px;
+  }
+}
+  
+  .rectangle-text {
+    color: white;
+    font-family: "Candice", sans-serif;
+  }
+  
+  html,
+  body {
+    height: 100%;
+  }
+  
+  #root {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .bg-color {
+    flex: 1 0 auto;
+  }
+  
+  .bg-color {
+    background-color: #000;
+    height: 100%;
+  }
+  
+  @media (max-width: 767px) {
+    .rectangles-container {
+      flex-direction: column;
+    }
+  
+    #workout-title {
+      margin-bottom: 3rem;
+    }
+  
+    .centered {
+      margin-bottom: 2rem;
+    }
+  
+    .rectangle {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  }
+  
+  .h1-gymer {
+    margin-bottom: 2rem;
+  }
+  
+  .workout-title {
+    margin-bottom: 2rem;
+  }
+  
+  .image-lorem-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+
+  }
+  
+
+  
+  .image-container img {
+    object-fit: cover;
+    height: 100%;
+  }
+  
+  .coach-title {
+    text-align: center;
+    color: #40dbc1;
+    width: 100%;
+  }
+  
+ 
+  
+  .text-container {
+    width: 50%;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .text-container h2 {
+    margin-top: 0;
+    position: absolute;
+    top: -50px;
+    left: 0;
+    transform: translateX(50%);
+    text-align: center;
+  }
+  
+  @media (max-width: 991px) {
+    .text-container {
+      width: 100%;
+    }
+  
+    .text-container {
+      padding: 2rem 0;
+    }
+  
+    .text-container h2 {
+      position: static;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      transform: none;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .image-lorem-container {
+      flex-direction: column;
+    }
   }
   

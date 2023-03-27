@@ -23,10 +23,14 @@ export default function VisitorTrainings(
         fetchData();
     }, []);
 
+    const handleBackToList = () => {
+        setRedirectToAfficheOneTraining(false);
+    };
+
 
     // Redirection vers le Training sélectionné
     if (redirectToAfficheOneTraining) {
-        return <OneTraining trainingId={1} page={props.page} setPage={props.setPage} />
+        return <OneTraining trainingId={1} onBackToList={handleBackToList} />
     };
 
 

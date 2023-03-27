@@ -1,4 +1,3 @@
-
 import { useRef, useState } from "react";
 import { Dispatch, SetStateAction } from 'react';
 import "./style/style.css";
@@ -19,14 +18,16 @@ export function NavbarLogged(props: NavbarLoggedProps) {
   const userSearch = useRef<HTMLInputElement>(null);
   const [searchResults, setSearchResults] = useState<User[]>([]);
 
-
+  const handleGoToProfile = () => {
+    props.setPage('mon profil');
+  }
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <button className="navbar-brand " onClick={handleGoToProfile}>
           Happy training
-        </a>
+        </button>
         <button
           className="navbar-toggler"
           type="button"
@@ -73,8 +74,3 @@ export function NavbarLogged(props: NavbarLoggedProps) {
     </nav>
   );
 }
-
-
-
-
-

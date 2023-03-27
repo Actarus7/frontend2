@@ -1,31 +1,63 @@
 import React from 'react';
-import { Carousel } from 'react-bootstrap';
-import "./style/styleProfil.css";
+import './style/styleProfil.css';
+
+
 
 interface Friend {
-    username: string;
-    photo: string;
+  username: string;
+  photo: string;
 }
 
 interface Props {
-    friends: Friend[];
-    selectedIndex: number;
-    handleFriendClick: (index: number) => void;
+  friends: Friend[];
+  selectedIndex: number;
+  handleFriendClick: (index: number) => void;
 }
 
-export default function FriendsCarousel(props: Props) {
-    return (
-        <div className="friends-carousel-container">
-            <Carousel activeIndex={props.selectedIndex}>
-                {props.friends.map((friend: Friend, index: number) => (
-                    <Carousel.Item key={friend.username} onClick={() => props.handleFriendClick(index)}>
-                        <img className="d-block w-100" src={friend.photo} alt={friend.username} />
-                        <Carousel.Caption>
-                            <h3>{friend.username}</h3>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                ))}
-            </Carousel>
-        </div>
-    );
+function FriendCard({ friend }: { friend: Friend }) {
+  return (
+    <div className="card friend-card">
+      <img src={friend.photo} className="card-img-top" alt={friend.username} />
+      <div className="card-body">
+        <h5 className="card-title">{friend.username}</h5>
+      </div>
+    </div>
+  );
+}
+
+export default function FriendsCarousel({ friends }: Props) {
+  return (
+    <div id="carouselExampleCaptions" className="carousel slide" data-bs-ride="carousel">
+      <div className="carousel-inner">
+        {friends.map((friend, index) => (
+          <div className={`carousel-item${index === 0 ? ' active' : ''}`} key={index}>
+            <div className="card">
+              <img src={friend.photo} className="card-img-top" alt={friend.username} />
+              <div className="card-body">
+                <h5 className="card-title">{friend.username}</h5>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <button
+        className="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide="prev"
+      >
+        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span className="visually-hidden">Previous</span>
+      </button>
+      <button
+        className="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleCaptions"
+        data-bs-slide="next"
+      >
+        <span className="carousel-control-next-icon" aria-hidden="true"></span>
+        <span className="visually-hidden">Next</span>
+      </button>
+    </div>
+  );
 }

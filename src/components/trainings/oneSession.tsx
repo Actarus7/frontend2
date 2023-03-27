@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
 import { TSession } from "../../types/TSesssion.type";
 import Exercises from "./exercises";
+import Sessions from "./sessions";
 
 
 export default function OneSession(props: { sessionId: number, trainingId: number }) {
     const [oneSession, setOneSession] = useState<TSession>();
 
-console.log('session 1');
+    const [showExercises, setShowExercises] = useState(true);
+
+    const handleBackToSessions = () => {
+        setShowExercises(false);
+    };
 
     useEffect(() => {
         const options = { method: 'GET', headers: { 'Content-Type': 'application/json' } };
@@ -15,13 +20,15 @@ console.log('session 1');
             .then(response => {
                 setOneSession(response);
             })
-    }, [props.sessionId])
+    }, [props.sessionId]);
 
-    // Affichage
+    if (!showExercises) {
+        return <Sessions trainingId={props.trainingId} />
+    }
+
     return (
         <>
-            <Exercises sessionId={props.sessionId} trainingId={props.trainingId} />
+            <Exercises sessionId={props.sessionId} trainingId={props.trainingId} onBackToSessions={handleBackToSessions} />
         </>
-
-    )
+    );
 };

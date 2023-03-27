@@ -9,8 +9,6 @@ import OneSession from "./oneSession";
 export default function Sessions(
     props: {
         trainingId: number,
-        page: string,
-        setPage: React.Dispatch<React.SetStateAction<string>>
     }) {
 
     const [sessions, setSessions] = useState<TSession[]>([]);
@@ -57,7 +55,7 @@ export default function Sessions(
 
                         <button
                             type="button"
-                            onClick={() => { /* props.setPage('session'); */ setRedirectToAfficheOneSession(true); setSessionId(session.id) }}
+                            onClick={() => { setRedirectToAfficheOneSession(true); setSessionId(session.id) }}
                             className="btn btn-info">
                             Voir Session
                         </button>
@@ -72,7 +70,7 @@ export default function Sessions(
 
 
     // Redirection vers la Session sélectionnée
-    if (redirectToAfficheOneSession) return /* props.page === 'session' &&  */<OneSession sessionId={sessionId} trainingId={props.trainingId} />
+    if (redirectToAfficheOneSession) return <OneSession sessionId={sessionId} trainingId={props.trainingId} />
 
 
 
@@ -86,66 +84,10 @@ export default function Sessions(
                 <div className="d-flex align-content-center flex-wrap justify-content-center align-items-center text-truncate ">
                     {affichageSessions}
                 </div>
-                {/* {props.page === 'session' && <OneSession sessionId={sessionId} trainingId={props.trainingId} />} */}
 
             </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-            {/* {<div className="card border-primary grid gap-0 row-gap-3  d-inline-block text-wrap text-truncate ">
-
-                {sessions.map((session, i) => (
-                    <div key={session.id}>
-                        <button type="button" onClick={() => fetchExercises(session.id)}>Session {i + 1}</button>
-
-                        {session.description}
-                        {session.id === sessionId && affichageExercises && exercises.map((exercise, j) => (
-                            <div key={j}>
-                                <button type="button" onClick={() => fetchExercises(exercise.id)}>
-                                    {exerciseDetails}
-                                </button>
-                            </div>
-                        ))}
-                    </div>
-                ))}
-
-
-                {
-                    <>
-                        {exercises.map(exo => {
-                            <div>{exercises[0].title}</div>
-                            {
-                                <>
-
-                                    <div>
-                                        {exo.content}
-                                    </div>
-                                    <div>
-                                        {exo.time}
-                                    </div>
-                                    <div>
-                                        {exo.material}
-                                    </div>
-                                </>
-                            }
-                        })
-                        }
-                    </>
-                }
-            </div>
-            } */}
         </>
     )
 

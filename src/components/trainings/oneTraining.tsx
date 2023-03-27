@@ -3,18 +3,14 @@ import { TTraining } from "../../types/TTraining.type";
 import Sessions from "./sessions";
 import "./style.css";
 
-
-export default function OneTraining(
-    props: {
-        trainingId: number,
-        page: string,
-        setPage: React.Dispatch<React.SetStateAction<string>>
-    }) {
-
+export default function OneTraining(props: { trainingId: number, onBackToList: () => void }) {
+    const [like, setLike] = useState(0);
+    const [favorite, setFavorite] = useState(false);
     const [oneTraining, setOneTraining] = useState<TTraining>();
     // const [like, setLike] = useState(0);
     // const [favorite, setFavorite] = useState(false);
 
+    console.log(props.trainingId);
 
 
     // Récupération du Training sélectionné
@@ -43,11 +39,9 @@ export default function OneTraining(
     //         setLike(-1);
     //     }
 
-    //     else if (like === 1) {
-    //         setLike(-1);
-    //     };
-    // };
-
+       // else if (like === 1) {
+          //  setLike(-1);
+        //};
 
     // Affichage
     return (
@@ -61,7 +55,13 @@ export default function OneTraining(
                             {oneTraining.description}
 
                         </div>
-                        <Sessions trainingId={props.trainingId} page={props.page} setPage={props.setPage} />
+                        <Sessions trainingId={props.trainingId} />
+                        <button
+                            type="button"
+                            onClick={props.onBackToList}
+                            className="btn btn-info mt-2">
+                            Retour aux programmes
+                        </button>
                     </div>
                     : ""}
 
@@ -72,7 +72,5 @@ export default function OneTraining(
             </div>
         </>
     );
-}
-
-
+};
 
