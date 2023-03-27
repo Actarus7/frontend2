@@ -1,0 +1,18 @@
+
+.h1-contact{
+    background-color: black!important;
+     /* width: 100; */
+    background-color: black;
+    color: grey;
+    /* display: flex; */
+    /* margin:0 auto; */
+    /* flex-direction: column; */
+}
+
+#btn {
+    border: none;
+    padding: 2rem;
+    width: 50%;
+    margin-top: rem;
+    font-weight: 500;
+}

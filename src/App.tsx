@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Navbar } from './components/navbars/navbar';
 import { Footer } from './components/footer/footer';
 import { Login } from './components/users/login';
-import { Contact } from './components/contact/contact';
 import { Register } from './components/users/register';
 import { NavbarLogged } from './components/navbars/navbarLogged';
 import Accueil from './components/accueil/accueil';
@@ -11,6 +10,8 @@ import Articles from './components/articles/articles';
 import ProfilUser from './components/users/profil-user';
 import { TUser } from './types/TUser.type';
 import VisitorTraining from './components/trainings/visitorTraining';
+import {Contact} from './components/contact/contact';
+
 
 function App() {
   const [page, setPage] = useState<string>('accueil');
