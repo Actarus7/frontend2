@@ -11,17 +11,18 @@ export default function RandomSession() {
     fetch(`http://localhost:3000/api/sessions`, options)
       .then((response) => response.json())
       .then((response) => {
-        setSessions(response);
+
+        setSessions(response[Math.floor(Math.random() * response.length)+1]);
       })
       .catch((err) => console.error(err));
   }, []);
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (sessions.length > 0) {
       const randomIndex = Math.floor(Math.random() * sessions.length);
       setRandomSession(sessions[randomIndex]);
     }
-  }, [sessions]);
+  }, [sessions]); */
 
   return (
     <div>

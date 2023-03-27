@@ -1,15 +1,16 @@
+import { useEffect } from "react";
 import { Apropos } from "../apropos/apropos";
 import "./styleAccueil/styleAccueil.css"
 
 
 export default function Accueil(props: any/* IntrinsicAttributes */) {
-
-    const titre = (
+    
+    /* const titre = (
         <div className="carousel-caption d-none d-md-block bg-dark text-white">
             <h1>Bienvenue sur Happy Training</h1>
             <h3>Avec nous, restez concentrés jusqu'au bout !</h3>
-        </div>)
-    const array = [
+        </div>) */
+    /* const array = [
         "accueil1.png",
         "accueil2.png",
         "accueil3.png",
@@ -22,12 +23,12 @@ export default function Accueil(props: any/* IntrinsicAttributes */) {
             return (
 
                 <div key={i} className="carousel-item active accueil-images " data-bs-interval={(i + 1) * 3000}>
-                    <img src={`accueil-images/${item}`} className="d-block w-100" alt="woman1" />
-                    {titre}
-                </div>
+      <img src={`accueil-images/${item}`} className="d-block w-100" alt="woman1" />
+      {titre}
+    </div>
             )
         }
-    )
+    ) */
     // Affichage
     return (
 
@@ -42,32 +43,32 @@ export default function Accueil(props: any/* IntrinsicAttributes */) {
 
                 </div>
                 <div className="carousel-inner">
-                    <div className="carousel-item active" data-bs-interval="10000">
+                    <div className="carousel-item active" data-bs-interval="5000">
                         <img src="accueil-images/accueil1.png" className="d-block w-100 h-custom" alt="woman1" />
                         <div className="carousel-caption d-none d-md-block">
                             <h5>Bienvenue sur Happy Training</h5>
                             <p>Avec nous, restez concentrés jusqu'au bout !</p>
                         </div>
                     </div>
-                    <div className="carousel-item">
-                        <img src="accueil-images/accueil2.png" max-width="100%" className="d-block w-100 h-custom" alt="man1" />
+                    <div className="carousel-item" data-bs-interval="2000">
+                        <img src="accueil-images/accueil1.png" max-width="100%" className="d-block w-100 h-custom" alt="man1" />
                         <div className="carousel-caption d-none d-md-block">
                             <h5>Bienvenue sur Happy Training</h5>
-                            <p>Some representative placeholder content for the second slide.</p>
+                            <p>Avec nous, restez concentrés jusqu'au bout !</p>
                         </div>
                     </div>
                     <div className="carousel-item">
-                        <img src="accueil-images/accueil3.png" className="d-block w-100 h-custom" alt="woman2" />
+                        <img src="accueil-images/accueil1.png" className="d-block w-100 h-custom" alt="woman2" />
                         <div className="carousel-caption d-none d-md-block">
                             <h5>Bienvenue sur Happy Training</h5>
-                            <p>Some representative placeholder content for the third slide.</p>
+                            <p>Avec nous, restez concentrés jusqu'au bout !</p>
                         </div>
                     </div>
                     <div className="carousel-item">
-                        <img src="accueil-images/accueil4.png" className="d-block w-100 h-custom" alt="women" />
+                        <img src="accueil-images/accueil1.png" className="d-block w-100 h-custom" alt="women" />
                         <div className="carousel-caption d-none d-md-block">
                             <h5>Bienvenue sur Happy Training</h5>
-                            <p>Some representative placeholder content for the third slide.</p>
+                            <p>Avec nous, restez concentrés jusqu'au bout !</p>
                         </div>
                     </div>
                 </div>

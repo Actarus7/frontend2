@@ -14,9 +14,9 @@ h1 {
     text-align: center;
   }  
 
-.card-body {
+/* .card-body {
     background: linear-gradient(to right, #40DBC1, #5AC8FA)!important;
-  }
+  } */
 
   .card-text {
     color: white;
