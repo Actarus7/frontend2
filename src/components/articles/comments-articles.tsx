@@ -22,6 +22,7 @@ export default function CommentsArticle(
     const messageRef = useRef<HTMLTextAreaElement>(null);
 
 
+    // Ajout d'un commentaire
     const handleAddComment = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -54,6 +55,7 @@ export default function CommentsArticle(
 
 
 
+    // Fait apparaître les inputs pour modifier un commentaire
     const handleEditComment = (commentId: number, text: string) => {
         handleUpdateComment(commentId, text);
         setEditingCommentId(null);
@@ -61,7 +63,7 @@ export default function CommentsArticle(
     };
 
 
-
+    // Modification d'un commentaire
     const handleUpdateComment = (commentId: number, text: string) => {
 
         const body = JSON.stringify({
@@ -97,6 +99,7 @@ export default function CommentsArticle(
 
 
 
+    // Suppression d'un commentaire
     const handleDeleteComment = (commentId: number) => {
         const options = {
             method: 'DELETE',
@@ -117,13 +120,13 @@ export default function CommentsArticle(
     // Redirection vers le Component Articles (Communauté) si clique sur le bouton "Retour"
     if (redirectToArticles) return <Articles token={token} user={user}></Articles>
 
-    // Affichage
+
+
+    // Affichage du Composant
     return (
         <>
             <div>
-
-
-
+                {/* FORMULAIRE D'AJOUT D'UN COMMENTAIRE */}
                 <form className="row g-3" onSubmit={handleAddComment}>
 
                     <div className="col-auto">
@@ -151,10 +154,10 @@ export default function CommentsArticle(
                         </button>
                     </div>
 
-
-
                 </form>
 
+
+                {/* TABLEAU DES COMMENTAIRES */}
                 <table className="table table-striped table-hover">
                     <thead>
                         <tr>
