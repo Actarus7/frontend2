@@ -8,6 +8,13 @@ export default function UserFriends(
     }) {
 
     const [userFriendsList, setUserFriendsList] = useState<string[]>([]); // State avec la liste des amis
+    const image1 = "/profil-images/photo-profil-1.jpg";
+    const image2 = "/profil-images/photo-profil-2.jpg";
+    const image3 = "/profil-images/photo-profil-3.jpg";
+    const image4 = "/profil-images/photo-profil-4.jpg";
+    const images = [image1, image2, image3, image4];
+
+
 
 
     // Récupération de la liste des amis
@@ -38,7 +45,20 @@ export default function UserFriends(
 
         return (
             <div>
-                {friend}
+
+
+                <div className="col">
+                    <div className="card text-center">
+                        <img src={images[Math.floor(Math.random() * 4)]} className="card-img-top" alt="..." />
+                        <div className="card-body">
+                            <h5 className="card-title">{friend}</h5>
+                            <a href="#" className="btn btn-primary">Voir son profil</a>
+                        </div>
+                    </div>
+                </div>
+
+
+
             </div>
         );
     });
@@ -57,8 +77,10 @@ export default function UserFriends(
     return (
         <>
             <h3>Ma Liste d'amis</h3>
-            {affichageUserFriendsList}
+            <div className="row row-cols-1 row-cols-md-3 g-4">
+                {affichageUserFriendsList}
 
+            </div>
         </>
     );
 

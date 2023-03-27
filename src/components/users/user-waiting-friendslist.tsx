@@ -11,7 +11,7 @@ export default function UserWaitingFriendsList(
     }) {
 
     const { token, handleUserPendingFriendListChange, waitingFriendshipsList, setNewFriend } = props;
-    const [updatedWaitingFriendshipsList, setUpdatedWaitingFriendshipsList] = useState(waitingFriendshipsList);
+    // const [updatedWaitingFriendshipsList, setUpdatedWaitingFriendshipsList] = useState(waitingFriendshipsList);
 
     // Récupération de la liste des demandes en attente
 
@@ -33,7 +33,7 @@ export default function UserWaitingFriendsList(
 
                 if (response.statusCode === 200) {
                     handleUserPendingFriendListChange(response.data);
-                    setUpdatedWaitingFriendshipsList(response.data);
+                    // setUpdatedWaitingFriendshipsList(response.data);
                 };
             })
             .catch((error) => console.log(error)
@@ -56,7 +56,7 @@ export default function UserWaitingFriendsList(
             .then(response => {
                 const updatedFriendshipList = [...waitingFriendshipsList].filter((friendship: TFriendship) => friendship.id !== id);
                 handleUserPendingFriendListChange(updatedFriendshipList)
-                setUpdatedWaitingFriendshipsList(updatedFriendshipList);
+                // setUpdatedWaitingFriendshipsList(updatedFriendshipList);
                 setNewFriend(response.data.userSender.pseudo);
             })
             .catch(error => console.error(error)
