@@ -14,8 +14,6 @@ export default function UserWaitingFriendsList(
     // const [updatedWaitingFriendshipsList, setUpdatedWaitingFriendshipsList] = useState(waitingFriendshipsList);
 
     // Récupération de la liste des demandes en attente
-
-    // Récupération de la liste des demandes en attente
     useEffect(() => {
 
         const options = {

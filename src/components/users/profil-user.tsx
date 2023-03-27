@@ -117,14 +117,8 @@ export default function ProfilUser(
   return (
     <div className="profil-user-container">
       <h1>Salut, {props.userLogged?.pseudo}</h1>
-      
-      <div className="carousel-container">
-      <FriendCarousel
-          friends={dummyFriends} selectedIndex={0} handleFriendClick={function (index: number): void {
-            throw new Error("Function not implemented.");
-          } }       
-      />
-    </div>
+
+
 
       {/* RECHERCHE D'AMIS */}
       <div className="search-friends">

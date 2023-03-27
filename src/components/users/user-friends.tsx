@@ -47,7 +47,7 @@ export default function UserFriends(
             <div>
 
 
-                <div className="col">
+                <div className="card-group">
                     <div className="card text-center">
                         <img src={images[Math.floor(Math.random() * 4)]} className="card-img-top" alt="..." />
                         <div className="card-body">
@@ -77,7 +77,7 @@ export default function UserFriends(
     return (
         <>
             <h3>Ma Liste d'amis</h3>
-            <div className="row row-cols-1 row-cols-md-3 g-4">
+            <div className="row row-cols-1 row-cols-md-3 g-4" style={{maxWidth: "30rem"}}>
                 {affichageUserFriendsList}
 
             </div>
