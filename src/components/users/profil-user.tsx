@@ -172,7 +172,12 @@ export default function ProfilUser(
 
 
       {/* LISTE DES DEMANDES D'AMIS RECUES */}
-      <UserWaitingFriendsList token={props.token} />
+      <UserWaitingFriendsList
+        token={props.token}
+        handleUserPendingFriendListChange={handleUserPendingFriendListChange}
+        waitingFriendshipsList={waitingFriendshipsList}
+        setNewFriend={setNewFriend}
+      />
 
 
 
