@@ -105,7 +105,7 @@ export default function Articles(
         };
     });
 
-    
+
     // Map des articles pour récupérer tous les Défis
     const allDefis = articles.map((defi: TArticle | null, i) => {
         if (defi?.type === "defi")
@@ -155,7 +155,7 @@ export default function Articles(
 
 
 
-    // Affichage
+    // Affichage du Composant
     return (
         <>
             <div className="bg-success bg-gradient">

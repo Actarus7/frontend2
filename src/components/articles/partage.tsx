@@ -48,7 +48,21 @@ export function Partage(
                 partage?.title ? (
                     <div className="container-fluid bg-white">
                         <>
-                            <h1>{partage.title}</h1>
+                            <div>
+                                <div className="col-auto">
+                                    <button
+                                        type="button"
+                                        className="btn btn-secondary mb-3"
+                                        onClick={() => {
+                                            setPage("articles");
+                                            handleResetRedirections()
+                                        }}>
+                                        Retour
+                                    </button>
+                                </div>
+                                <h1>{partage.title}</h1>
+                            </div>
+
 
                             <pre className="pt-4 article_body">{partage.body}</pre>
 

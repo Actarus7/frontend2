@@ -148,78 +148,72 @@ export default function CommentsArticle(
                         </button>
                     </div>
 
-                    <div className="col-auto">
-                        <button
-                            type="button"
-                            className="btn btn-secondary mb-3"
-                            onClick={() => {
-                                setPage("articles");
-                                handleResetRedirections()
-                            }}>
-                            Retour
-                        </button>
-                    </div>
+                    
 
                 </form>
 
 
                 {/* TABLEAU DES COMMENTAIRES */}
                 <table className="table table-striped table-hover">
+                    
                     <thead>
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Pseudo</th>
                             <th scope="col">Commentaire</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
 
-                    {(comments.map((comment: TComment) =>
-
-                        <div key={comment.id}>
-
-                            <div>
-                                {comment.user.pseudo}: {editingCommentId === comment.id ? (
-                                    <textarea
-                                        defaultValue={comment.message}
-                                        onChange={(e) => setNewCommentText(e.target.value)}
-                                        required>
-                                    </textarea>)
-
-                                    : (comment.message)
-                                }
-                            </div>
-
-                            {editingCommentId === comment.id ?
-                                (<button onClick={() => handleEditComment(comment.id, newCommentText)}>
-                                    Valider
-                                </button>)
-
-                                : (user?.id === comment.user.id && (
-                                    <button className="btn btn-success" onClick={() => {
-                                        setEditingCommentId(comment.id);
-                                        setNewCommentText(comment.message);
-                                    }}>
-                                        Modifier
-                                    </button>))
-                            }
-
-
-                            <div><>
-                                {user?.admin || user?.id === comment.user.id ?
-                                    <div>
-                                        <button
-                                            type="button"
-                                            className="btn btn-danger"
-                                            onClick={() => { handleDeleteComment(comment.id) }}>
-                                            Supprimer
+                    <tbody>
+                        {comments.map((comment, index) => (
+                            <tr key={comment.id}>
+                                <th scope="row">{index + 1}</th>
+                                <td>{comment.user.pseudo}</td>
+                                <td>
+                                    {editingCommentId === comment.id ? (
+                                        <textarea
+                                            defaultValue={comment.message}
+                                            onChange={(e) => setNewCommentText(e.target.value)}
+                                            required
+                                        />
+                                    ) : (
+                                        comment.message
+                                    )}
+                                </td>
+                                <td>
+                                    {editingCommentId === comment.id ? (
+                                        <button onClick={() => handleEditComment(comment.id, newCommentText)}>
+                                            Valider
                                         </button>
-                                    </div>
-                                    : ''
-                                }
-                            </></div>
+                                    ) : (
+                                        <>
+                                            {user?.id === comment.user.id && (
+                                                <button className="btn btn-success" onClick={() => {
+                                                    setEditingCommentId(comment.id);
+                                                    setNewCommentText(comment.message);
+                                                }}>
+                                                    Modifier
+                                                </button>
+                                            )}
+                                            {user?.admin || user?.id === comment.user.id ? (
+                                                <button
+                                                    type="button"
+                                                    className="btn btn-danger"
+                                                    onClick={() => {
+                                                        handleDeleteComment(comment.id);
+                                                    }}
+                                                >
+                                                    Supprimer
+                                                </button>
+                                            ) : null}
+                                        </>
+                                    )}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
 
-                        </div>
-                    ))}
                 </table>
 
             </div>
@@ -227,3 +221,64 @@ export default function CommentsArticle(
     );
 
 };
+
+
+
+
+// // <table className="table table-striped table-hover">
+// <thead>
+// <tr>
+//     <th scope="col">#</th>
+//     <th scope="col">Pseudo</th>
+//     <th scope="col">Commentaire</th>
+// </tr>
+// </thead>
+
+// {(comments.map((comment: TComment) =>
+
+// <div key={comment.id}>
+
+//     <div>
+//         {comment.user.pseudo}: {editingCommentId === comment.id ? (
+//             <textarea
+//                 defaultValue={comment.message}
+//                 onChange={(e) => setNewCommentText(e.target.value)}
+//                 required>
+//             </textarea>)
+
+//             : (comment.message)
+//         }
+//     </div>
+
+//     {editingCommentId === comment.id ?
+//         (<button onClick={() => handleEditComment(comment.id, newCommentText)}>
+//             Valider
+//         </button>)
+
+//         : (user?.id === comment.user.id && (
+//             <button className="btn btn-success" onClick={() => {
+//                 setEditingCommentId(comment.id);
+//                 setNewCommentText(comment.message);
+//             }}>
+//                 Modifier
+//             </button>))
+//     }
+
+
+//     <div><>
+//         {user?.admin || user?.id === comment.user.id ?
+//             <div>
+//                 <button
+//                     type="button"
+//                     className="btn btn-danger"
+//                     onClick={() => { handleDeleteComment(comment.id) }}>
+//                     Supprimer
+//                 </button>
+//             </div>
+//             : ''
+//         }
+//     </></div>
+
+// </div>
+// ))}
+// </table>
