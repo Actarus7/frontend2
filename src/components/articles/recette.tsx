@@ -1,22 +1,22 @@
 import { useEffect, useState } from "react";
 import { TArticle } from "../../types/TArticle.type";
 import { TComment } from "../../types/TComment.type";
+import { TUser } from "../../types/TUser.type";
 import CommentsArticle from "./comments-articles";
 
-export function Recette(props: any) {
+export function Recette(props: { recetteId: number, token: string, user: TUser | undefined }) {
     const [recette, setRecette] = useState<TArticle>();
     const [comments, setComments] = useState<TComment[]>([]);
-    // console.log(comments);
-
+    const { recetteId, token, user } = props;
 
     useEffect(() => {
-        const url = `http://localhost:3000/api/articles/${props.recetteId}`;
+        const url = `http://localhost:3000/api/articles/${recetteId}`;
 
         const options = {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${props.token}`
+                Authorization: `Bearer ${token}`
             },
         };
 
@@ -28,7 +28,7 @@ export function Recette(props: any) {
 
             })
             .catch(err => console.error(err));
-    });
+    }, [recetteId, token]);
 
 
     return (
@@ -41,7 +41,7 @@ export function Recette(props: any) {
                             {recette.createdAt}
                             <div>{recette.body}</div>
                             {
-                                comments ? <CommentsArticle setComments={setComments} recetteId={recette.id} comments={comments} user={props.user} token={props.token}></CommentsArticle> : ''
+                                comments ? <CommentsArticle setComments={setComments} articleId={recette.id} comments={comments} user={user} token={token}></CommentsArticle> : ''
                             }
 
                         </>

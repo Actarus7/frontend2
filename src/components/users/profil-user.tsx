@@ -2,18 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
 import { TFriendship } from "../../types/TFriendship.type";
 import { TUser } from "../../types/TUser.type";
-import FriendCarousel from "./FriendCarousel";
 import "./style/styleProfil.css";
 import UserFriends from "./user-friends";
 import UserWaitingFriendsList from "./user-waiting-friendslist";
-import RandomSession from "../trainings/RandomSession";
 
 
 export default function ProfilUser(
   props: {
-    setPage: React.Dispatch<React.SetStateAction<string>>,
     token: string,
-    userLogged: TUser | null,
+    userLogged: TUser | undefined,
   }) {
 
   const [userSearch, setUserSearch] = useState<string>("");
@@ -86,18 +83,8 @@ export default function ProfilUser(
 
 
   const handleSearchFriends = (search: string) => {
-
     setUserSearch(search);
   };
-
-
-  const dummyFriends = [
-    { username: "Ami 1", photo: "https://via.placeholder.com/150" },
-    { username: "Ami 2", photo: "https://via.placeholder.com/150" },
-    { username: "Ami 3", photo: "https://via.placeholder.com/150" },
-    { username: "Ami 4", photo: "https://via.placeholder.com/150" },
-    { username: "Ami 5", photo: "https://via.placeholder.com/150" },
-  ];
 
 
   // Permet de modifier le state des demandes d'amis en cours

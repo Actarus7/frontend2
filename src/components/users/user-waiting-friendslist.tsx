@@ -11,7 +11,7 @@ export default function UserWaitingFriendsList(
     }) {
 
     const { token, handleUserPendingFriendListChange, waitingFriendshipsList, setNewFriend } = props;
-    // const [updatedWaitingFriendshipsList, setUpdatedWaitingFriendshipsList] = useState(waitingFriendshipsList);
+
 
     // Récupération de la liste des demandes en attente
     useEffect(() => {
@@ -31,7 +31,6 @@ export default function UserWaitingFriendsList(
 
                 if (response.statusCode === 200) {
                     handleUserPendingFriendListChange(response.data);
-                    // setUpdatedWaitingFriendshipsList(response.data);
                 };
             })
             .catch((error) => console.log(error)
@@ -54,7 +53,6 @@ export default function UserWaitingFriendsList(
             .then(response => {
                 const updatedFriendshipList = [...waitingFriendshipsList].filter((friendship: TFriendship) => friendship.id !== id);
                 handleUserPendingFriendListChange(updatedFriendshipList)
-                // setUpdatedWaitingFriendshipsList(updatedFriendshipList);
                 setNewFriend(response.data.userSender.pseudo);
             })
             .catch(error => console.error(error)
@@ -74,9 +72,6 @@ export default function UserWaitingFriendsList(
         fetch(`http://localhost:3000/api/friendships/${id}`, options)
             .then(response => response.json())
             .then(response => {
-                // const updatedFriendshipList = [...waitingFriendshipsList].filter((friendship: TFriendship) => friendship.id !== id);
-                // handleUserPendingFriendListChange(updatedFriendshipList)
-                // setUpdatedWaitingFriendshipsList(updatedFriendshipList);
                 const { waitingFriendshipsList: oldWaitingFriendshipsList } = props;
                 const updatedFriendshipList = oldWaitingFriendshipsList.filter(friendship => friendship.id !== id);
                 handleUserPendingFriendListChange(updatedFriendshipList);

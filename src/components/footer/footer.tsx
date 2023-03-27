@@ -3,8 +3,8 @@ import './styles/styles.css';
 
 export function Footer() {
   return (
-    <footer className="bg-dark text-center text-white">
-      <div className="container p-4">
+    <footer className=" text-center text-white" style={{ backgroundColor: '#000000' }}>
+      <div className="p-4">
         <section className="mb-4">
           <a className="btn-icone btn-floating m-1" style={{ backgroundColor: '#000000' }} href="#!" role="button">
             <img className="footer-icon" src="/footer-images/Facebook.png" alt="Facebook" />
@@ -37,7 +37,7 @@ export function Footer() {
       </div>
 
       <div className="text-center p-3" style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
-        © 2023 Copyright:
+        © 2023 Copyright : 
         <a className="text-white" href="https://happytraining.com/">Happytraining.com</a>
       </div>
     </footer>

@@ -4,12 +4,7 @@ import OneTraining from './oneTraining';
 import './styles/stylesTraining.css';
 
 export default function AllTrainings(props: any) {
-    /**
-     * like peut prendre 3 états: -1= dislike
-     * 1 = like et 0 = undefined (pas de choix de la part de user)
-     */
-    // const [searchTerm, setSearchTerm] = useState('');//searbar
-    // const [favorite, setFavorite] = useState(false);
+
     const [trainings, setTrainings] = useState<TTraining[]>([]);
     const [trainingId, setTrainingId] = useState<number>(0);
     const [redirectToAfficheOneTraining, setRedirectToAfficheOneTraining] = useState(false);
@@ -28,13 +23,18 @@ export default function AllTrainings(props: any) {
 
     }, [])
 
+
+
+    // Méthode permettant de modifier un state afin de revevnir à la liste des Trainings
     const handleBackToList = () => {
         setRedirectToAfficheOneTraining(false);
     };
 
+
+    // Création des cards 
     const affichageTrainings = trainings.map((training: TTraining) => {
         return (
-            <>
+            <>{/* Pour chaque Training, affiche une card Programme */}
                 <div className="card border-primary grid gap-0 row-gap-3 m-3 text-truncate "
                     style={{ width: "18rem" }}>
 
@@ -57,16 +57,19 @@ export default function AllTrainings(props: any) {
                             Voir Programme
                         </button>
                     </div>
-                </div></>)
+                </div>
+            </>)
     });
 
 
+    // Redirige vers OneTraining en cas de clique sur un Programme
     if (redirectToAfficheOneTraining) {
         return <OneTraining trainingId={trainingId} onBackToList={handleBackToList} />
     };
 
 
-    // Affichage
+
+    // Affichage du Composant
     return (
         <div className="d-flex align-content-center flex-wrap justify-content-center align-items-center background-image">
             <div className="d-flex align-content-center flex-wrap justify-content-center align-items-center text-truncate ">
