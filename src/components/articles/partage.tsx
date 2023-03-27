@@ -4,10 +4,18 @@ import { TComment } from "../../types/TComment.type";
 import { TUser } from "../../types/TUser.type";
 import CommentsArticle from "./comments-articles";
 
-export function Partage(props: { partageId: number, token: string, user: TUser | undefined }) {
+export function Partage(
+    props: {
+        partageId: number,
+        token: string,
+        user: TUser | undefined,
+        setPage: React.Dispatch<React.SetStateAction<string>>,
+        handleResetRedirections: () => void
+    }) {
+
     const [partage, setPartage] = useState<TArticle>();
     const [comments, setComments] = useState<TComment[]>([]);
-    const { partageId, token, user } = props;
+    const { partageId, token, user, setPage, handleResetRedirections } = props;
 
 
     // Récupération de tous les Commentaires liés à l'Article sélectionné
@@ -46,7 +54,16 @@ export function Partage(props: { partageId: number, token: string, user: TUser |
 
                             {partage.createdAt}
                             {
-                                comments ? <CommentsArticle setComments={setComments} articleId={partage.id} comments={comments} user={user} token={token}></CommentsArticle> : ''
+                                comments ?
+                                    <CommentsArticle
+                                        setPage={setPage}
+                                        setComments={setComments}
+                                        handleResetRedirections={handleResetRedirections}
+                                        articleId={partage.id}
+                                        comments={comments}
+                                        user={user}
+                                        token={token}></CommentsArticle>
+                                    : ''
                             }
 
                         </>

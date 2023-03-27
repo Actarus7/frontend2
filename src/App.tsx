@@ -38,7 +38,7 @@ function App() {
           {page === 'accueil' && <Accueil ></Accueil>}
           {page === 'mon profil' && <ProfilUser token={token} userLogged={userLogged}></ProfilUser>}
           {page === 'trainings' && <AllTrainings token={token} />}
-          {page === 'articles' && <Articles token={token} user={userLogged}></Articles>}
+          {page === 'articles' && <Articles token={token} user={userLogged} setPage={setPage}></Articles>}
 
           {page === 'contact' && <Contact setPage={setPage}></Contact>}
 

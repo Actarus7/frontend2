@@ -4,10 +4,18 @@ import { TComment } from "../../types/TComment.type";
 import { TUser } from "../../types/TUser.type";
 import CommentsArticle from "./comments-articles";
 
-export function Defi(props: { defiId: number, token: string, user: TUser | undefined }) {
+export function Defi(
+    props: {
+        defiId: number,
+        token: string,
+        user: TUser | undefined,
+        setPage: React.Dispatch<React.SetStateAction<string>>,
+        handleResetRedirections: () => void
+    }) {
+
     const [defi, setDefi] = useState<TArticle>();
     const [comments, setComments] = useState<TComment[]>([]);
-    const { defiId, token, user } = props;
+    const { defiId, token, user, setPage, handleResetRedirections } = props;
 
     useEffect(() => {
         const url = `http://localhost:3000/api/articles/${defiId}`;
@@ -41,7 +49,15 @@ export function Defi(props: { defiId: number, token: string, user: TUser | undef
                             {defi.createdAt}
                             <div>{defi.body}</div>
                             {
-                                comments ? <CommentsArticle setComments={setComments} articleId={defi.id} comments={comments} user={user} token={token}></CommentsArticle> : ''
+                                comments ?
+                                    <CommentsArticle
+                                        setPage={setPage}
+                                        setComments={setComments}
+                                        handleResetRedirections={handleResetRedirections}
+                                        articleId={defi.id}
+                                        comments={comments}
+                                        user={user}
+                                        token={token}></CommentsArticle> : ''
                             }
 
                         </>

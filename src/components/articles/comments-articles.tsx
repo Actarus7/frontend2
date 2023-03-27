@@ -11,13 +11,15 @@ export default function CommentsArticle(
         articleId: number,
         comments: TComment[],
         user: TUser | undefined,
-        token: string
+        token: string,
+        setPage: React.Dispatch<React.SetStateAction<string>>,
+        handleResetRedirections: () => void
     }) {
 
     const [editingCommentId, setEditingCommentId] = useState<number | null>(null);
     const [newCommentText, setNewCommentText] = useState<string>("");
     const [redirectToArticles, setRedirectToArticles] = useState(false)
-    const { setComments, articleId, comments, user, token } = props;
+    const { setComments, articleId, comments, user, token, setPage, handleResetRedirections } = props;
 
     const messageRef = useRef<HTMLTextAreaElement>(null);
 
@@ -118,7 +120,7 @@ export default function CommentsArticle(
 
 
     // Redirection vers le Component Articles (Communauté) si clique sur le bouton "Retour"
-    if (redirectToArticles) return <Articles token={token} user={user}></Articles>
+    if (redirectToArticles) setPage("accueil")
 
 
 
@@ -149,7 +151,11 @@ export default function CommentsArticle(
                     <div className="col-auto">
                         <button
                             type="button"
-                            className="btn btn-secondary mb-3" onClick={() => { setRedirectToArticles(true) }}>
+                            className="btn btn-secondary mb-3"
+                            onClick={() => {
+                                setPage("articles");
+                                handleResetRedirections()
+                            }}>
                             Retour
                         </button>
                     </div>
