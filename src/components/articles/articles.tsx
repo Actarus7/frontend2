@@ -6,7 +6,14 @@ import { Partage } from "./partage";
 import { Recette } from "./recette";
 import { TUser } from "../../types/TUser.type";
 
-export default function Articles(props: { token: string, user: TUser | undefined }): JSX.Element {
+export default function Articles(
+    props: {
+        token: string,
+        user: TUser | undefined,
+        setPage: React.Dispatch<React.SetStateAction<string>>
+    }): JSX.Element {
+
+
     const [articles, setArticles] = useState([]);
     const [redirectToDefis, setRedirectToDefis] = useState(false);
     const [redirectToRecettes, setRedirectToRecettes] = useState(false);
@@ -14,7 +21,8 @@ export default function Articles(props: { token: string, user: TUser | undefined
     const [defiId, setDefiId] = useState(0);
     const [recetteId, setRecetteId] = useState(0);
     const [partageId, setPartageId] = useState(0);
-    const { token, user } = props;
+
+    const { token, user, setPage } = props;
 
 
     // Récupération de tous les Articles
@@ -97,6 +105,7 @@ export default function Articles(props: { token: string, user: TUser | undefined
         };
     });
 
+    
     // Map des articles pour récupérer tous les Défis
     const allDefis = articles.map((defi: TArticle | null, i) => {
         if (defi?.type === "defi")
@@ -128,10 +137,22 @@ export default function Articles(props: { token: string, user: TUser | undefined
     });
 
 
+    // Reset des redirections
+    const handleResetRedirections = () => {
+        setRedirectToDefis(false);
+        setRedirectToRecettes(false);
+        setRedirectToPartages(false);
+        setDefiId(0);
+        setRecetteId(0);
+        setPartageId(0)
+    };
+
+
     // Redirection vers un Article précis en fonction du click
-    if (redirectToDefis) return <Defi defiId={defiId} token={token} user={user} />;
-    if (redirectToRecettes) return <Recette recetteId={recetteId} token={token} user={user} />;
-    if (redirectToPartages) return <Partage partageId={partageId} token={token} user={user} />;
+    if (redirectToDefis) return <Defi defiId={defiId} token={token} user={user} setPage={setPage} handleResetRedirections={handleResetRedirections}/>;
+    if (redirectToRecettes) return <Recette recetteId={recetteId} token={token} user={user} setPage={setPage} handleResetRedirections={handleResetRedirections}/>;
+    if (redirectToPartages) return <Partage partageId={partageId} token={token} user={user} setPage={setPage} handleResetRedirections={handleResetRedirections}/>;
+
 
 
     // Affichage
