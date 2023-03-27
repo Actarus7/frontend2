@@ -3,6 +3,7 @@ import { TSession } from "../../types/TSesssion.type";
 import Exercises from "./exercises";
 import Sessions from "./sessions";
 
+
 export default function OneSession(props: { sessionId: number, trainingId: number }) {
     const [oneSession, setOneSession] = useState<TSession>();
 

@@ -2,7 +2,10 @@
     background-color: black;
   }
   
-
+  body {
+    background-color: black;
+  }
+  
 h1 {
     margin-bottom: -5px;
     background-color: black;
@@ -22,6 +25,55 @@ h1 {
     text-align: center;
   }
   
+  .carousel-item .friend-carousel {
+    max-height: 300px;
+    object-fit: cover; 
+    width: 100%;
+  }
+
+  .carousel-container {
+    max-width: 50%; 
+    margin: 0;
+    margin-right: auto;
+  }
+
+
+  .carousel-item .card-img-top {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+  }
+  
+  .carousel-inner .card {
+    width: 100%;
+  }
+
+  .carousel-item {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .carousel-inner .card {
+    width: 50%; 
+    margin: 0 auto;
+  }
+  
+  @media (max-width: 576px) {
+    .carousel-inner .card {
+      width: 80%; 
+    }
+  }
+  
+  .profil-user-container h2 {
+    color: white;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  
+
+  
+  
+
 
   @media (max-width: 576px) {
     .card {
@@ -33,5 +85,39 @@ h1 {
     .card {
       width: 18rem;
     }
+  }
+  
+  .profil-user-container h3 {
+    color: white;
+  }
+ 
+  
+  .friends-section {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  
+  @media (max-width: 767px) {
+    .friends-section {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  
+
+  .carousel-container {
+    max-width: 30%; 
+    margin: 0;
+    margin-right: auto;
+    margin-left: 10px; 
+  }
+  
+
+  .random-session-container {
+    position: absolute;
+    right: 20px;
+    top: 20px;
   }
   

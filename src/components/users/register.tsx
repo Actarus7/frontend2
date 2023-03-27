@@ -1,11 +1,8 @@
-import { useRef, useState } from "react";
-import { Login } from "./login";
+import { useRef } from "react";
 import "./style/styleRegister.css"
 
 
 export function Register(props: any) {
-
-    const [returnToLogin, setReturnToLogin] = useState(false);
 
     const pseudoRef = useRef<HTMLInputElement>(null);
     const emailRef = useRef<HTMLInputElement>(null);
@@ -34,7 +31,7 @@ export function Register(props: any) {
                 .then(response => {
 
                     if (response.statusCode === 201)
-                        setReturnToLogin(true)
+                        props.setPage('login')
 
                     else {
                         console.log(response.error);
@@ -45,10 +42,6 @@ export function Register(props: any) {
 
     };
 
-    if (returnToLogin) {
-        return <Login />
-    };
-
 
     // Affichage
     return (
@@ -56,8 +49,8 @@ export function Register(props: any) {
 
             <div className="bg-image">
             </div>
-            
-            <form className="row g-3" onSubmit={handleSubmitRegister} style={{position: "absolute", top: "70%", left: "50%", transform: "translate(-50%, -50%"}}>
+
+            <form className="row g-3" onSubmit={handleSubmitRegister} style={{ position: "absolute", top: "70%", left: "50%", transform: "translate(-50%, -50%" }}>
 
                 <input
                     type="username"
