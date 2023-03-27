@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
 
 
-export default function UserFriends(props: { token: string }) {
+export default function UserFriends(
+    props: {
+        token: string,
+        newFriend: string
+    }) {
 
-    const [userFriendsList, setUserFriendsList] = useState<string[]>();
+    const [userFriendsList, setUserFriendsList] = useState<string[]>([]); // State avec la liste des amis
+
 
     // Récupération de la liste des amis
     useEffect(() => {
@@ -29,7 +34,7 @@ export default function UserFriends(props: { token: string }) {
 
 
     // Affichage de la liste des amis
-    const affichageUserFriendsList = userFriendsList?.map((friend: string) => {
+    const affichageUserFriendsList = userFriendsList.map((friend: string) => {
 
         return (
             <div>
@@ -39,12 +44,21 @@ export default function UserFriends(props: { token: string }) {
     });
 
 
+    // Modifie la liste des amis après demande acceptée
+    if (props.newFriend !== "" && !userFriendsList.includes(props.newFriend)) {
+        const userFriendsListCopy = [...userFriendsList];
+        userFriendsListCopy.push(props.newFriend);
+        setUserFriendsList(userFriendsListCopy)
+    };
+
+
 
     // Affichage
     return (
         <>
             <h3>Ma Liste d'amis</h3>
             {affichageUserFriendsList}
+
         </>
     );
 
