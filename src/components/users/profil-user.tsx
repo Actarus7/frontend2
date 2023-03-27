@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
+import { TFriendship } from "../../types/TFriendship.type";
 import { TUser } from "../../types/TUser.type";
 import FriendCarousel from "./FriendCarousel";
 import "./style/styleProfil.css";
 import UserFriends from "./user-friends";
 import UserWaitingFriendsList from "./user-waiting-friendslist";
-import RandomSession from "../trainings/RandomSession";
+// import RandomSession from "../trainings/RandomSession";
 
 
 export default function ProfilUser(
@@ -18,6 +19,13 @@ export default function ProfilUser(
   const [userSearch, setUserSearch] = useState<string>("");
   const [searchText, setSearchText] = useState<string>("");
   const [searchResult, setSearchResult] = useState<TUser>();
+  const [waitingFriendshipsList, setWaitingFriendshipsList] = useState<TFriendship[]>([]); // State avec les demandes d'amis en cours
+  const [newFriend, setNewFriend] = useState<string>(""); // State avec un pseudo (si une demande est acceptée)
+
+  useEffect(() => {
+    performFriendSearch(searchText);
+  }, [searchText]);
+
 
 
   const performFriendSearch = (search: string) => {
@@ -50,27 +58,28 @@ export default function ProfilUser(
   };
 
 
-  useEffect(() => {
-    performFriendSearch(searchText);
-  }, [searchText]);
-
 
   const handleAddFriend = (user: TUser) => {
     const options = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${props.token}`
+      },
       body: JSON.stringify({
-        friendId: user.id,
+        userReceiver: user.pseudo,
       }),
     };
 
-    fetch(`http://localhost:3000/api/friendship/create`, options)
+    fetch(`http://localhost:3000/api/friendships/`, options)
       .then((response) => response.json())
       .then((response) => {
-        if (response.success) {
+        if (response.statusCode === 201) {
           alert(`Demande d'ami envoyée à ${user.pseudo}`);
+          setSearchResult(undefined);
         } else {
           alert(`Impossible d'envoyer une demande d'ami à ${user.pseudo}`);
+          setSearchResult(undefined);
         }
       });
   };
@@ -82,9 +91,6 @@ export default function ProfilUser(
   };
 
 
-  const test = searchResult?.pseudo
-
-
   const dummyFriends = [
     { username: "Ami 1", photo: "https://via.placeholder.com/150" },
     { username: "Ami 2", photo: "https://via.placeholder.com/150" },
@@ -94,17 +100,31 @@ export default function ProfilUser(
   ];
 
 
+  // Permet de modifier le state des demandes d'amis en cours
+  const handleUserPendingFriendListChange = (newUserPendingFriendList: TFriendship[]) => {
+    setWaitingFriendshipsList(newUserPendingFriendList);
+  };
+
+
+  // // Permet de modifier la liste des amis
+  // const handleUserNewFriend = (newFriend: string) => {
+  //   userFriendsList.push(newFriend);
+  //   setUserFriendsList(userFriendsList);
+  // };
+
+
+  // Affichage du Composant
   return (
     <div className="profil-user-container">
       <h1>Salut, {props.userLogged?.pseudo}</h1>
-      
+
       <div className="carousel-container">
-      <FriendCarousel
+        <FriendCarousel
           friends={dummyFriends} selectedIndex={0} handleFriendClick={function (index: number): void {
             throw new Error("Function not implemented.");
-          } }       
-      />
-    </div>
+          }}
+        />
+      </div>
 
       {/* RECHERCHE D'AMIS */}
       <div className="search-friends">
@@ -147,16 +167,19 @@ export default function ProfilUser(
 
 
       {/* LISTE D'AMIS */}
-      <UserFriends token={props.token} />
+      <UserFriends
+        token={props.token}
+        newFriend={newFriend} />
 
 
       {/* LISTE DES DEMANDES D'AMIS RECUES */}
-      <UserWaitingFriendsList token={props.token} />
+      <UserWaitingFriendsList
+        token={props.token}
+        handleUserPendingFriendListChange={handleUserPendingFriendListChange}
+        waitingFriendshipsList={waitingFriendshipsList}
+        setNewFriend={setNewFriend}
+      />
 
-
-
-      <div><>{test}</></div>
-      {/* <div>{affichageResult}</div> */}
     </div>
   );
-}
+};
