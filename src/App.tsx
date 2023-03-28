@@ -10,14 +10,14 @@ import Articles from './components/articles/articles';
 import ProfilUser from './components/users/profil-user';
 import { TUser } from './types/TUser.type';
 import VisitorTraining from './components/trainings/visitorTraining';
-import {Contact} from './components/contact/contact';
+import { Contact } from './components/contact/contact';
 
 
 function App() {
   const [page, setPage] = useState<string>('accueil');
   const [isLogged, setIsLogged] = useState(false);
   const [token, setToken] = useState('');
-  const [userLogged, setUserLogged] = useState<TUser | null>(null);
+  const [userLogged, setUserLogged] = useState<TUser>();
 
 
   const handleLogout = () => {
@@ -35,10 +35,10 @@ function App() {
         </header>
 
         <main>
-          {page === 'accueil' && <Accueil setPage={setPage}></Accueil>}
-          {page === 'mon profil' && <ProfilUser setPage={setPage} token={token} userLogged={userLogged}></ProfilUser>}
-          {page === 'trainings' && <AllTrainings setPage={setPage} token={token} />}
-          {page === 'articles' && <Articles setPage={setPage} token={token} user={userLogged}></Articles>}
+          {page === 'accueil' && <Accueil ></Accueil>}
+          {page === 'mon profil' && <ProfilUser token={token} userLogged={userLogged}></ProfilUser>}
+          {page === 'trainings' && <AllTrainings token={token} />}
+          {page === 'articles' && <Articles token={token} user={userLogged}></Articles>}
 
           {page === 'contact' && <Contact setPage={setPage}></Contact>}
 

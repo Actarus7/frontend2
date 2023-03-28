@@ -4,8 +4,9 @@ import { TArticle } from "../../types/TArticle.type";
 import { Defi } from "./defi";
 import { Partage } from "./partage";
 import { Recette } from "./recette";
+import { TUser } from "../../types/TUser.type";
 
-export default function Articles(props: any): JSX.Element {
+export default function Articles(props: { token: string, user: TUser | undefined }): JSX.Element {
     const [articles, setArticles] = useState([]);
     const [redirectToDefis, setRedirectToDefis] = useState(false);
     const [redirectToRecettes, setRedirectToRecettes] = useState(false);
@@ -13,6 +14,32 @@ export default function Articles(props: any): JSX.Element {
     const [defiId, setDefiId] = useState(0);
     const [recetteId, setRecetteId] = useState(0);
     const [partageId, setPartageId] = useState(0);
+    const { token, user } = props;
+
+
+    // Récupération de tous les Articles
+    useEffect(() => {
+        const url = "http://localhost:3000/api/articles";
+
+        const options = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`
+            }
+        };
+
+        const getArticles = async () => {
+
+            const response = await fetch(url, options);
+            const responseJson = await response.json();
+            setArticles(responseJson);
+        };
+        getArticles();
+
+    }, [token, user])
+
+
 
     // Map des articles pour récupérer tous les Partages
     const allPartages = articles.map((partage: TArticle | null, i) => {
@@ -100,38 +127,17 @@ export default function Articles(props: any): JSX.Element {
         };
     });
 
-    // Récupération de tous les Articles
-    useEffect(() => {
-        const url = "http://localhost:3000/api/articles";
-
-        const options = {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${props.token}`
-            }
-        };
-
-        const getArticles = async () => {
-
-            const response = await fetch(url, options);
-            const responseJson = await response.json();
-            setArticles(responseJson);
-        };
-        getArticles();
-
-    }, [])
 
     // Redirection vers un Article précis en fonction du click
-    if (redirectToDefis) return <Defi defiId={defiId} setPage={props.setPage} token={props.token} user={props.user} />;
-    if (redirectToRecettes) return <Recette recetteId={recetteId} setPage={props.setPage} token={props.token} user={props.user} />;
-    if (redirectToPartages) return <Partage partageId={partageId} setPage={props.setPage} token={props.token} user={props.user} />;
+    if (redirectToDefis) return <Defi defiId={defiId} token={token} user={user} />;
+    if (redirectToRecettes) return <Recette recetteId={recetteId} token={token} user={user} />;
+    if (redirectToPartages) return <Partage partageId={partageId} token={token} user={user} />;
 
 
     // Affichage
     return (
         <>
-            <div className="container-fluid bg-success bg-gradient">
+            <div className="bg-success bg-gradient">
                 {/* ESPACE COMMUNAUTE */}
                 <div id="communaute" className="text-center text-white fs-1 fw-bold pt-4 pb-4">
                     Espace Communauté
