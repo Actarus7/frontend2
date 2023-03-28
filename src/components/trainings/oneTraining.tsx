@@ -4,13 +4,8 @@ import Sessions from "./sessions";
 import "./style.css";
 
 export default function OneTraining(props: { trainingId: number, onBackToList: () => void }) {
-    const [like, setLike] = useState(0);
-    const [favorite, setFavorite] = useState(false);
-    const [oneTraining, setOneTraining] = useState<TTraining>();
-    // const [like, setLike] = useState(0);
-    // const [favorite, setFavorite] = useState(false);
 
-    console.log(props.trainingId);
+    const [oneTraining, setOneTraining] = useState<TTraining>();
 
 
     // Récupération du Training sélectionné
@@ -23,35 +18,17 @@ export default function OneTraining(props: { trainingId: number, onBackToList: (
             })
     }, [props.trainingId])
 
-    // //handle likes
-    // const handleLikes = () => {
-    //     if (like === 0) {
-    //         setLike(1);
-    //     }
 
-    //     else if (like === -1) {
-    //         setLike(1);
-    //     }
-    // };
-    // //handle dislikes
-    // const handledislikes = () => {
-    //     if (like === 0) {
-    //         setLike(-1);
-    //     }
 
-       // else if (like === 1) {
-          //  setLike(-1);
-        //};
-
-    // Affichage
+    // Affichage du Composant
     return (
         <>
             <div>
                 {oneTraining ?
                     <div className="">
-                        {oneTraining.title}
+                        <h1>{oneTraining.title}</h1>
 
-                        <div className="">
+                        <div className="text-center" style={{ color: "white" }}>
                             {oneTraining.description}
 
                         </div>
@@ -64,10 +41,6 @@ export default function OneTraining(props: { trainingId: number, onBackToList: (
                         </button>
                     </div>
                     : ""}
-
-            </div>
-
-            <div>
 
             </div>
         </>

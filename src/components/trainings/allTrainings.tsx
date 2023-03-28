@@ -13,6 +13,7 @@ export default function AllTrainings(props: any) {
     const [trainings, setTrainings] = useState<TTraining[]>([]);
     const [trainingId, setTrainingId] = useState<number>(0);
     const [redirectToAfficheOneTraining, setRedirectToAfficheOneTraining] = useState(false);
+  
 
 
     // Récupération de tous les Trainings
@@ -35,21 +36,71 @@ export default function AllTrainings(props: any) {
     const affichageTrainings = trainings.map((training: TTraining) => {
         return (
             <>
-                <div className="card border-primary grid gap-0 row-gap-3 m-3 text-truncate "
-                    style={{ width: "18rem" }}>
+                <div className="card training-card m-3 text-truncate shadow" style={{ width: "18rem", boxShadow: "0 4px 6px rgba(255, 255, 255, 0.1)" }}>
+                
+                <img src={`${process.env.PUBLIC_URL}/alltraining-images/programme1img.jpg`} alt="Programme 1" className="card-img-top" />
+                <img src={`${process.env.PUBLIC_URL}/alltraining-images/programme2img.jpg`} alt="Programme 2" className="card-img-top" />
+                <img src={`${process.env.PUBLIC_URL}/alltraining-images/programme3img.jpg`} alt="Programme 3" className="card-img-top" />
 
-                    <h4 className="card-header  text-truncate ">
-                        PROGRAMME {training.id}
-                    </h4>
-
-                    <div className="card-body text-primary p-2 g-col-6 text-truncate ">
-                        <h5 className="card-title text-truncate">
-                            {training.title}
+                    <div className="card-body">
+                        <h5 className="card-title">
+                            <div className="d-flex justify-content-between align-items-center">
+                                <div className="bg-custom-color text-white p-2" style={{ backgroundColor: "#40dbc1" }}>{training.id}</div>
+                                Training numéro {training.id}
+                            </div>
                         </h5>
-                        <div>
-                            {training.description}
-                        </div>
+                        <button
+                            type="button"
+                            onClick={() => { setRedirectToAfficheOneTraining(true); setTrainingId(training.id) }}
+                            className="btn btn-primary">
+                            Voir Programme
+                        </button>
+                    </div>
+                </div>
+            </>
+        );
+    });
+    
+    
+    
 
+
+
+
+                {/* <div className="card mb-3">
+                    <img src="..." className="card-img-top" alt="..." />
+                    <div className="card-body">
+                        <h5 className="card-title">Card title</h5>
+                        <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                </div>
+                <div className="card">
+                    <div className="card-body">
+                        <h5 className="card-title">Card title</h5>
+                        <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                    <img src="..." className="card-img-bottom" alt="..." />
+                </div> */}
+
+
+
+
+
+
+
+
+
+
+                {/* <div className="card training-card m-3 text-truncate" style={{ width: "18rem" }}>
+                    <img src={`path/to/image/${training.id}.jpg`} alt="Programme" className="card-img-top" />
+                    <div className="card-img-overlay d-flex flex-column justify-content-end">
+                        <div className="training-info bg-black">
+                            
+                        </div>
+                    </div>
+                    <div className="card-body text-primary p-2 g-col-6 text-truncate">
                         <button
                             type="button"
                             onClick={() => { setRedirectToAfficheOneTraining(true); setTrainingId(training.id) }}
@@ -57,8 +108,11 @@ export default function AllTrainings(props: any) {
                             Voir Programme
                         </button>
                     </div>
-                </div></>)
-    });
+                </div> 
+            </>
+        );
+    });*/}
+
 
 
     if (redirectToAfficheOneTraining) {

@@ -7,13 +7,12 @@ export default function UserWaitingFriendsList(
         token: string,
         handleUserPendingFriendListChange: (newUserPendingFriendList: TFriendship[]) => void,
         waitingFriendshipsList: TFriendship[],
+        setWaitingFriendshipsList: React.Dispatch<React.SetStateAction<TFriendship[]>>,
         setNewFriend: (newFriend: string) => void
     }) {
 
-    const { token, handleUserPendingFriendListChange, waitingFriendshipsList, setNewFriend } = props;
-    const [updatedWaitingFriendshipsList, setUpdatedWaitingFriendshipsList] = useState(waitingFriendshipsList);
+    const { token, handleUserPendingFriendListChange, waitingFriendshipsList, setWaitingFriendshipsList, setNewFriend } = props;
 
-    // Récupération de la liste des demandes en attente
 
     // Récupération de la liste des demandes en attente
     useEffect(() => {
@@ -33,10 +32,9 @@ export default function UserWaitingFriendsList(
 
                 if (response.statusCode === 200) {
                     handleUserPendingFriendListChange(response.data);
-                    setUpdatedWaitingFriendshipsList(response.data);
                 };
             })
-            .catch((error) => console.log(error)
+            .catch((error) => console.log(error.message)
             );
     }, [token, handleUserPendingFriendListChange]);
 
@@ -56,8 +54,8 @@ export default function UserWaitingFriendsList(
             .then(response => {
                 const updatedFriendshipList = [...waitingFriendshipsList].filter((friendship: TFriendship) => friendship.id !== id);
                 handleUserPendingFriendListChange(updatedFriendshipList)
-                setUpdatedWaitingFriendshipsList(updatedFriendshipList);
                 setNewFriend(response.data.userSender.pseudo);
+                setWaitingFriendshipsList(updatedFriendshipList); // mise à jour de l'état avec la nouvelle liste
             })
             .catch(error => console.error(error)
             );
@@ -76,9 +74,6 @@ export default function UserWaitingFriendsList(
         fetch(`http://localhost:3000/api/friendships/${id}`, options)
             .then(response => response.json())
             .then(response => {
-                // const updatedFriendshipList = [...waitingFriendshipsList].filter((friendship: TFriendship) => friendship.id !== id);
-                // handleUserPendingFriendListChange(updatedFriendshipList)
-                // setUpdatedWaitingFriendshipsList(updatedFriendshipList);
                 const { waitingFriendshipsList: oldWaitingFriendshipsList } = props;
                 const updatedFriendshipList = oldWaitingFriendshipsList.filter(friendship => friendship.id !== id);
                 handleUserPendingFriendListChange(updatedFriendshipList);

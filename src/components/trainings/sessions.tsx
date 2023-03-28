@@ -33,11 +33,12 @@ export default function Sessions(
 
 
     // Affichage des Sessions
-    const affichageSessions = sessions.map((session: TSession) => {
+    const affichageSessions = sessions.map((session: TSession, i: number) => {
         return (
             <>
                 <div className="card border-primary grid gap-0 row-gap-3 m-3 text-truncate "
-                    style={{ width: "18rem" }}>
+                    style={{ width: "18rem" }}
+                    key={session.id}>
                     <h4 className="card-header  text-truncate ">
                         SESSION {session.id}
 
