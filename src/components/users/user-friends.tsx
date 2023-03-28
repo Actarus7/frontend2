@@ -1,87 +1,109 @@
 import { useEffect, useState } from "react";
+// import AllTrainings from "../trainings/allTrainings";
 
+// interface UserFriendsProps {
+//   token: string;
+//   newFriend: string;
+//   setPage: (page: string) => void;
+// }
 
-export default function UserFriends(
-    props: {
-        token: string,
-        newFriend: string
-    }) {
+export default function UserFriends(props: {
+  token: string;
+  newFriend: string;
+  setPage: (page: string) => void;
+}) {
+  const [userFriendsList, setUserFriendsList] = useState<string[]>([]); // State avec la liste des amis
 
-    const [userFriendsList, setUserFriendsList] = useState<string[]>([]); // State avec la liste des amis
-    const image1 = "/profil-images/photo-profil-1.jpg";
-    const image2 = "/profil-images/photo-profil-2.jpg";
-    const image3 = "/profil-images/photo-profil-3.jpg";
-    const image4 = "/profil-images/photo-profil-4.jpg";
-    const images = [image1, image2, image3, image4];
+  const { token, newFriend, setPage } = props;
 
+  const image1 = "/profil-images/photo-profil-1.jpg";
+  const image2 = "/profil-images/photo-profil-2.jpg";
+  const image3 = "/profil-images/photo-profil-3.jpg";
+  const image4 = "/profil-images/photo-profil-4.jpg";
+  const images = [image1, image2, image3, image4];
 
-
-
-    // Récupération de la liste des amis
-    useEffect(() => {
-
-        const options = {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${props.token}`
-            },
-        };
-
-
-        fetch(`http://localhost:3000/api/friendships/user/friends`, options)
-            .then(response => response.json())
-            .then(response => {
-
-                if (response.statusCode === 200) { setUserFriendsList(response.data) }
-            })
-            .catch((error) => console.log(error)
-            );
-    }, [props.token]);
-
-
-    // Affichage de la liste des amis
-    const affichageUserFriendsList = userFriendsList.map((friend: string) => {
-
-        return (
-            <div>
-
-
-                <div className="card-group">
-                    <div className="card text-center">
-                        <img src={images[Math.floor(Math.random() * 4)]} className="card-img-top" alt="..." />
-                        <div className="card-body">
-                            <h5 className="card-title">{friend}</h5>
-                            <a href="#" className="btn btn-primary">Voir son profil</a>
-                        </div>
-                    </div>
-                </div>
-
-
-
-            </div>
-        );
-    });
-
-
-    // Modifie la liste des amis après demande acceptée
-    if (props.newFriend !== "" && !userFriendsList.includes(props.newFriend)) {
-        const userFriendsListCopy = [...userFriendsList];
-        userFriendsListCopy.push(props.newFriend);
-        setUserFriendsList(userFriendsListCopy)
+  // Récupération de la liste des amis
+  useEffect(() => {
+    const options = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     };
 
+    fetch(`http://localhost:3000/api/friendships/user/friends`, options)
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.statusCode === 200) {
+          setUserFriendsList(response.data);
+        }
+      })
+      .catch((error) => console.log(error));
+  }, [token]);
 
-
-    // Affichage
+  // Affichage de la liste des amis
+  const affichageUserFriendsList = userFriendsList.map((friend: string) => {
     return (
-        <>
-            <h3>Ma Liste d'amis</h3>
-            <div className="row row-cols-1 row-cols-md-3 g-4" style={{maxWidth: "30rem"}}>
-                {affichageUserFriendsList}
-
+      <div>
+        <div className="card-group">
+          <div className="card text-center">
+            <img
+              src={images[Math.floor(Math.random() * 4)]}
+              className="card-img-top"
+              alt="..."
+            />
+            <div className="card-body">
+              <h5 className="card-title">{friend}</h5>
+              <a href="#" className="btn btn-primary">
+                Voir son profil
+              </a>
             </div>
-        </>
+          </div>
+        </div>
+      </div>
     );
+  });
 
-};
+  // Modifie la liste des amis après demande acceptée
+  if (newFriend !== "" && !userFriendsList.includes(newFriend)) {
+    const userFriendsListCopy = [...userFriendsList];
+    userFriendsListCopy.push(newFriend);
+    setUserFriendsList(userFriendsListCopy);
+  }
+
+  // Affichage
+  return (
+    <>
+      <h3>Ma Liste d'amis</h3>: (
+      <div className="container friend-list-container">
+        <div className="row">
+          <div className="col-md-6 friends-section">
+            <div
+              className="row row-cols-1 row-cols-md-3 g-4"
+              style={{ maxWidth: "30rem" }}
+            >
+              {affichageUserFriendsList}
+            </div>
+          </div>
+          <div className="col-md-6 go-training-section">
+            <img
+              src="/user-profils-images/goTrainingImage.png"
+              alt="Go Training"
+              className="go-training-image"
+            />
+            <button
+              className="btn btn-primary go-training-btn"
+              onClick={() => {
+                setPage("trainings");
+              }}
+            >
+              Go Training
+            </button>
+          </div>
+        </div>
+      </div>
+      )
+    </>
+  );
+}

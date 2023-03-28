@@ -4,10 +4,16 @@ import OneTraining from './oneTraining';
 import './styles/stylesTraining.css';
 
 export default function AllTrainings(props: any) {
-
+    /**
+     * like peut prendre 3 états: -1= dislike
+     * 1 = like et 0 = undefined (pas de choix de la part de user)
+     */
+    // const [searchTerm, setSearchTerm] = useState('');//searbar
+    // const [favorite, setFavorite] = useState(false);
     const [trainings, setTrainings] = useState<TTraining[]>([]);
     const [trainingId, setTrainingId] = useState<number>(0);
     const [redirectToAfficheOneTraining, setRedirectToAfficheOneTraining] = useState(false);
+  
 
 
     // Récupération de tous les Trainings
@@ -23,28 +29,25 @@ export default function AllTrainings(props: any) {
 
     }, [])
 
-
-
-    // Méthode permettant de modifier un state afin de revevnir à la liste des Trainings
     const handleBackToList = () => {
         setRedirectToAfficheOneTraining(false);
     };
 
-
-    // Création des cards 
     const affichageTrainings = trainings.map((training: TTraining) => {
         return (
             <>
-                <div className="card border-primary grid gap-0 row-gap-3 m-3 text-truncate "
-                    style={{ width: "18rem" }}>
+                <div className="card training-card m-3 text-truncate shadow" style={{ width: "18rem", boxShadow: "0 4px 6px rgba(255, 255, 255, 0.1)" }}>
+                
+                <img src={`${process.env.PUBLIC_URL}/alltraining-images/programme1img.jpg`} alt="Programme 1" className="card-img-top" />
+                <img src={`${process.env.PUBLIC_URL}/alltraining-images/programme2img.jpg`} alt="Programme 2" className="card-img-top" />
+                <img src={`${process.env.PUBLIC_URL}/alltraining-images/programme3img.jpg`} alt="Programme 3" className="card-img-top" />
 
-                    <h4 className="card-header  text-truncate ">
-                        PROGRAMME {training.id}
-                    </h4>
-
-                    <div className="card-body text-primary p-2 g-col-6 text-truncate ">
-                        <h5 className="card-title text-truncate">
-                            {training.title}
+                    <div className="card-body">
+                        <h5 className="card-title">
+                            <div className="d-flex justify-content-between align-items-center">
+                                <div className="bg-custom-color text-white p-2" style={{ backgroundColor: "#40dbc1" }}>{training.id}</div>
+                                Training numéro {training.id}
+                            </div>
                         </h5>
                         <button
                             type="button"
@@ -105,18 +108,19 @@ export default function AllTrainings(props: any) {
                             Voir Programme
                         </button>
                     </div>
-                </div></>)
-    });
+                </div> 
+            </>
+        );
+    });*/}
 
 
-    // Redirige vers OneTraining en cas de clique sur un Programme
+
     if (redirectToAfficheOneTraining) {
         return <OneTraining trainingId={trainingId} onBackToList={handleBackToList} />
     };
 
 
-
-    // Affichage du Composant
+    // Affichage
     return (
         <div className="d-flex align-content-center flex-wrap justify-content-center align-items-center background-image">
             <div className="d-flex align-content-center flex-wrap justify-content-center align-items-center text-truncate ">

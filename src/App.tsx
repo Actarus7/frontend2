@@ -11,6 +11,8 @@ import ProfilUser from './components/users/profil-user';
 import { TUser } from './types/TUser.type';
 import VisitorTraining from './components/trainings/visitorTraining';
 import { Contact } from './components/contact/contact';
+import UserFriends from './components/users/user-friends';
+
 
 
 function App() {
@@ -18,6 +20,7 @@ function App() {
   const [isLogged, setIsLogged] = useState(false);
   const [token, setToken] = useState('');
   const [userLogged, setUserLogged] = useState<TUser>();
+  // const [newFriend, setNewFriend] = useState('');
 
 
   const handleLogout = () => {
@@ -36,10 +39,10 @@ function App() {
 
         <main>
           {page === 'accueil' && <Accueil ></Accueil>}
-          {page === 'mon profil' && <ProfilUser token={token} userLogged={userLogged}></ProfilUser>}
-          {page === 'trainings' && <AllTrainings token={token} />}
-          {page === 'articles' && <Articles token={token} user={userLogged}></Articles>}
+          {page === 'mon profil' && <ProfilUser token={token} userLogged={userLogged} setPage={setPage} />}
 
+          {page === 'trainings' && <AllTrainings token={token} setPage={setPage} />}
+          {page === 'articles' && <Articles token={token} user={userLogged}></Articles>}
           {page === 'contact' && <Contact setPage={setPage}></Contact>}
 
 
@@ -59,7 +62,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <Navbar setPage={setPage}></Navbar>
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
+        
       </header>
 
       <main>
