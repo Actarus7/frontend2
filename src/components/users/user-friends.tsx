@@ -74,35 +74,10 @@ export default function UserFriends(
     // Affichage du Composant
     return (
         <>
-            <h3>Ma Liste d'amis</h3>: (
-            <div className="container friend-list-container">
-                <div className="row">
-                    <div className="col-md-6 friends-section">
-                        <div
-                            className="row row-cols-1 row-cols-md-3 g-4"
-                            style={{ maxWidth: "30rem" }}
-                        >
-                            {affichageUserFriendsList}
-                        </div>
-                    </div>
-                    <div className="col-md-6 go-training-section">
-                        <img
-                            src="/user-profils-images/goTrainingImage.png"
-                            alt="Go Training"
-                            className="go-training-image"
-                        />
-                        <button
-                            className="btn btn-primary go-training-btn"
-                            onClick={() => {
-                                setPage("trainings");
-                            }}
-                        >
-                            Go Training
-                        </button>
-                    </div>
-                </div>
-            </div>
-            )
+             <h3>Ma Liste d'amis</h3>
+      <div className="row row-cols-1 d-flex flex-nowrap overflow-auto">
+        {affichageUserFriendsList}
+      </div>
         </>
     );
 }
