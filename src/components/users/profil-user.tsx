@@ -166,7 +166,6 @@ export default function ProfilUser(props: {
                 handleUserPendingFriendListChange={handleUserPendingFriendListChange}
                 waitingFriendshipsList={waitingFriendshipsList}
                 setWaitingFriendshipsList={setWaitingFriendshipsList}
-                newFriend={newFriend}
                 setNewFriend={setNewFriend} />
         </div>
     );

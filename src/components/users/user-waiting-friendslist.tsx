@@ -9,14 +9,14 @@ export default function UserWaitingFriendsList(
         waitingFriendshipsList: TFriendship[],
         setWaitingFriendshipsList: React.Dispatch<React.SetStateAction<TFriendship[]>>,
         setNewFriend: (newFriend: string) => void,
-        newFriend: string;
     }) {
 
-    const { token, handleUserPendingFriendListChange, waitingFriendshipsList, setWaitingFriendshipsList, setNewFriend, newFriend } = props;
+    const { token, handleUserPendingFriendListChange, waitingFriendshipsList, setWaitingFriendshipsList, setNewFriend } = props;
 
     console.log('User-WaitingFriendsList');
 
     // Récupération de la liste des demandes en attente
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
 
         const options = {
@@ -38,7 +38,7 @@ export default function UserWaitingFriendsList(
             })
             .catch((error) => console.log(error.message)
             );
-    }, [token, newFriend, handleUserPendingFriendListChange]);
+    }, [token, /* handleUserPendingFriendListChange */ ]);
 
 
     // Accepter la demande d'ami (patch)
