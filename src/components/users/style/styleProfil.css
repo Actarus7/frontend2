@@ -151,3 +151,49 @@ h1 {
   height: auto;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
+
+.go-training-btn {
+  width: 20%;
+  position: absolute;
+  bottom: 15px;
+  left: 40%;
+  height: 50px;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .go-training-btn {
+    width: 30%;
+    height: 40px;
+    font-size: 1rem;
+    bottom: 5%;
+    left: 35%;
+  }
+}
+
+@media (max-width: 576px) {
+  .go-training-btn {
+    width: 40%;
+    height: 30px;
+    font-size: 0.8rem;
+    bottom: 3%;
+    left: 30%;
+  }
+}
+
+.training-info {
+  background-color: #2D3450;
+  color: white;
+  padding: 5px;
+}
+
+.card-body {
+  background-color: #2D3450;
+  color: white;
+}
+
+.btn-custom {
+  border-color: none;
+  box-shadow: none;
+}
