@@ -43,7 +43,7 @@ function App() {
 
                     {page === 'trainings' && <AllTrainings token={token} setPage={setPage} />}
                     {page === 'articles' && <Articles token={token} user={userLogged} setPage={setPage}></Articles>}
-                    {page === 'contact' && <Contact setPage={setPage}></Contact>}
+                    {page === 'contact' && <Contact ></Contact>}
 
 
 
@@ -70,21 +70,21 @@ function App() {
                 {page === 'login' && <Login setPage={setPage} setIsLogged={setIsLogged} setToken={setToken} setUserLogged={setUserLogged} ></Login>}
                 {page === 'register' && <Register page={page} setPage={setPage} setIsLogged={setIsLogged} setToken={setToken} setUserLogged={setUserLogged}></Register>}
                 {page === 'visitor training' && <VisitorTraining page={page} setPage={setPage} />}
-                {page === 'contact' && <Contact setPage={setPage}></Contact>}
+                {page === 'contact' && <Contact ></Contact>}
 
 
 
-      </main>
+            </main>
 
-       {page !== 'contact' ?
-        
-         
-        <footer>
-        <Footer></Footer>
-        </footer>
-      : ''}
-    </div>
-  );
+            {page !== 'contact' ?
+
+
+                <footer>
+                    <Footer></Footer>
+                </footer>
+                : ''}
+        </div>
+    );
 }
 
 export default App;

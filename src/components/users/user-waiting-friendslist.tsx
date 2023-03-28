@@ -13,10 +13,8 @@ export default function UserWaitingFriendsList(
 
     const { token, handleUserPendingFriendListChange, waitingFriendshipsList, setWaitingFriendshipsList, setNewFriend } = props;
 
-    console.log('User-WaitingFriendsList');
 
     // Récupération de la liste des demandes en attente
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
 
         const options = {
@@ -38,7 +36,7 @@ export default function UserWaitingFriendsList(
             })
             .catch((error) => console.log(error.message)
             );
-    }, [token, /* handleUserPendingFriendListChange */ ]);
+    }, [token, /* handleUserPendingFriendListChange */]); // cette dépendance crée un refresh infini des deux composants
 
 
     // Accepter la demande d'ami (patch)

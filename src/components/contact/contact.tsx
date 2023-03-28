@@ -2,11 +2,8 @@ import { useState } from "react";
 import { TContact } from "../../types/TContact.type";
 import "./styleContact.css";
 
-type Props = {
-    setPage: Function
-}
 
-export function Contact(props: Props) {
+export function Contact() {
 
     const [contact, setContact] = useState<TContact[]>([]);
     const [firstNameInput, setFirstNameInput] = useState("");
@@ -52,11 +49,10 @@ export function Contact(props: Props) {
     // Affichage du Composant
     return (
         <>
-
             <div className="h1-contact ">
                 <h1>Contactez-nous</h1>
 
-                <div className=" container position-absolute top-50 start-50 translate-middle justify-content-center  flex-column col row text-center " >
+                <div className=" container justify-content-center  flex-column col row text-center " >
                     <div className="form-item    mb-1">
                         <label htmlFor="firstName" className="text-formulaire">Prénom</label>
                         <input className="form-control w-50 col-md-3 offset-md-3 " type="text" id="prénom" placeholder="Votre prénom" value={firstNameInput} onChange={(event) => setFirstNameInput(event.target.value)} />
