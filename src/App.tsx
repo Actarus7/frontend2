@@ -73,9 +73,13 @@ function App() {
 
       </main>
 
-      <footer>
+       {page !== 'contact' ?
+        
+         
+        <footer>
         <Footer></Footer>
-      </footer>
+        </footer>
+      : ''}
     </div>
   );
 }

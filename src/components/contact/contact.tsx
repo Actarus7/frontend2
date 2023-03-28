@@ -3,55 +3,42 @@ import { useEffect, useState } from "react";
 import { TContact } from "../../types/TContact.type";
 import "./styleContact.css";
 
-type props = {
+type Props = {
     setPage: Function
 }
 
-export function Contact(props: props) {
+export function Contact(props: Props) {
     const [contact, setContact] = useState<TContact[]>([]);
     const [firstNameInput, setFirstNameInput] = useState("");
     const [lastNameInput, setLastNameInput] = useState("");
     const [emailInput, setEmailInput] = useState("");
     const [messageInput, setMessageInput] = useState("");
 
-    useEffect(() => {
-        async function getContact() {
-            const requestOptions = {
-                method: 'GET',
+    /* useEffect(() => {
+        const fetchData = async () => {
+            const options = {
+                method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    firstname: firstNameInput,
+                    lastname: lastNameInput,
+                    email: emailInput,
+                    message: messageInput,
+                }),
             }
 
-            const response = await fetch('http://localhost:3000/api/contacts/', requestOptions);
+
+            const response = await fetch('http://localhost:3000/api/contacts/', options);
             const responseJson = await response.json();
-            console.log(responseJson);
+            console.log(responseJson, "success");
 
             if (responseJson.statusCode === 201) {
-                resetInput()
-                setContact([...contact, responseJson.data])
-                // setContact(responseJson.data);
+                setContact([...contact, responseJson])
+                resetInput();
             }
 
-        };
-        getContact()
-    }, []);
-
-    const body = {
-        firstName: firstNameInput,
-        lastName: lastNameInput,
-        email: emailInput,
-        message: messageInput
-    }
-    // Options de requêtes et envoi des données des input 
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body)
-    };
-
-
-    /* else {
-        return
-    } */
+        }
+    }, []); */
 
     function resetInput() {
         setFirstNameInput("")
@@ -60,23 +47,34 @@ export function Contact(props: props) {
         setMessageInput("")
     }
 
+   
 
+    const handleSubmit = async (event: { preventDefault: () => void; }) => {
+        console.log("handlesubmit");
+        
+        event.preventDefault();
+        const options = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                firstName: firstNameInput,
+                lastName: lastNameInput,
+                email: emailInput,
+                message: messageInput,
+            }),
+        }
 
-    function deleteContact(id: number) {
+        const response = await fetch('http://localhost:3000/api/contact/', options);
+        const responseJson = await response.json();
+        console.log(responseJson, "success");
 
-        const filtercontact = contact.filter(contacts => contacts.id !== id)
-        setContact(filtercontact);
-
+        if (responseJson.statusCode === 201) {
+            setContact([...contact, responseJson])
+            resetInput();
+        }
     }
 
 
-    function patchContact(item: TContact) {
-
-        const filtercontact = contact.findIndex(elm => elm.id === item.id);
-        contact[filtercontact] = item;
-        setContact([...contact]);
-
-    }
 
     // Affichage
     return (
@@ -85,33 +83,34 @@ export function Contact(props: props) {
             <div className="h1-contact ">
                 <h1>Contactez-nous</h1>
 
-                <div className=" container d-flex justify-content-center flex-column ">
+                <div className=" container position-absolute top-50 start-50 translate-middle justify-content-center  flex-column col row text-center " >
                     <div className="form-item    mb-1">
-                        <label htmlFor="firstName">Prénom</label>
-                        <input className="form-control" type="text" id="prénom" placeholder="Votre prénom" value={firstNameInput} onChange={(e) => setFirstNameInput(e.target.value)} />
+                        <label htmlFor="firstName" className="text-formulaire">Prénom</label>
+                        <input className="form-control w-50 col-md-3 offset-md-3 " type="text" id="prénom" placeholder="Votre prénom" value={firstNameInput} onChange={(event) => setFirstNameInput(event.target.value)} />
                     </div>
 
-                    <div className="mb-3">
-                        <label htmlFor="exampleFormControlInput1" >Nom</label>
-                        <input className="form-control" type="email" id="exampleFormControlInput1" placeholder="Votre nom" value={lastNameInput} onChange={(e) => setLastNameInput(e.target.value)} />
+                    <div className="mb-3" >
+                        <label htmlFor="exampleFormControlInput1" className="text-formulaire">Nom</label>
+                        <input className="form-control w-50 col-md-3 offset-md-3 " type="email" id="exampleFormControlInput1" placeholder="Votre nom" value={lastNameInput} onChange={(event) => setLastNameInput(event.target.value)} />
                     </div>
 
-                    <div className="mb-3">
-                        <label htmlFor="exampleFormControlInput1">Email address</label>
-                        <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" value={emailInput} onChange={(e) => setEmailInput(e.target.value)} />
+                    <div className="mb-3" >
+                        <label htmlFor="exampleFormControlInput1" className="text-formulaire">Email</label>
+                        <input type="email" className="form-control w-50 col-md-3 offset-md-3" id="exampleFormControlInput1" placeholder="name@example.com" value={emailInput} onChange={(event) => setEmailInput(event.target.value)} />
                     </div>
 
-                    <div className="mb-3">
-                        <label htmlFor="exampleFormControlTextarea1" className="form-label">Example textarea</label>
-                        <textarea className="form-control" id="exampleFormControlTextarea1 rows-3" value={messageInput} onChange={(e) => setMessageInput(e.target.value)}></textarea>
+                    <div className="mb-3" >
+                        <label htmlFor="exampleFormControlTextarea1" className="text-formulaire">Votre message</label>
+                        <textarea className="form-control w-50 col-md-3 offset-md-3" id="exampleFormControlTextarea1 rows-3" value={messageInput}  onChange={(event) => setMessageInput(event.target.value)}></textarea>
                     </div>
 
-                    <label className="label-contact">
-                        <input type="checkbox" /> En cochant cette case, j'accepte de
-                        recevoir des informations sur les différentes offres disponibles.
+                    <label className="text-formulaire">
+                        <input type="checkbox" /> En cochant cette case,j'accepte de recevoir des informations
+                        sur les différentes offres disponibles.
+
                     </label>
 
-                    <button id="btn " type="submit">Envoyer</button>
+                    <button  onClick={handleSubmit} type="button" className="btn-form-control w-50 col-md-3 offset-md-3" id="btn" >Envoyer</button>
                 </div>
             </div>
         </>
