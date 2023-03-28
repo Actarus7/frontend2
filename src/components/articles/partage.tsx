@@ -4,10 +4,18 @@ import { TComment } from "../../types/TComment.type";
 import { TUser } from "../../types/TUser.type";
 import CommentsArticle from "./comments-articles";
 
-export function Partage(props: { partageId: number, token: string, user: TUser | undefined }) {
+export function Partage(
+    props: {
+        partageId: number,
+        token: string,
+        user: TUser | undefined,
+        setPage: React.Dispatch<React.SetStateAction<string>>,
+        handleResetRedirections: () => void
+    }) {
+
     const [partage, setPartage] = useState<TArticle>();
     const [comments, setComments] = useState<TComment[]>([]);
-    const { partageId, token, user } = props;
+    const { partageId, token, user, setPage, handleResetRedirections } = props;
 
 
     // Récupération de tous les Commentaires liés à l'Article sélectionné
@@ -40,13 +48,36 @@ export function Partage(props: { partageId: number, token: string, user: TUser |
                 partage?.title ? (
                     <div className="container-fluid bg-white">
                         <>
-                            <h1>{partage.title}</h1>
+                            <div>
+                                <div className="col-auto">
+                                    <button
+                                        type="button"
+                                        className="btn btn-secondary mb-3"
+                                        onClick={() => {
+                                            setPage("articles");
+                                            handleResetRedirections()
+                                        }}>
+                                        Retour
+                                    </button>
+                                </div>
+                                <h1>{partage.title}</h1>
+                            </div>
+
 
                             <pre className="pt-4 article_body">{partage.body}</pre>
 
                             {partage.createdAt}
                             {
-                                comments ? <CommentsArticle setComments={setComments} articleId={partage.id} comments={comments} user={user} token={token}></CommentsArticle> : ''
+                                comments ?
+                                    <CommentsArticle
+                                        setPage={setPage}
+                                        setComments={setComments}
+                                        handleResetRedirections={handleResetRedirections}
+                                        articleId={partage.id}
+                                        comments={comments}
+                                        user={user}
+                                        token={token}></CommentsArticle>
+                                    : ''
                             }
 
                         </>

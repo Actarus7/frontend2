@@ -4,10 +4,19 @@ import { TComment } from "../../types/TComment.type";
 import { TUser } from "../../types/TUser.type";
 import CommentsArticle from "./comments-articles";
 
-export function Recette(props: { recetteId: number, token: string, user: TUser | undefined }) {
+export function Recette(
+    props: {
+        recetteId: number,
+        token: string,
+        user: TUser | undefined,
+        setPage: React.Dispatch<React.SetStateAction<string>>,
+        handleResetRedirections: () => void
+    }) {
+
     const [recette, setRecette] = useState<TArticle>();
     const [comments, setComments] = useState<TComment[]>([]);
-    const { recetteId, token, user } = props;
+    const { recetteId, token, user, setPage, handleResetRedirections } = props;
+
 
     useEffect(() => {
         const url = `http://localhost:3000/api/articles/${recetteId}`;
@@ -41,7 +50,16 @@ export function Recette(props: { recetteId: number, token: string, user: TUser |
                             {recette.createdAt}
                             <div>{recette.body}</div>
                             {
-                                comments ? <CommentsArticle setComments={setComments} articleId={recette.id} comments={comments} user={user} token={token}></CommentsArticle> : ''
+                                comments ?
+                                    <CommentsArticle
+                                        setPage={setPage}
+                                        setComments={setComments}
+                                        handleResetRedirections={handleResetRedirections}
+                                        articleId={recette.id}
+                                        comments={comments}
+                                        user={user}
+                                        token={token}></CommentsArticle> : ''
+                                    
                             }
 
                         </>
