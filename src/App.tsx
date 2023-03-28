@@ -16,71 +16,71 @@ import UserFriends from './components/users/user-friends';
 
 
 function App() {
-  const [page, setPage] = useState<string>('accueil');
-  const [isLogged, setIsLogged] = useState(false);
-  const [token, setToken] = useState('');
-  const [userLogged, setUserLogged] = useState<TUser>();
-  // const [newFriend, setNewFriend] = useState('');
+    const [page, setPage] = useState<string>('accueil');
+    const [isLogged, setIsLogged] = useState(false);
+    const [token, setToken] = useState('');
+    const [userLogged, setUserLogged] = useState<TUser>();
+    // const [newFriend, setNewFriend] = useState('');
 
 
-  const handleLogout = () => {
-    setIsLogged(false);
-    setToken("");
-    setPage("login");
-  };
+    const handleLogout = () => {
+        setIsLogged(false);
+        setToken("");
+        setPage("login");
+    };
 
-  // Affichage de la Navbar "spéciale user connecté" si Login Ok
-  if (isLogged) {
+    // Affichage de la Navbar "spéciale user connecté" si Login Ok
+    if (isLogged) {
+        return (
+            <div className="App">
+                <header className="App-header">
+                    <NavbarLogged setPage={setPage} logout={handleLogout} ></NavbarLogged>
+                </header>
+
+                <main>
+                    {page === 'accueil' && <Accueil ></Accueil>}
+                    {page === 'mon profil' && <ProfilUser token={token} userLogged={userLogged} setPage={setPage} />}
+
+                    {page === 'trainings' && <AllTrainings token={token} setPage={setPage} />}
+                    {page === 'articles' && <Articles token={token} user={userLogged} setPage={setPage}></Articles>}
+                    {page === 'contact' && <Contact setPage={setPage}></Contact>}
+
+
+
+                </main>
+
+                <footer>
+                    <Footer></Footer>
+                </footer>
+            </div>
+        );
+    };
+
+
+    // Affichage de la Navbar "classique"
     return (
-      <div className="App">
-        <header className="App-header">
-          <NavbarLogged setPage={setPage} logout={handleLogout} ></NavbarLogged>
-        </header>
+        <div className="App">
+            <header className="App-header">
+                <Navbar setPage={setPage}></Navbar>
 
-        <main>
-          {page === 'accueil' && <Accueil ></Accueil>}
-          {page === 'mon profil' && <ProfilUser token={token} userLogged={userLogged} setPage={setPage} />}
+            </header>
 
-          {page === 'trainings' && <AllTrainings token={token} setPage={setPage} />}
-          {page === 'articles' && <Articles token={token} user={userLogged}></Articles>}
-          {page === 'contact' && <Contact setPage={setPage}></Contact>}
+            <main>
+                {page === 'accueil' && <Accueil setPage={setPage}></Accueil>}
+                {page === 'login' && <Login setPage={setPage} setIsLogged={setIsLogged} setToken={setToken} setUserLogged={setUserLogged} ></Login>}
+                {page === 'register' && <Register page={page} setPage={setPage} setIsLogged={setIsLogged} setToken={setToken} setUserLogged={setUserLogged}></Register>}
+                {page === 'visitor training' && <VisitorTraining page={page} setPage={setPage} />}
+                {page === 'contact' && <Contact setPage={setPage}></Contact>}
 
 
 
-        </main>
+            </main>
 
-        <footer>
-          <Footer></Footer>
-        </footer>
-      </div>
+            <footer>
+                <Footer></Footer>
+            </footer>
+        </div>
     );
-  };
-
-
-  // Affichage de la Navbar "classique"
-  return (
-    <div className="App">
-      <header className="App-header">
-        <Navbar setPage={setPage}></Navbar>
-        
-      </header>
-
-      <main>
-        {page === 'accueil' && <Accueil setPage={setPage}></Accueil>}
-        {page === 'login' && <Login setPage={setPage} setIsLogged={setIsLogged} setToken={setToken} setUserLogged={setUserLogged} ></Login>}
-        {page === 'register' && <Register page={page} setPage={setPage} setIsLogged={setIsLogged} setToken={setToken} setUserLogged={setUserLogged}></Register>}
-        {page === 'visitor training' && <VisitorTraining page={page} setPage={setPage} />}
-        {page === 'contact' && <Contact setPage={setPage}></Contact>}
-
-
-
-      </main>
-
-      <footer>
-        <Footer></Footer>
-      </footer>
-    </div>
-  );
 }
 
 export default App;

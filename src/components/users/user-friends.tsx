@@ -32,19 +32,21 @@ export default function UserFriends(
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${props.token}`,
+                Authorization: `Bearer ${token}`,
             },
         };
 
-    fetch(`http://localhost:3000/api/friendships/user/friends`, options)
-      .then((response) => response.json())
-      .then((response) => {
-        if (response.statusCode === 200) {
-          setUserFriendsList(response.data);
-        }
-      })
-      .catch((error) => console.log(error));
-  }, [token]);
+        fetch(`http://localhost:3000/api/friendships/user/friends`, options)
+            .then((response) => response.json())
+            .then((response) => {
+                if (response.statusCode === 200) {
+                    setUserFriendsList(response.data);
+                }
+            })
+            .catch((error) => console.log(error));
+    }, [token]);
+
+
 
     // Affichage de la liste des amis
     const affichageUserFriendsList = userFriendsList.map((friend: string) => {
@@ -70,12 +72,14 @@ export default function UserFriends(
         );
     });
 
+
     // Modifie la liste des amis après demande acceptée
-    if (props.newFriend !== "" && !userFriendsList.includes(props.newFriend)) {
+    if (newFriend !== "" && !userFriendsList.includes(newFriend)) {
         const userFriendsListCopy = [...userFriendsList];
-        userFriendsListCopy.push(props.newFriend);
+        userFriendsListCopy.push(newFriend);
         setUserFriendsList(userFriendsListCopy);
     };
+
 
     // Sélectionne une image aléatoire pour chaque ami
     useEffect(() => {
@@ -83,38 +87,38 @@ export default function UserFriends(
     }, [userFriendsList]);
 
 
-  // Affichage
-  return (
-    <>
-      <h3>Ma Liste d'amis</h3>: (
-      <div className="container friend-list-container">
-        <div className="row">
-          <div className="col-md-6 friends-section">
-            <div
-              className="row row-cols-1 row-cols-md-3 g-4"
-              style={{ maxWidth: "30rem" }}
-            >
-              {affichageUserFriendsList}
+    // Affichage
+    return (
+        <>
+            <h3>Ma Liste d'amis</h3>: (
+            <div className="container friend-list-container">
+                <div className="row">
+                    <div className="col-md-6 friends-section">
+                        <div
+                            className="row row-cols-1 row-cols-md-3 g-4"
+                            style={{ maxWidth: "30rem" }}
+                        >
+                            {affichageUserFriendsList}
+                        </div>
+                    </div>
+                    <div className="col-md-6 go-training-section">
+                        <img
+                            src="/user-profils-images/goTrainingImage.png"
+                            alt="Go Training"
+                            className="go-training-image"
+                        />
+                        <button
+                            className="btn btn-primary go-training-btn"
+                            onClick={() => {
+                                setPage("trainings");
+                            }}
+                        >
+                            Go Training
+                        </button>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div className="col-md-6 go-training-section">
-            <img
-              src="/user-profils-images/goTrainingImage.png"
-              alt="Go Training"
-              className="go-training-image"
-            />
-            <button
-              className="btn btn-primary go-training-btn"
-              onClick={() => {
-                setPage("trainings");
-              }}
-            >
-              Go Training
-            </button>
-          </div>
-        </div>
-      </div>
-      )
-    </>
-  );
+            )
+        </>
+    );
 }

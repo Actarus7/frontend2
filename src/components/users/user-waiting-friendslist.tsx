@@ -11,7 +11,7 @@ export default function UserWaitingFriendsList(
         setNewFriend: (newFriend: string) => void
     }) {
 
-    const { token, handleUserPendingFriendListChange, waitingFriendshipsList,setWaitingFriendshipsList, setNewFriend } = props;
+    const { token, handleUserPendingFriendListChange, waitingFriendshipsList, setWaitingFriendshipsList, setNewFriend } = props;
 
 
     // Récupération de la liste des demandes en attente
