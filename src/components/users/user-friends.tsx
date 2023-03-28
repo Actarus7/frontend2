@@ -8,7 +8,6 @@ export default function UserFriends(
     }
 ) {
     const [userFriendsList, setUserFriendsList] = useState<string[]>([]); // State avec la liste des amis
-    const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0); // State avec l'index de l'image sélectionnée
     const images = [
         "/profil-images/photo-profil-1.jpg",
         "/profil-images/photo-profil-2.jpg",
@@ -81,13 +80,8 @@ export default function UserFriends(
     };
 
 
-    // Sélectionne une image aléatoire pour chaque ami
-    useEffect(() => {
-        setSelectedImageIndex(Math.floor(Math.random() * 4));
-    }, [userFriendsList]);
 
-
-    // Affichage
+    // Affichage du Composant
     return (
         <>
             <h3>Ma Liste d'amis</h3>: (
