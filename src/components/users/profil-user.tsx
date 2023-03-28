@@ -6,27 +6,26 @@ import "./style/styleProfil.css";
 import UserFriends from "./user-friends";
 import UserWaitingFriendsList from "./user-waiting-friendslist";
 
-
-export default function ProfilUser(
-  props: {
-    token: string,
-    userLogged: TUser | undefined,
-  }) {
-
+export default function ProfilUser(props: {
+  token: string;
+  userLogged: TUser | undefined;
+  setPage: (page: string) => void;
+}) {
   const [userSearch, setUserSearch] = useState<string>("");
   const [searchText, setSearchText] = useState<string>("");
   const [searchResult, setSearchResult] = useState<TUser>();
-  const [waitingFriendshipsList, setWaitingFriendshipsList] = useState<TFriendship[]>([]); // State avec les demandes d'amis en cours
+  const [waitingFriendshipsList, setWaitingFriendshipsList] = useState<
+    TFriendship[]
+  >([]); // State avec les demandes d'amis en cours
   const [newFriend, setNewFriend] = useState<string>(""); // State avec un pseudo (si une demande est acceptée)
+
+  const { token, userLogged, setPage } = props;
 
   useEffect(() => {
     performFriendSearch(searchText);
   }, [searchText]);
 
-
-
   const performFriendSearch = (search: string) => {
-
     if (search !== "") {
       const body = JSON.stringify({ search });
 
@@ -41,12 +40,11 @@ export default function ProfilUser(
         .then((response) => {
           if (response.statusCode === 200) {
             setSearchResult(response.data);
-          };
+          }
         })
         .catch((error) => console.log(error));
-    };
+    }
   };
-
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -54,14 +52,12 @@ export default function ProfilUser(
     setSearchText(userSearch);
   };
 
-
-
   const handleAddFriend = (user: TUser) => {
     const options = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${props.token}`
+        Authorization: `Bearer ${props.token}`,
       },
       body: JSON.stringify({
         userReceiver: user.pseudo,
@@ -81,14 +77,14 @@ export default function ProfilUser(
       });
   };
 
-
   const handleSearchFriends = (search: string) => {
     setUserSearch(search);
   };
 
-
   // Permet de modifier le state des demandes d'amis en cours
-  const handleUserPendingFriendListChange = (newUserPendingFriendList: TFriendship[]) => {
+  const handleUserPendingFriendListChange = (
+    newUserPendingFriendList: TFriendship[]
+  ) => {
     setWaitingFriendshipsList(newUserPendingFriendList);
   };
 
@@ -97,8 +93,13 @@ export default function ProfilUser(
   return (
     <div className="profil-user-container">
       <h1>Salut, {props.userLogged?.pseudo}</h1>
-
-
+      <div className="push-your-limit-container">
+        <img
+          src="user-profils-images/push.png"
+          alt="Push Your Limit"
+          className="push-your-limit-image"
+        />
+      </div>
 
       {/* RECHERCHE D'AMIS */}
       <div className="search-friends">
@@ -115,7 +116,6 @@ export default function ProfilUser(
           <div className="found-friends">
             <h3>Résultats de la recherche</h3>
             <ul>
-
               <li key={searchResult.pseudo}>
                 <Card className="friend-card">
                   <Card.Img
@@ -133,18 +133,17 @@ export default function ProfilUser(
                   </Card.Body>
                 </Card>
               </li>
-
             </ul>
           </div>
         )}
       </div>
 
-
       {/* LISTE D'AMIS */}
       <UserFriends
-        token={props.token}
-        newFriend={newFriend} />
-
+        token={token}
+        newFriend={newFriend}
+        setPage={setPage}
+      />
 
       {/* LISTE DES DEMANDES D'AMIS RECUES */}
       <UserWaitingFriendsList
@@ -154,7 +153,6 @@ export default function ProfilUser(
         setWaitingFriendshipsList={setWaitingFriendshipsList}
         setNewFriend={setNewFriend}
       />
-
     </div>
   );
-};
+}

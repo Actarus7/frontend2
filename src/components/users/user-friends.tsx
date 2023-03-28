@@ -4,6 +4,7 @@ export default function UserFriends(
     props: {
         token: string;
         newFriend: string;
+        setPage: (page: string) => void;
     }
 ) {
     const [userFriendsList, setUserFriendsList] = useState<string[]>([]); // State avec la liste des amis
@@ -15,12 +16,15 @@ export default function UserFriends(
         "/profil-images/photo-profil-4.jpg",
     ];
 
+    const { token, newFriend, setPage } = props;
+
 
     // Fonction pour sélectionner une image aléatoire
     const getRandomImage = () => {
         const randomIndex = Math.floor(Math.random() * images.length);
         return images[randomIndex];
     }
+
 
     // Récupération de la liste des amis
     useEffect(() => {
@@ -32,16 +36,15 @@ export default function UserFriends(
             },
         };
 
-        fetch(`http://localhost:3000/api/friendships/user/friends`, options)
-            .then((response) => response.json())
-            .then((response) => {
-                if (response.statusCode === 200) {
-                    setUserFriendsList(response.data);
-                }
-            })
-            .catch((error) => console.log(error));
-    }, [props.token]);
-
+    fetch(`http://localhost:3000/api/friendships/user/friends`, options)
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.statusCode === 200) {
+          setUserFriendsList(response.data);
+        }
+      })
+      .catch((error) => console.log(error));
+  }, [token]);
 
     // Affichage de la liste des amis
     const affichageUserFriendsList = userFriendsList.map((friend: string) => {
@@ -80,13 +83,38 @@ export default function UserFriends(
     }, [userFriendsList]);
 
 
-    // Affichage du Composant
-    return (
-        <>
-            <h3>Ma Liste d'amis</h3>
-            <div className="row row-cols-1 d-flex flex-nowrap overflow-auto">
-                {affichageUserFriendsList}
+  // Affichage
+  return (
+    <>
+      <h3>Ma Liste d'amis</h3>: (
+      <div className="container friend-list-container">
+        <div className="row">
+          <div className="col-md-6 friends-section">
+            <div
+              className="row row-cols-1 row-cols-md-3 g-4"
+              style={{ maxWidth: "30rem" }}
+            >
+              {affichageUserFriendsList}
             </div>
-        </>
-    );
+          </div>
+          <div className="col-md-6 go-training-section">
+            <img
+              src="/user-profils-images/goTrainingImage.png"
+              alt="Go Training"
+              className="go-training-image"
+            />
+            <button
+              className="btn btn-primary go-training-btn"
+              onClick={() => {
+                setPage("trainings");
+              }}
+            >
+              Go Training
+            </button>
+          </div>
+        </div>
+      </div>
+      )
+    </>
+  );
 }

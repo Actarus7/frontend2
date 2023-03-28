@@ -12,6 +12,8 @@ export type TTraining = {
 
     description: string;
 
+    image: string;
+
     sessions: TSession[];
 
     exercises: TExercise[];
