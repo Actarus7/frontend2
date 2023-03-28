@@ -39,31 +39,46 @@ export function Recette(
             .catch(err => console.error(err));
     }, [recetteId, token]);
 
-
+    // Affichage du Composant
     return (
         <>
-            {
-                recette?.title ? (
-                    <div className="container-fluid">
-                        <>
-                            <h1>{recette.title}</h1>
-                            {recette.createdAt}
-                            <div>{recette.body}</div>
-                            {
-                                comments ?
-                                    <CommentsArticle
-                                        setPage={setPage}
-                                        setComments={setComments}
-                                        handleResetRedirections={handleResetRedirections}
-                                        articleId={recette.id}
-                                        comments={comments}
-                                        user={user}
-                                        token={token}></CommentsArticle> : ''
-                                    
-                            }
+            {recette?.title ? (
+                // BOUTON RETOUR ET TITRE H2
+                <div className="container-fluid bg-white">
 
-                        </>
+                    <div className="d-flex justify-content-between align-items-center bg-black">
+                        <div className="col-auto">
+                            <button
+                                type="button"
+                                className="btn btn-secondary"
+                                onClick={() => {
+                                    setPage("articles");
+                                    handleResetRedirections();
+                                }}
+                            >
+                                Retour
+                            </button>
+                        </div>
+
+                        <h2 className="text-center" style={{ color: "white" }}>{recette.title}</h2>
+                        <div className="col-auto"></div>
                     </div>
-                ) : ''}</>
+
+                    <div className="text-center border py-4">
+                        <pre className="article_body">{recette.body}</pre>
+                    </div>
+
+                    {comments ? (
+                        <CommentsArticle
+                            setComments={setComments}
+                            articleId={recette.id}
+                            comments={comments}
+                            user={user}
+                            token={token}
+                        />
+                    ) : null}
+                </div>
+            ) : null}
+        </>
     );
 };

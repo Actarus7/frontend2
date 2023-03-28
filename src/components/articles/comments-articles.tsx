@@ -1,7 +1,6 @@
 import { useRef, useState } from "react";
 import { TComment } from "../../types/TComment.type";
 import { TUser } from "../../types/TUser.type";
-import Articles from "./articles";
 
 
 
@@ -12,14 +11,11 @@ export default function CommentsArticle(
         comments: TComment[],
         user: TUser | undefined,
         token: string,
-        setPage: React.Dispatch<React.SetStateAction<string>>,
-        handleResetRedirections: () => void
     }) {
 
     const [editingCommentId, setEditingCommentId] = useState<number | null>(null);
     const [newCommentText, setNewCommentText] = useState<string>("");
-    const [redirectToArticles, setRedirectToArticles] = useState(false)
-    const { setComments, articleId, comments, user, token, setPage, handleResetRedirections } = props;
+    const { setComments, articleId, comments, user, token } = props;
 
     const messageRef = useRef<HTMLTextAreaElement>(null);
 
@@ -119,43 +115,35 @@ export default function CommentsArticle(
     };
 
 
-    // Redirection vers le Component Articles (Communauté) si clique sur le bouton "Retour"
-    if (redirectToArticles) setPage("accueil")
-
-
 
     // Affichage du Composant
     return (
         <>
             <div>
                 {/* FORMULAIRE D'AJOUT D'UN COMMENTAIRE */}
-                <form className="row g-3" onSubmit={handleAddComment}>
-
-                    <div className="col-auto">
+                <form className="row g-3 m-3" onSubmit={handleAddComment}>
+                    <div className="col-6 d-flex">
                         <textarea
-                            className="form-control"
+                            className="form-control p-3"
                             id="exampleFormControlTextarea1"
                             ref={messageRef}
-                            required>
-                        </textarea>
+                            placeholder="Ajouter un commentaire"
+                            style={{ width: "100%" }}
+                            required
+                        ></textarea>
                     </div>
-
                     <div className="col-auto">
-                        <button
-                            type="submit"
-                            className="btn btn-primary mb-3">
+                        <button type="submit" className="btn btn-primary mb-3">
                             Ajouter
                         </button>
                     </div>
-
-                    
-
                 </form>
 
 
+
                 {/* TABLEAU DES COMMENTAIRES */}
-                <table className="table table-striped table-hover">
-                    
+                <table className="table table-dark table-striped table-hover">
+
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -165,7 +153,7 @@ export default function CommentsArticle(
                         </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody className="table-group-divider">
                         {comments.map((comment, index) => (
                             <tr key={comment.id}>
                                 <th scope="row">{index + 1}</th>

@@ -41,48 +41,48 @@ export function Partage(
     }, [partageId, token]);
 
 
-    // Affichage
+    // Affichage du Composant
     return (
         <>
-            {
-                partage?.title ? (
-                    <div className="container-fluid bg-white">
-                        <>
-                            <div>
-                                <div className="col-auto">
-                                    <button
-                                        type="button"
-                                        className="btn btn-secondary mb-3"
-                                        onClick={() => {
-                                            setPage("articles");
-                                            handleResetRedirections()
-                                        }}>
-                                        Retour
-                                    </button>
-                                </div>
-                                <h1>{partage.title}</h1>
-                            </div>
+            {partage?.title ? (
+                // BOUTON RETOUR ET TITRE H2
+                <div className="container-fluid bg-white">
 
+                    <div className="d-flex justify-content-between align-items-center bg-black">
+                        <div className="col-auto">
+                            <button
+                                type="button"
+                                className="btn btn-secondary"
+                                onClick={() => {
+                                    setPage("articles");
+                                    handleResetRedirections();
+                                }}
+                            >
+                                Retour
+                            </button>
+                        </div>
 
-                            <pre className="pt-4 article_body">{partage.body}</pre>
-
-                            {partage.createdAt}
-                            {
-                                comments ?
-                                    <CommentsArticle
-                                        setPage={setPage}
-                                        setComments={setComments}
-                                        handleResetRedirections={handleResetRedirections}
-                                        articleId={partage.id}
-                                        comments={comments}
-                                        user={user}
-                                        token={token}></CommentsArticle>
-                                    : ''
-                            }
-
-                        </>
+                        <h2 className="text-center" style={{ color: "white" }}>{partage.title}</h2>
+                        <div className="col-auto"></div>
                     </div>
-                ) : ''}
+
+                    <div className="text-center border py-4">
+                        <pre className="article_body">{partage.body}</pre>
+                    </div>
+
+                    {comments ? (
+                        <CommentsArticle
+                            setComments={setComments}
+                            articleId={partage.id}
+                            comments={comments}
+                            user={user}
+                            token={token}
+                        />
+                    ) : null}
+                </div>
+            ) : null}
         </>
     );
+
+
 };

@@ -7,10 +7,11 @@ export default function UserWaitingFriendsList(
         token: string,
         handleUserPendingFriendListChange: (newUserPendingFriendList: TFriendship[]) => void,
         waitingFriendshipsList: TFriendship[],
+        setWaitingFriendshipsList: React.Dispatch<React.SetStateAction<TFriendship[]>>,
         setNewFriend: (newFriend: string) => void
     }) {
 
-    const { token, handleUserPendingFriendListChange, waitingFriendshipsList, setNewFriend } = props;
+    const { token, handleUserPendingFriendListChange, waitingFriendshipsList,setWaitingFriendshipsList, setNewFriend } = props;
 
 
     // Récupération de la liste des demandes en attente
@@ -54,6 +55,7 @@ export default function UserWaitingFriendsList(
                 const updatedFriendshipList = [...waitingFriendshipsList].filter((friendship: TFriendship) => friendship.id !== id);
                 handleUserPendingFriendListChange(updatedFriendshipList)
                 setNewFriend(response.data.userSender.pseudo);
+                setWaitingFriendshipsList(updatedFriendshipList); // mise à jour de l'état avec la nouvelle liste
             })
             .catch(error => console.error(error)
             );

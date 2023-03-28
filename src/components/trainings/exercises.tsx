@@ -6,6 +6,8 @@ export default function Exercises(props: { sessionId: number, trainingId: number
     const [exercises, setExercises] = useState<TExercise[]>([]);
     const [activeItem, setActiveItem] = useState<number>(0); // State d'état des accordéons (id de l'exercice à afficher)
 
+
+    // Récupération de tous les Exercises d'une Session d'un Training
     useEffect(() => {
         const fetchData = async () => {
             const body = JSON.stringify({
@@ -21,7 +23,9 @@ export default function Exercises(props: { sessionId: number, trainingId: number
         fetchData();
     }, [props.sessionId, props.trainingId]);
 
-    // Affichage
+
+
+    // Affichage du Composant
     return (
         <>
             <h1>SESSION {props.sessionId}</h1>
@@ -32,7 +36,7 @@ export default function Exercises(props: { sessionId: number, trainingId: number
                     return (
 
                         <>
-                            <div className="accordion-item" key={i}>
+                            <div className="accordion-item" key={exercise.id}>
                                 <h2 className="accordion-header" id="headingTwo">
                                     <button
                                         className="accordion-button collapsed"

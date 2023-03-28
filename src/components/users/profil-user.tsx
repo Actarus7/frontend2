@@ -93,13 +93,6 @@ export default function ProfilUser(
   };
 
 
-  // // Permet de modifier la liste des amis
-  // const handleUserNewFriend = (newFriend: string) => {
-  //   userFriendsList.push(newFriend);
-  //   setUserFriendsList(userFriendsList);
-  // };
-
-
   // Affichage du Composant
   return (
     <div className="profil-user-container">
@@ -158,6 +151,7 @@ export default function ProfilUser(
         token={props.token}
         handleUserPendingFriendListChange={handleUserPendingFriendListChange}
         waitingFriendshipsList={waitingFriendshipsList}
+        setWaitingFriendshipsList={setWaitingFriendshipsList}
         setNewFriend={setNewFriend}
       />
 
