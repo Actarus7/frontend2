@@ -26,9 +26,9 @@ export default function OneTraining(props: { trainingId: number, onBackToList: (
             <div>
                 {oneTraining ?
                     <div className="">
-                        {oneTraining.title}
+                        <h1>{oneTraining.title}</h1>
 
-                        <div className="">
+                        <div className="text-center" style={{ color: "white" }}>
                             {oneTraining.description}
 
                         </div>
