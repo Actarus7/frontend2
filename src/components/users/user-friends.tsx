@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
 
-export default function UserFriends(props: {
-  token: string;
-  newFriend: string;
-  setPage: (page: string) => void;
-}) {
-  const [userFriendsList, setUserFriendsList] = useState<string[]>([]); // State avec la liste des amis
-  const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0); // State avec l'index de l'image sélectionnée
-  const images = [
-    "/profil-images/photo-profil-1.jpg",
-    "/profil-images/photo-profil-2.jpg",
-    "/profil-images/photo-profil-3.jpg",
-    "/profil-images/photo-profil-4.jpg",
-  ];
+export default function UserFriends(
+    props: {
+        token: string;
+        newFriend: string;
+        setPage: (page: string) => void;
+    }
+) {
+    const [userFriendsList, setUserFriendsList] = useState<string[]>([]); // State avec la liste des amis
+    const images = [
+        "/profil-images/photo-profil-1.jpg",
+        "/profil-images/photo-profil-2.jpg",
+        "/profil-images/photo-profil-3.jpg",
+        "/profil-images/photo-profil-4.jpg",
+    ];
 
   const { token, newFriend, setPage } = props;
 
@@ -69,18 +70,39 @@ export default function UserFriends(props: {
     setUserFriendsList(userFriendsListCopy);
   }
 
-  // Sélectionne une image aléatoire pour chaque ami
-  useEffect(() => {
-    setSelectedImageIndex(Math.floor(Math.random() * 4));
-  }, [userFriendsList]);
 
-  // Affichage
-  return (
-    <>
-      <h3>Ma Liste d'amis</h3>
-      <div className="row row-cols-1 d-flex flex-nowrap overflow-auto">
-        {affichageUserFriendsList}
-      </div>
-    </>
-  );
+    // Affichage du Composant
+    return (
+        <>
+            <h3>Ma Liste d'amis</h3>: (
+            <div className="container friend-list-container">
+                <div className="row">
+                    <div className="col-md-6 friends-section">
+                        <div
+                            className="row row-cols-1 row-cols-md-3 g-4"
+                            style={{ maxWidth: "30rem" }}
+                        >
+                            {affichageUserFriendsList}
+                        </div>
+                    </div>
+                    <div className="col-md-6 go-training-section">
+                        <img
+                            src="/user-profils-images/goTrainingImage.png"
+                            alt="Go Training"
+                            className="go-training-image"
+                        />
+                        <button
+                            className="btn btn-primary go-training-btn"
+                            onClick={() => {
+                                setPage("trainings");
+                            }}
+                        >
+                            Go Training
+                        </button>
+                    </div>
+                </div>
+            </div>
+            )
+        </>
+    );
 }

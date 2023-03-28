@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Navbar } from './components/navbars/navbar';
 import { Footer } from './components/footer/footer';
 import { Login } from './components/users/login';
@@ -11,7 +11,6 @@ import ProfilUser from './components/users/profil-user';
 import { TUser } from './types/TUser.type';
 import VisitorTraining from './components/trainings/visitorTraining';
 import { Contact } from './components/contact/contact';
-import UserFriends from './components/users/user-friends';
 
 
 
@@ -20,14 +19,15 @@ function App() {
     const [isLogged, setIsLogged] = useState(false);
     const [token, setToken] = useState('');
     const [userLogged, setUserLogged] = useState<TUser>();
-    // const [newFriend, setNewFriend] = useState('');
 
 
+    // Fonction qui permet de se déconnecter
     const handleLogout = () => {
         setIsLogged(false);
         setToken("");
         setPage("login");
     };
+
 
     // Affichage de la Navbar "spéciale user connecté" si Login Ok
     if (isLogged) {
@@ -57,7 +57,7 @@ function App() {
     };
 
 
-    // Affichage de la Navbar "classique"
+    // Affichage du Composant (Navbar "classique")
     return (
         <div className="App">
             <header className="App-header">
@@ -74,13 +74,17 @@ function App() {
 
 
 
-            </main>
+      </main>
 
-            <footer>
-                <Footer></Footer>
-            </footer>
-        </div>
-    );
+       {page !== 'contact' ?
+        
+         
+        <footer>
+        <Footer></Footer>
+        </footer>
+      : ''}
+    </div>
+  );
 }
 
 export default App;
