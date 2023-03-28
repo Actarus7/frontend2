@@ -53,8 +53,8 @@ export default function Exercises(props: { sessionId: number, trainingId: number
                                     id={`collapse-${exercise.id}`}
                                     className={`accordion-collapse collapse ${activeItem === exercise.id ? 'show' : ''}`} // show le accordeon-body si le state correspond à exercise.id
                                     aria-labelledby={`heading-${exercise.id}`}
-                                    data-bs-parent="#accordionExample"
-                                >
+                                    data-bs-parent="#accordionExample">
+
                                     <div className="accordion-body">
                                         <div>{exercise.content}</div>
                                         <div>{exercise.time}</div>

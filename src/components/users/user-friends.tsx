@@ -68,7 +68,7 @@ export default function UserFriends(
     const userFriendsListCopy = [...userFriendsList];
     userFriendsListCopy.push(newFriend);
     setUserFriendsList(userFriendsListCopy);
-  }
+  };
 
 
     // Affichage du Composant

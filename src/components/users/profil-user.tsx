@@ -21,9 +21,11 @@ export default function ProfilUser(props: {
 
   const { token, userLogged, setPage } = props;
 
+
   useEffect(() => {
     performFriendSearch(searchText);
   }, [searchText]);
+
 
   const performFriendSearch = (search: string) => {
     if (search !== "") {
@@ -46,11 +48,13 @@ export default function ProfilUser(props: {
     }
   };
 
+
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     setSearchText(userSearch);
   };
+
 
   const handleAddFriend = (user: TUser) => {
     const options = {
@@ -77,9 +81,11 @@ export default function ProfilUser(props: {
       });
   };
 
+
   const handleSearchFriends = (search: string) => {
     setUserSearch(search);
   };
+
 
   // Permet de modifier le state des demandes d'amis en cours
   const handleUserPendingFriendListChange = (
@@ -88,25 +94,30 @@ export default function ProfilUser(props: {
     setWaitingFriendshipsList(newUserPendingFriendList);
   };
 
+
   // Affichage du Composant
   return (
     <div className="profil-user-container">
+
+      {/* TITRE */}
       <h1>Salut, {props.userLogged?.pseudo}</h1>
+
+      {/* PHOTO ET BOUTON RETOUR AUX TRAININGS */}
       <div className="push-your-limit-container">
-  <img
-    src="user-profils-images/push.png"
-    alt="Push Your Limit"
-    className="push-your-limit-image"
-  />
-  <button
-    className="btn btn-primary go-training-btn"
-    onClick={() => {
-      setPage("trainings");
-    }}
-  >
-    Go Training
-  </button>
-</div>
+        <img
+          src="user-profils-images/push.png"
+          alt="Push Your Limit"
+          className="push-your-limit-image"
+        />
+        <button
+          className="btn btn-primary go-training-btn"
+          onClick={() => {
+            setPage("trainings");
+          }}
+        >
+          Go Training
+        </button>
+      </div>
 
 
       {/* RECHERCHE D'AMIS */}
@@ -155,8 +166,7 @@ export default function ProfilUser(props: {
         handleUserPendingFriendListChange={handleUserPendingFriendListChange}
         waitingFriendshipsList={waitingFriendshipsList}
         setWaitingFriendshipsList={setWaitingFriendshipsList}
-        setNewFriend={setNewFriend}
-      />
+        setNewFriend={setNewFriend} />
     </div>
   );
 }

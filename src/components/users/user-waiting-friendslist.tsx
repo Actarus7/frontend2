@@ -87,7 +87,7 @@ export default function UserWaitingFriendsList(
     const affichageUserFriendsList = waitingFriendshipsList.map((friendship: TFriendship, i: number) => {
 
         return (
-            <tr>
+            <tr key={friendship.id}>
                 <th scope="row">{i + 1}</th>
 
                 <td>{friendship.userSender.pseudo}</td>

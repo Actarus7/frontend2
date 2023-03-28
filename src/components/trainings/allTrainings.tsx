@@ -4,16 +4,10 @@ import OneTraining from './oneTraining';
 import './styles/stylesTraining.css';
 
 export default function AllTrainings(props: any) {
-    /**
-     * like peut prendre 3 états: -1= dislike
-     * 1 = like et 0 = undefined (pas de choix de la part de user)
-     */
-    // const [searchTerm, setSearchTerm] = useState('');//searbar
-    // const [favorite, setFavorite] = useState(false);
+
     const [trainings, setTrainings] = useState<TTraining[]>([]);
     const [trainingId, setTrainingId] = useState<number>(0);
     const [redirectToAfficheOneTraining, setRedirectToAfficheOneTraining] = useState(false);
-  
 
 
     // Récupération de tous les Trainings
@@ -29,94 +23,48 @@ export default function AllTrainings(props: any) {
 
     }, [])
 
+
+    // Fonction permettant de retourner à la liste de tous les Trainings
     const handleBackToList = () => {
         setRedirectToAfficheOneTraining(false);
     };
+
+
     const affichageTrainings = trainings.map((training: TTraining) => {
         let imageSrc = '';
         if (training.id === 1) {
-          imageSrc = `${process.env.PUBLIC_URL}/alltraining-images/programme1img.jpg`;
+            imageSrc = `${process.env.PUBLIC_URL}/alltraining-images/programme1img.jpg`;
         } else if (training.id === 2) {
-          imageSrc = `${process.env.PUBLIC_URL}/alltraining-images/programme2img.jpg`;
+            imageSrc = `${process.env.PUBLIC_URL}/alltraining-images/programme2img.jpg`;
         } else {
-          imageSrc = `${process.env.PUBLIC_URL}/alltraining-images/programme3img.jpg`;
-        }
+            imageSrc = `${process.env.PUBLIC_URL}/alltraining-images/programme3img.jpg`;
+        };
+
+
+        // Affichage du Composant
         return (
             <>
-              <div className="card training-card m-3 text-truncate shadow" style={{ width: "18rem", boxShadow: "0 4px 6px rgba(255, 255, 255, 0.1)" }}>
-                <img src={imageSrc} alt={`Programme ${training.id}`} className="card-img-top" />
-                <div className="card-body">
-  <h5 className="card-title">
-    <div className="d-flex justify-content-between align-items-center">
-    </div>
-  </h5>
-  <div className="training-info bg-custom-color text-white mb-3">Programme {training.id}</div>
-  <button
-    type="button"
-    onClick={() => { setRedirectToAfficheOneTraining(true); setTrainingId(training.id) }}
-    className="btn btn-primary btn-custom"
-  >
-    Voir Programme
-  </button>
-</div>
-
-              </div>
-            </>
-          );
-        });
-    
-    
-    
-
-
-
-
-                {/* <div className="card mb-3">
-                    <img src="..." className="card-img-top" alt="..." />
+                <div className="card training-card m-3 text-truncate shadow" style={{ width: "18rem", boxShadow: "0 4px 6px rgba(255, 255, 255, 0.1)" }}>
+                    <img src={imageSrc} alt={`Programme ${training.id}`} className="card-img-top" />
                     <div className="card-body">
-                        <h5 className="card-title">Card title</h5>
-                        <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-                <div className="card">
-                    <div className="card-body">
-                        <h5 className="card-title">Card title</h5>
-                        <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                    <img src="..." className="card-img-bottom" alt="..." />
-                </div> */}
-
-
-
-
-
-
-
-
-
-
-                {/* <div className="card training-card m-3 text-truncate" style={{ width: "18rem" }}>
-                    <img src={`path/to/image/${training.id}.jpg`} alt="Programme" className="card-img-top" />
-                    <div className="card-img-overlay d-flex flex-column justify-content-end">
-                        <div className="training-info bg-black">
-                            
-                        </div>
-                    </div>
-                    <div className="card-body text-primary p-2 g-col-6 text-truncate">
+                        <h5 className="card-title">
+                            <div className="d-flex justify-content-between align-items-center">
+                            </div>
+                        </h5>
+                        <div className="training-info bg-custom-color text-white mb-3">Programme {training.id}</div>
                         <button
                             type="button"
                             onClick={() => { setRedirectToAfficheOneTraining(true); setTrainingId(training.id) }}
-                            className="btn btn-info">
+                            className="btn btn-primary btn-custom"
+                        >
                             Voir Programme
                         </button>
                     </div>
-                </div> 
+
+                </div>
             </>
         );
-    });*/}
-
+    });
 
 
     if (redirectToAfficheOneTraining) {
@@ -124,7 +72,7 @@ export default function AllTrainings(props: any) {
     };
 
 
-    // Affichage
+    // Affichage du Composant
     return (
         <div className="d-flex align-content-center flex-wrap justify-content-center align-items-center background-image">
             <div className="d-flex align-content-center flex-wrap justify-content-center align-items-center text-truncate ">
