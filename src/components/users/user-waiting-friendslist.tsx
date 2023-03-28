@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { TFriendship } from "../../types/TFriendship.type";
 
 
@@ -8,11 +8,13 @@ export default function UserWaitingFriendsList(
         handleUserPendingFriendListChange: (newUserPendingFriendList: TFriendship[]) => void,
         waitingFriendshipsList: TFriendship[],
         setWaitingFriendshipsList: React.Dispatch<React.SetStateAction<TFriendship[]>>,
-        setNewFriend: (newFriend: string) => void
+        setNewFriend: (newFriend: string) => void,
+        newFriend: string;
     }) {
 
-    const { token, handleUserPendingFriendListChange, waitingFriendshipsList, setWaitingFriendshipsList, setNewFriend } = props;
+    const { token, handleUserPendingFriendListChange, waitingFriendshipsList, setWaitingFriendshipsList, setNewFriend, newFriend } = props;
 
+    console.log('User-WaitingFriendsList');
 
     // Récupération de la liste des demandes en attente
     useEffect(() => {
@@ -36,7 +38,7 @@ export default function UserWaitingFriendsList(
             })
             .catch((error) => console.log(error.message)
             );
-    }, [token, handleUserPendingFriendListChange]);
+    }, [token, newFriend, handleUserPendingFriendListChange]);
 
 
     // Accepter la demande d'ami (patch)
@@ -104,7 +106,7 @@ export default function UserWaitingFriendsList(
     });
 
 
-    // Affichage
+    // Affichage du Composant
     return (
         <>
             {/* LISTE DES DEMANDES EN ATTENTE */}

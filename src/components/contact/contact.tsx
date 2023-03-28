@@ -1,5 +1,4 @@
-
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { TContact } from "../../types/TContact.type";
 import "./styleContact.css";
 
@@ -8,50 +7,25 @@ type Props = {
 }
 
 export function Contact(props: Props) {
+
     const [contact, setContact] = useState<TContact[]>([]);
     const [firstNameInput, setFirstNameInput] = useState("");
     const [lastNameInput, setLastNameInput] = useState("");
     const [emailInput, setEmailInput] = useState("");
     const [messageInput, setMessageInput] = useState("");
 
-    /* useEffect(() => {
-        const fetchData = async () => {
-            const options = {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    firstname: firstNameInput,
-                    lastname: lastNameInput,
-                    email: emailInput,
-                    message: messageInput,
-                }),
-            }
-
-
-            const response = await fetch('http://localhost:3000/api/contacts/', options);
-            const responseJson = await response.json();
-            console.log(responseJson, "success");
-
-            if (responseJson.statusCode === 201) {
-                setContact([...contact, responseJson])
-                resetInput();
-            }
-
-        }
-    }, []); */
 
     function resetInput() {
         setFirstNameInput("")
         setLastNameInput("")
         setEmailInput("")
         setMessageInput("")
-    }
+    };
 
-   
+
 
     const handleSubmit = async (event: { preventDefault: () => void; }) => {
-        console.log("handlesubmit");
-        
+
         event.preventDefault();
         const options = {
             method: 'POST',
@@ -62,21 +36,20 @@ export function Contact(props: Props) {
                 email: emailInput,
                 message: messageInput,
             }),
-        }
+        };
 
         const response = await fetch('http://localhost:3000/api/contact/', options);
         const responseJson = await response.json();
-        console.log(responseJson, "success");
 
         if (responseJson.statusCode === 201) {
             setContact([...contact, responseJson])
             resetInput();
-        }
-    }
+        };
+    };
 
 
 
-    // Affichage
+    // Affichage du Composant
     return (
         <>
 
@@ -101,7 +74,7 @@ export function Contact(props: Props) {
 
                     <div className="mb-3" >
                         <label htmlFor="exampleFormControlTextarea1" className="text-formulaire">Votre message</label>
-                        <textarea className="form-control w-50 col-md-3 offset-md-3" id="exampleFormControlTextarea1 rows-3" value={messageInput}  onChange={(event) => setMessageInput(event.target.value)}></textarea>
+                        <textarea className="form-control w-50 col-md-3 offset-md-3" id="exampleFormControlTextarea1 rows-3" value={messageInput} onChange={(event) => setMessageInput(event.target.value)}></textarea>
                     </div>
 
                     <label className="text-formulaire">
@@ -110,7 +83,7 @@ export function Contact(props: Props) {
 
                     </label>
 
-                    <button  onClick={handleSubmit} type="button" className="btn-form-control w-50 col-md-3 offset-md-3" id="btn" >Envoyer</button>
+                    <button onClick={handleSubmit} type="button" className="btn-form-control w-50 col-md-3 offset-md-3" id="btn" >Envoyer</button>
                 </div>
             </div>
         </>

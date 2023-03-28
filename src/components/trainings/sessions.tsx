@@ -74,7 +74,7 @@ export default function Sessions(
 
 
 
-    // Affichage
+    // Affichage du Composant
     return (
         <>
 

@@ -35,38 +35,38 @@ export default function Exercises(props: { sessionId: number, trainingId: number
                 {exercises.map((exercise: TExercise, i: number) => {
                     return (
 
-                        <>
-                            <div className="accordion-item" key={exercise.id}>
-                                <h2 className="accordion-header" id="headingTwo">
-                                    <button
-                                        className="accordion-button collapsed"
-                                        type="button"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target={`#collapse-${exercise.id}`}
-                                        aria-expanded={activeItem === exercise.id} // expand l'accordeon si le state correspond à exercise.id
-                                        onClick={() => setActiveItem(exercise.id)}
-                                    >
-                                        Exercice {exercise.title}
-                                    </button>
-                                </h2>
-                                <div
-                                    id={`collapse-${exercise.id}`}
-                                    className={`accordion-collapse collapse ${activeItem === exercise.id ? 'show' : ''}`} // show le accordeon-body si le state correspond à exercise.id
-                                    aria-labelledby={`heading-${exercise.id}`}
-                                    data-bs-parent="#accordionExample">
 
-                                    <div className="accordion-body">
-                                        <div>{exercise.content}</div>
-                                        <div>{exercise.time}</div>
-                                        <div>{exercise.beginner}</div>
-                                        <div>{exercise.medium}</div>
-                                        <div>{exercise.expert}</div>
-                                        <div>{exercise.material}</div>
-                                        <div>{exercise.rest_time}</div>
-                                    </div>
+                        <div className="accordion-item" key={exercise.id}>
+                            <h2 className="accordion-header" id="headingTwo">
+                                <button
+                                    className="accordion-button collapsed"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target={`#collapse-${exercise.id}`}
+                                    aria-expanded={activeItem === exercise.id} // expand l'accordeon si le state correspond à exercise.id
+                                    onClick={() => setActiveItem(exercise.id)}
+                                >
+                                    Exercice {exercise.title}
+                                </button>
+                            </h2>
+                            <div
+                                id={`collapse-${exercise.id}`}
+                                className={`accordion-collapse collapse ${activeItem === exercise.id ? 'show' : ''}`} // show le accordeon-body si le state correspond à exercise.id
+                                aria-labelledby={`heading-${exercise.id}`}
+                                data-bs-parent="#accordionExample">
+
+                                <div className="accordion-body">
+                                    <div>{exercise.content}</div>
+                                    <div>{exercise.time}</div>
+                                    <div>{exercise.beginner}</div>
+                                    <div>{exercise.medium}</div>
+                                    <div>{exercise.expert}</div>
+                                    <div>{exercise.material}</div>
+                                    <div>{exercise.rest_time}</div>
                                 </div>
                             </div>
-                        </>
+                        </div>
+
                     )
                 })}
             </div>

@@ -1,35 +1,9 @@
-import { useEffect } from "react";
-import { Apropos } from "../apropos/apropos";
 import "./styleAccueil/styleAccueil.css"
 
 
 export default function Accueil(props: any/* IntrinsicAttributes */) {
-    
-    /* const titre = (
-        <div className="carousel-caption d-none d-md-block bg-dark text-white">
-            <h1>Bienvenue sur Happy Training</h1>
-            <h3>Avec nous, restez concentrés jusqu'au bout !</h3>
-        </div>) */
-    /* const array = [
-        "accueil1.png",
-        "accueil2.png",
-        "accueil3.png",
-        "accueil4.png"
-    ]
 
-    const arrayElems = array.map(
-        (item, i) => {
-            // Affichage
-            return (
-
-                <div key={i} className="carousel-item active accueil-images " data-bs-interval={(i + 1) * 3000}>
-      <img src={`accueil-images/${item}`} className="d-block w-100" alt="woman1" />
-      {titre}
-    </div>
-            )
-        }
-    ) */
-    // Affichage
+    // Affichage du Composant
     return (
 
         <div className="bg-color position-relative">

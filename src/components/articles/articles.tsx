@@ -57,7 +57,7 @@ export default function Articles(
 
                 <div className="container-fluid mt-3" key={i}>
                     <div>
-                        <a href="#" className="fw-semibold fs-5 text-decoration-none" onClick={() => { setRedirectToPartages(true); setPartageId(partage.id) }} >
+                        <a href="#!" role="button" className="fw-semibold fs-5 text-decoration-none" onClick={() => { setRedirectToPartages(true); setPartageId(partage.id) }} >
                             {partage.title}
                         </a>
                     </div >
@@ -77,6 +77,7 @@ export default function Articles(
         };
     });
 
+
     // Map des articles pour récupérer tous les Recettes
     const allRecettes = articles.map((recette: TArticle | null, i) => {
         if (recette?.type === "recette")
@@ -85,7 +86,7 @@ export default function Articles(
 
                 <div className="container-fluid mt-3" key={i}>
                     <div>
-                        <a href="#" className="fw-semibold fs-5 text-decoration-none" onClick={() => { setRedirectToRecettes(true); setRecetteId(recette.id) }} >
+                        <a href="#!" role="button" className="fw-semibold fs-5 text-decoration-none" onClick={() => { setRedirectToRecettes(true); setRecetteId(recette.id) }} >
                             {recette.title}
                         </a>
                     </div>
@@ -114,7 +115,7 @@ export default function Articles(
 
                 <div className="container-fluid mt-3" key={i}>
                     <div>
-                        <a href="#" className="fw-semibold fs-5 text-decoration-none" onClick={() => { setRedirectToDefis(true); setDefiId(defi.id) }} >
+                        <a href="#!" role="button" className="fw-semibold fs-5 text-decoration-none" onClick={() => { setRedirectToDefis(true); setDefiId(defi.id) }} >
                             {defi.title}
                         </a>
 
@@ -149,9 +150,9 @@ export default function Articles(
 
 
     // Redirection vers un Article précis en fonction du click
-    if (redirectToDefis) return <Defi defiId={defiId} token={token} user={user} setPage={setPage} handleResetRedirections={handleResetRedirections}/>;
-    if (redirectToRecettes) return <Recette recetteId={recetteId} token={token} user={user} setPage={setPage} handleResetRedirections={handleResetRedirections}/>;
-    if (redirectToPartages) return <Partage partageId={partageId} token={token} user={user} setPage={setPage} handleResetRedirections={handleResetRedirections}/>;
+    if (redirectToDefis) return <Defi defiId={defiId} token={token} user={user} setPage={setPage} handleResetRedirections={handleResetRedirections} />;
+    if (redirectToRecettes) return <Recette recetteId={recetteId} token={token} user={user} setPage={setPage} handleResetRedirections={handleResetRedirections} />;
+    if (redirectToPartages) return <Partage partageId={partageId} token={token} user={user} setPage={setPage} handleResetRedirections={handleResetRedirections} />;
 
 
 

@@ -30,11 +30,12 @@ export default function VisitorTrainings(
 
     // Redirection vers le Training sélectionné
     if (redirectToAfficheOneTraining) {
-        return <OneTraining trainingId={1} onBackToList={handleBackToList} />
+        if (training) return <OneTraining trainingId={training.id} onBackToList={handleBackToList} />
+        alert('Choisissez un autre Programme')
     };
 
 
-    // Affichage
+    // Affichage du Composant
     return (
 
         <div>
@@ -64,7 +65,7 @@ export default function VisitorTrainings(
                 : ""}
         </div>
 
-    )
+    );
 
 
-}
+};
