@@ -35,3 +35,25 @@
     background-color: #40dbc1;
 }
 
+.training-info {
+    background-color: #2d3450;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .program-number {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 10px;
+    background-color: #40dbc1;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+  }
+  
+
